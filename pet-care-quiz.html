@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Well Do You Know Pet Care? Interactive Quiz - FurEver Care</title>
+  <meta name="description" content="Test your companion animal knowledge across 10 interactive questions covering nutrition, grooming, positive training, and emergency recognition.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
+
+  <!-- Google Fonts CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Core CSS Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Emergency Ticker -->
+  <aside class="top-emergency-ticker" role="region" aria-label="Emergency Pet Care Hotline">
+    <div class="container ticker-inner">
+      <div class="ticker-content">
+        <span class="pulse-badge"><i class="fa-solid fa-bolt"></i> 24/7 Clinical Hotline</span>
+        <span>Immediate veterinary triage & emergency assistance across Pakistan:</span>
+        <a href="tel:+92515550199" class="ticker-phone"><i class="fa-solid fa-phone-volume"></i> +92 (51) 555-0199</a>
+      </div>
+      <div class="live-clock" id="live-clock" aria-live="polite">
+        <i class="fa-regular fa-clock"></i> <span id="current-time">Loading local time...</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Global Header -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="FurEver Care Homepage">
+        <span class="logo-icon"><i class="fa-solid fa-paw"></i></span>
+        <span class="logo-text">FurEver <span class="logo-accent">Care</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="pet-owner.html" class="nav-link">Pet Owner</a></li>
+          <li class="nav-item"><a href="care-calendar.html" class="nav-link">Care Calendar</a></li>
+          <li class="nav-item"><a href="pet-care-quiz.html" class="nav-link active">Quiz</a></li>
+          <li class="nav-item"><a href="pet-care-journal.html" class="nav-link">Journal</a></li>
+          <li class="nav-item"><a href="pet-first-aid.html" class="nav-link">First Aid</a></li>
+          <li class="nav-item dropdown">
+            <button class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+              More Care <i class="fa-solid fa-chevron-down nav-chevron"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="veterinarian.html" class="dropdown-link"><i class="fa-solid fa-user-doctor"></i> Veterinary Directory</a></li>
+              <li><a href="animal-shelter.html" class="dropdown-link"><i class="fa-solid fa-shield-heart"></i> Animal Shelter & Adoption</a></li>
+              <li><a href="feeding-guide.html" class="dropdown-link"><i class="fa-solid fa-bowl-food"></i> Nutrition & Feeding Calculator</a></li>
+              <li><a href="grooming-videos.html" class="dropdown-link"><i class="fa-solid fa-scissors"></i> Grooming Masterclass</a></li>
+              <li><a href="health-tips.html" class="dropdown-link"><i class="fa-solid fa-heart-pulse"></i> Audio Health Tips</a></li>
+              <li><a href="training-tips.html" class="dropdown-link"><i class="fa-solid fa-dog"></i> Step-by-Step Training</a></li>
+              <li><a href="products.html" class="dropdown-link"><i class="fa-solid fa-store"></i> Certified Products</a></li>
+              <li><a href="emergency.html" class="dropdown-link" style="color: var(--accent-peach); font-weight: 700;"><i class="fa-solid fa-triangle-exclamation"></i> 24/7 Emergency Guide</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button class="header-action-icon-btn search-open-btn" aria-label="Open Global Search" title="Search guides, products, and tips (Ctrl+K)">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button class="header-action-icon-btn reminders-toggle-btn" aria-label="Open Smart Reminder Center" title="View care reminders">
+          <i class="fa-solid fa-bell"></i>
+          <span class="header-badge-count reminders-badge-count">3</span>
+        </button>
+        <button class="header-action-icon-btn calm-toggle-btn" aria-label="Toggle Calm Mode" title="Toggle Calm Focus Mode">
+          <i class="fa-solid fa-leaf"></i>
+        </button>
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Off-Canvas Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-header">
+      <span class="logo-text">FurEver <span class="logo-accent">Care</span></span>
+      <button class="mobile-nav-close" id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-link">Home</a></li>
+      <li><a href="pet-owner.html" class="mobile-link">Pet Owner Dashboard</a></li>
+      <li><a href="care-calendar.html" class="mobile-link">Care Calendar</a></li>
+      <li><a href="pet-care-quiz.html" class="mobile-link active">Pet Care Quiz</a></li>
+      <li><a href="pet-care-journal.html" class="mobile-link">Pet Care Journal</a></li>
+      <li><a href="pet-first-aid.html" class="mobile-link">Pet First Aid Guide</a></li>
+      <li><a href="veterinarian.html" class="mobile-link">Veterinary Directory</a></li>
+      <li><a href="animal-shelter.html" class="mobile-link">Animal Shelter & Adoption</a></li>
+      <li><a href="feeding-guide.html" class="mobile-link">Nutrition & Feeding Calculator</a></li>
+      <li><a href="grooming-videos.html" class="mobile-link">Grooming Masterclass</a></li>
+      <li><a href="products.html" class="mobile-link">Certified Care Products</a></li>
+      <li><a href="emergency.html" class="mobile-link" style="color: var(--accent-peach); font-weight: 700;">24/7 Emergency Help</a></li>
+    </ul>
+  </div>
+
+  <main id="main-content">
+    <!-- Header Banner -->
+    <section class="section" style="padding-top: 40px; padding-bottom: 24px; text-align: center; background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);">
+      <div class="container" style="max-width: 760px;">
+        <span class="badge" style="background-color: var(--primary-50); color: var(--primary-700); font-weight: 700; margin-bottom: 8px;">
+          <i class="fa-solid fa-graduation-cap"></i> Interactive Guardian Assessment
+        </span>
+        <h1 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.6rem); color: var(--text-primary); margin-bottom: 12px;">
+          How Well Do You Know Pet Care?
+        </h1>
+        <p style="color: var(--text-secondary); font-size: 1.02rem; line-height: 1.6;">
+          Challenge your guardian knowledge across nutrition science, toxic hazard prevention, daily dental health, and emergency triage. Complete all 10 questions to unlock your Care Achievement Badge!
+        </p>
+
+        <!-- Quiz Progress Bar -->
+        <div style="margin-top: 28px; background-color: var(--border-color); height: 8px; border-radius: var(--radius-full); overflow: hidden;">
+          <div id="quiz-progress-fill" style="height: 100%; width: 10%; background-color: var(--primary-500); border-radius: var(--radius-full); transition: width 0.4s ease;"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-top: 8px;">
+          <span id="quiz-step-text">Question 1 of 10</span>
+          <span>100 Points Total</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz Interaction Section -->
+    <section class="section" style="padding-top: 20px; padding-bottom: 80px;">
+      <div class="container quiz-container" id="quiz-card-container">
+        <!-- Dynamically rendered by PetQuizEngine -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-overlay" id="global-search-overlay" aria-hidden="true" role="dialog">
+    <div class="search-modal-container">
+      <div class="search-modal-header">
+        <i class="fa-solid fa-magnifying-glass" style="color: var(--primary-500); font-size: 1.2rem;"></i>
+        <input type="text" id="global-search-input" class="search-input-field" placeholder="Search guides, products, grooming videos, clinics..." autocomplete="off">
+        <button id="global-search-clear" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px;"><i class="fa-solid fa-circle-xmark"></i></button>
+        <button class="search-modal-close" style="background: none; border: none; color: var(--text-primary); cursor: pointer; font-size: 1.1rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="search-results-box" id="global-search-results"></div>
+    </div>
+  </div>
+
+  <!-- Smart Reminder Drawer -->
+  <div class="drawer-overlay" id="reminders-overlay"></div>
+  <aside class="slide-drawer" id="reminders-drawer" role="dialog" aria-label="Smart Reminders">
+    <div class="drawer-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-bell" style="color: var(--accent-peach);"></i>
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin: 0; color: var(--text-primary);">Smart Reminders</h3>
+      </div>
+      <button id="reminders-close-btn" style="background: none; border: none; font-size: 1.1rem; color: var(--text-muted); cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-body" id="reminders-list-container"></div>
+    <div style="padding: 16px 24px; border-top: 1px solid var(--border-color); background-color: var(--bg-secondary); display: flex; gap: 10px;">
+      <button class="btn btn-primary btn-sm" data-modal-open="add-reminder-modal" style="flex: 1;"><i class="fa-solid fa-plus"></i> Add Reminder</button>
+      <button class="btn btn-secondary btn-sm" id="reminders-mark-all-btn"><i class="fa-solid fa-check-double"></i> Mark All</button>
+    </div>
+  </aside>
+
+  <!-- Add Custom Reminder Modal -->
+  <div class="modal-backdrop" id="add-reminder-modal" aria-hidden="true" role="dialog">
+    <div class="modal-container" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-bell" style="color: var(--accent-peach);"></i> Add Pet Reminder</h3>
+        <button class="modal-close-btn" data-modal-close="add-reminder-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="add-reminder-form" class="modal-body" style="padding: 20px;">
+        <div class="form-group">
+          <label for="rem-input-title" class="form-label">Reminder Name *</label>
+          <input type="text" id="rem-input-title" class="form-input" placeholder="e.g. Heartworm Chew" required>
+        </div>
+        <div class="form-group">
+          <label for="rem-input-date" class="form-label">Due Date</label>
+          <input type="text" id="rem-input-date" class="form-input" placeholder="e.g. Tomorrow 9:00 AM">
+        </div>
+        <div class="form-group">
+          <label for="rem-input-cat" class="form-label">Category</label>
+          <select id="rem-input-cat" class="form-input">
+            <option value="Vaccination">Vaccination / Health</option>
+            <option value="Grooming">Grooming & Hygiene</option>
+            <option value="Medication">Medication & Supplements</option>
+            <option value="Hydration">Hydration / Filter Clean</option>
+          </select>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px;">
+          <button type="button" class="btn btn-secondary btn-sm" data-modal-close="add-reminder-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Add Reminder</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Floating Help Assistant Button & Modal -->
+  <button class="floating-help-btn" id="floating-help-btn" aria-label="Need Pet Care Assistance?">
+    <i class="fa-solid fa-paw"></i> <span>Need Help?</span>
+  </button>
+
+  <div class="modal-backdrop" id="help-assistant-modal" aria-hidden="true" role="dialog">
+    <div class="modal-container" style="max-width: 580px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-hand-holding-heart" style="color: var(--primary-500);"></i> How Can FurEver Care Help You?</h3>
+        <button class="modal-close-btn" data-modal-close="help-assistant-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 16px;">
+          Select a quick shortcut below to immediately access specialized care resources:
+        </p>
+        <div class="help-modal-grid">
+          <a href="emergency.html" class="help-nav-card" style="border-color: rgba(231,111,81,0.3); color: var(--accent-peach);">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 1.4rem;"></i>
+            <span style="font-weight: 700; font-size: 0.85rem;">24/7 Emergency</span>
+          </a>
+          <a href="feeding-guide.html#feeding-calculator" class="help-nav-card">
+            <i class="fa-solid fa-calculator" style="font-size: 1.4rem; color: var(--primary-600);"></i>
+            <span style="font-weight: 700; font-size: 0.85rem;">Feeding Calculator</span>
+          </a>
+          <a href="pet-first-aid.html" class="help-nav-card">
+            <i class="fa-solid fa-kit-medical" style="font-size: 1.4rem; color: var(--accent-teal);"></i>
+            <span style="font-weight: 700; font-size: 0.85rem;">First Aid Guide</span>
+          </a>
+          <a href="grooming-videos.html" class="help-nav-card">
+            <i class="fa-solid fa-circle-play" style="font-size: 1.4rem; color: var(--accent-amber);"></i>
+            <span style="font-weight: 700; font-size: 0.85rem;">Grooming Videos</span>
+          </a>
+          <a href="veterinarian.html#vet-directory" class="help-nav-card">
+            <i class="fa-solid fa-user-doctor" style="font-size: 1.4rem; color: var(--primary-500);"></i>
+            <span style="font-weight: 700; font-size: 0.85rem;">Find Nearby Vet</span>
+          </a>
+          <a href="care-calendar.html" class="help-nav-card">
+            <i class="fa-solid fa-calendar-check" style="font-size: 1.4rem; color: var(--primary-600);"></i>
+            <span style="font-weight: 700; font-size: 0.85rem;">Care Calendar</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo" style="color: #FFFFFF;">
+          <span class="logo-icon"><i class="fa-solid fa-paw"></i></span>
+          <span class="logo-text">FurEver <span class="logo-accent">Care</span></span>
+        </a>
+        <p>A compassionate, modern pet care companion built to empower pet parents, veterinarians, and animal shelters with verified guidance.</p>
+        <div class="social-links">
+          <a href="#" class="social-icon-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Care & Health</h4>
+        <div class="footer-links">
+          <a href="care-calendar.html" class="footer-link">Care Calendar</a>
+          <a href="pet-care-quiz.html" class="footer-link">Knowledge Quiz</a>
+          <a href="pet-care-journal.html" class="footer-link">Care Journal</a>
+          <a href="pet-first-aid.html" class="footer-link">First-Aid Guide</a>
+          <a href="feeding-guide.html" class="footer-link">Feeding Calculator</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Community & Hubs</h4>
+        <div class="footer-links">
+          <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
+          <a href="veterinarian.html" class="footer-link">Veterinary Directory</a>
+          <a href="animal-shelter.html" class="footer-link">Adoption & Shelter</a>
+          <a href="products.html" class="footer-link">Certified Products</a>
+          <a href="emergency.html" class="footer-link" style="color: var(--accent-peach);">24/7 Emergency</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Emergency Contact</h4>
+        <p style="font-size: 0.9rem; color: #A9BDB2; line-height: 1.5;">24/7 Clinical Hotline: <strong>+92 (51) 555-0199</strong><br>Email: emergency@furevercare.org</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 FurEver Care. All rights reserved. Dedicated to compassionate animal welfare.</div>
+      <div>Static HTML5 + CSS3 + Vanilla JavaScript Platform</div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" aria-label="Back to top of page"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- Static Data Scripts -->
+  <script src="data/products.js"></script>
+  <script src="data/pets.js"></script>
+  <script src="data/veterinarians.js"></script>
+  <script src="data/grooming-videos.js"></script>
+  <script src="data/quiz-questions.js"></script>
+  <script src="data/care-tips.js"></script>
+  <script src="data/clinics.js"></script>
+  
+  <!-- Central Script Engine -->
+  <script src="js/script.js"></script>
+</body>
+</html>

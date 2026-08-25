@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Feedback &amp; Reviews — FurEver Care</title>
+  <meta name="description" content="Share your experience with FurEver Care guides, veterinary tools, and shelter adoption support. Read verified community reviews.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-loader" role="status" aria-live="polite">
+    <div class="loader-paw-container">
+      <div class="loader-ripple"></div>
+      <i class="fa-solid fa-comment-dots"></i>
+    </div>
+    <div class="loader-title">FurEver Care</div>
+    <div class="loader-subtitle">Loading community feedback...</div>
+  </div>
+
+  <div class="top-ticker">
+    <div class="container ticker-inner">
+      <div class="ticker-items">
+        <div class="ticker-item"><i class="fa-solid fa-clock"></i> <span id="live-clock">Loading clock...</span></div>
+        <div class="ticker-item"><span id="geo-indicator"><i class="fa-solid fa-location-dot"></i> Detecting location...</span></div>
+        <div class="ticker-item"><i class="fa-solid fa-star"></i> <span>Community Rating: 4.9 / 5.0 across 1,850+ pet guardians &amp; vets</span></div>
+      </div>
+      <div class="ticker-role-badge user-role-badge" style="display: none;"></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-title">
+          <span class="brand-name">FurEver Care</span>
+          <span class="brand-tagline">Feedback &amp; Reviews</span>
+        </div>
+      </a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="pet-owner.html" class="nav-link">Pet Owner</a>
+        <a href="veterinarian.html" class="nav-link">Veterinarian</a>
+        <a href="animal-shelter.html" class="nav-link">Shelter</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="emergency.html" class="nav-link" style="color: var(--accent-peach); font-weight: 600;"><i class="fa-solid fa-kit-medical"></i> Emergency</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <a href="#submit-feedback" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen"></i> <span>Write a Review</span></a>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px;"><i class="fa-solid fa-paw"></i></div>
+          <span class="brand-name" style="font-size: 1.2rem;">FurEver Care</span>
+        </div>
+        <button class="modal-close-btn mobile-drawer-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span></a>
+        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span></a>
+        <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner</span></a>
+        <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian</span></a>
+        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter</span></a>
+        <a href="pet-profile.html" class="mobile-nav-link"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span></a>
+        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span></a>
+        <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span></a>
+        <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span></a>
+        <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span></a>
+        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span></a>
+        <a href="emergency.html" class="mobile-nav-link"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span></a>
+        <a href="feedback.html" class="mobile-nav-link active"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Team</span></a>
+        <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span></a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="section-py">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i class="fa-solid fa-comments"></i> Community Voice</span>
+          <h1 class="heading-lg">Care Experience &amp; Community Feedback</h1>
+          <p class="body-lead">Your insights help us continuously refine tools for pet owners, practitioners, and rescues.</p>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.1fr 0.9fr; align-items: flex-start; gap: 36px;">
+          
+          <!-- Feedback Submission Form -->
+          <div class="card" id="submit-feedback">
+            <h2 class="heading-sm" style="margin-bottom: 16px; font-size: 1.25rem;">
+              <i class="fa-solid fa-pen-to-square" style="color: var(--primary-500);"></i> Submit Your Experience
+            </h2>
+
+            <form id="feedback-form">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="fb-name">Full Name *</label>
+                  <input type="text" id="fb-name" class="form-control" placeholder="e.g. Ayesha Khan" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="fb-role">Your Role *</label>
+                  <select id="fb-role" class="form-control form-select">
+                    <option value="Pet Owner" selected>Pet Owner</option>
+                    <option value="Veterinarian / Vet Tech">Veterinarian / Vet Tech</option>
+                    <option value="Animal Shelter Coordinator">Animal Shelter Coordinator</option>
+                    <option value="Foster Parent">Foster Parent</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Interactive Star Selector -->
+              <div class="form-group">
+                <label class="form-label">Overall Rating *</label>
+                <div class="star-rating-selector" id="star-rating-selector" style="display: flex; gap: 8px; font-size: 1.5rem; color: #CBD5E1; cursor: pointer; padding: 4px 0;">
+                  <i class="fa-solid fa-star" data-rating="1"></i>
+                  <i class="fa-solid fa-star" data-rating="2"></i>
+                  <i class="fa-solid fa-star" data-rating="3"></i>
+                  <i class="fa-solid fa-star" data-rating="4"></i>
+                  <i class="fa-solid fa-star" data-rating="5"></i>
+                </div>
+                <input type="hidden" id="fb-rating-value" value="5">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="fb-category">Primary Topic</label>
+                <select id="fb-category" class="form-control form-select">
+                  <option value="Pet Health &amp; Feeding Guides">Pet Health &amp; Feeding Guides</option>
+                  <option value="Grooming &amp; Training Tutorials">Grooming &amp; Training Tutorials</option>
+                  <option value="Adoption &amp; Shelter Portal">Adoption &amp; Shelter Portal</option>
+                  <option value="Veterinarian Clinical Hub">Veterinarian Clinical Hub</option>
+                  <option value="Product Quality &amp; Store">Product Quality &amp; Store</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="fb-message">Your Feedback / Story *</label>
+                <textarea id="fb-message" class="form-control" rows="4" placeholder="How did FurEver Care help you and your companion?" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full">
+                <i class="fa-solid fa-paper-plane"></i> <span>Publish Community Review</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Live Community Review Stream -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <h2 class="heading-sm" style="font-size: 1.25rem;"><i class="fa-solid fa-star" style="color: var(--accent-amber);"></i> Verified Stories</h2>
+              <span class="tag" style="background-color: var(--primary-100); color: var(--primary-700);">Live Community Feed</span>
+            </div>
+
+            <div id="community-reviews-list" style="display: flex; flex-direction: column; gap: 16px;">
+              
+              <!-- Review 1 -->
+              <div class="card" style="padding: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <strong style="font-size: 1rem;">Ayesha Khan</strong>
+                    <span style="font-size: 0.8rem; color: var(--text-muted); display: block;">Pet Guardian • Dog (Golden Mix)</span>
+                  </div>
+                  <div style="color: var(--accent-amber); font-size: 0.85rem;">★★★★★</div>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 10px; line-height: 1.6;">
+                  "The portion calculator and undercoat grooming masterclasses completely changed how I care for Barnaby. His coat is shinier and his energy levels are dialed in perfectly!"
+                </p>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 10px;">Topic: Pet Health &amp; Feeding Guides</div>
+              </div>
+
+              <!-- Review 2 -->
+              <div class="card" style="padding: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <strong style="font-size: 1rem;">Dr. Hamza Ahmed, DVM</strong>
+                    <span style="font-size: 0.8rem; color: var(--text-muted); display: block;">Veterinary Clinician • Shifa Animal Care Pavilion</span>
+                  </div>
+                  <div style="color: var(--accent-amber); font-size: 0.85rem;">★★★★★</div>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 10px; line-height: 1.6;">
+                  "I frequently refer new puppy and kitten owners to the toxic food chart and fear-free nail trimming tutorials. It sets pet parents up for clinical success from day one."
+                </p>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 10px;">Topic: Veterinarian Clinical Hub</div>
+              </div>
+
+              <!-- Review 3 -->
+              <div class="card" style="padding: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <strong style="font-size: 1rem;">Hira Malik</strong>
+                    <span style="font-size: 0.8rem; color: var(--text-muted); display: block;">Shelter Director • Oakridge Sanctuary</span>
+                  </div>
+                  <div style="color: var(--accent-amber); font-size: 0.85rem;">★★★★★</div>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 10px; line-height: 1.6;">
+                  "The adoptable pet cards and digital passport builder made adoption transitions seamless. Prospective adopters already know their companion's needs before picking them up."
+                </p>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 10px;">Topic: Adoption &amp; Shelter Portal</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+            <span class="brand-name">FurEver Care</span>
+          </div>
+          <p>Dedicated to empowering pet guardians, clinical practitioners, and animal shelters with accessible tools for happier pets.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com" class="social-icon-btn"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://youtube.com" class="social-icon-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="team.html" class="footer-link">Our Team</a>
+            <a href="products.html" class="footer-link">Care Products</a>
+            <a href="emergency.html" class="footer-link" style="color: #F4A261;">Emergency Help</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="feedback.html" class="footer-link">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Pet Care Hub</h4>
+          <div class="footer-links">
+            <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
+            <a href="veterinarian.html" class="footer-link">Veterinarian Hub</a>
+            <a href="animal-shelter.html" class="footer-link">Animal Shelter Hub</a>
+            <a href="pet-profile.html" class="footer-link">Pet Profile Builder</a>
+            <a href="feeding-guide.html" class="footer-link">Feeding Guide</a>
+            <a href="grooming-videos.html" class="footer-link">Grooming Videos</a>
+            <a href="health-tips.html" class="footer-link">Health Tips</a>
+            <a href="training-tips.html" class="footer-link">Training Tips</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Care Better. Love Longer.</h4>
+          <p style="font-size: 0.88rem; color: #A9BDB2; line-height: 1.6;">Join thousands of pet parents receiving verified advice and shelter updates.</p>
+          <a href="feedback.html" class="btn btn-primary btn-sm" style="margin-top: 16px;"><span>Write Review</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 FurEver Care. All rights reserved.</div>
+        <div>Smarter Care. Happier Pets.</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="data/grooming-videos.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/pets.js"></script>
+  <script src="data/veterinarians.js"></script>
+  <script src="data/events.js"></script>
+  <script src="data/medical-cases.js"></script>
+  <script src="js/script.js" defer></script>
+  <script>
+    // Interactive Star Rating & LocalStorage Review Appending
+    document.addEventListener("DOMContentLoaded", () => {
+      const stars = document.querySelectorAll("#star-rating-selector i");
+      const ratingValInput = document.getElementById("fb-rating-value");
+      let selectedRating = 5;
+
+      const updateStars = (val) => {
+        stars.forEach(s => {
+          const r = parseInt(s.dataset.rating);
+          if (r <= val) {
+            s.style.color = "var(--accent-amber)";
+          } else {
+            s.style.color = "#CBD5E1";
+          }
+        });
+      };
+
+      updateStars(5);
+
+      stars.forEach(s => {
+        s.addEventListener("click", () => {
+          selectedRating = parseInt(s.dataset.rating);
+          if (ratingValInput) ratingValInput.value = selectedRating;
+          updateStars(selectedRating);
+        });
+      });
+
+      const form = document.getElementById("feedback-form");
+      if (form) {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("fb-name")?.value || "Pet Parent";
+          const role = document.getElementById("fb-role")?.value || "Pet Owner";
+          const topic = document.getElementById("fb-category")?.value || "General";
+          const msg = document.getElementById("fb-message")?.value || "";
+
+          const starStr = "★".repeat(selectedRating) + "☆".repeat(5 - selectedRating);
+
+          const newCard = document.createElement("div");
+          newCard.className = "card";
+          newCard.style.padding = "20px";
+          newCard.style.borderLeft = "4px solid var(--primary-500)";
+          newCard.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong style="font-size: 1rem;">${name}</strong>
+                <span style="font-size: 0.8rem; color: var(--text-muted); display: block;">${role}</span>
+              </div>
+              <div style="color: var(--accent-amber); font-size: 0.85rem;">${starStr}</div>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 10px; line-height: 1.6;">
+              "${msg}"
+            </p>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 10px;">Topic: ${topic}</div>
+          `;
+
+          const list = document.getElementById("community-reviews-list");
+          if (list) {
+            list.prepend(newCard);
+          }
+
+          if (window.FurEverCare && window.FurEverCare.Toast) {
+            window.FurEverCare.Toast.show("Thank you! Your verified community review has been published.", "fa-solid fa-circle-check");
+          }
+
+          form.reset();
+          updateStars(5);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

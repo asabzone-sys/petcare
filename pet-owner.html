@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Owner Dashboard — FurEver Care</title>
+  <meta name="description" content="Personalized pet owner portal for wellness tracking, nutrition schedules, grooming tutorials, and veterinary care management.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-loader" role="status" aria-live="polite">
+    <div class="loader-paw-container">
+      <div class="loader-ripple"></div>
+      <i class="fa-solid fa-paw"></i>
+    </div>
+    <div class="loader-title">FurEver Care</div>
+    <div class="loader-subtitle">Loading your pet owner dashboard...</div>
+  </div>
+
+  <div class="top-ticker">
+    <div class="container ticker-inner">
+      <div class="ticker-items">
+        <div class="ticker-item"><i class="fa-solid fa-clock"></i> <span id="live-clock">Loading clock...</span></div>
+        <div class="ticker-item"><span id="geo-indicator"><i class="fa-solid fa-location-dot"></i> Detecting location...</span></div>
+        <div class="ticker-item"><i class="fa-solid fa-bell"></i> <span>Care Alert: Autumn shedding season coat brushing reminder active.</span></div>
+      </div>
+      <div class="ticker-role-badge user-role-badge">
+        <i class="fa-solid fa-paw"></i> <span>Pet Owner</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-title">
+          <span class="brand-name">FurEver Care</span>
+          <span class="brand-tagline">Pet Owner Experience</span>
+        </div>
+      </a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="pet-owner.html" class="nav-link active">Pet Owner</a>
+        <a href="veterinarian.html" class="nav-link">Veterinarian</a>
+        <a href="animal-shelter.html" class="nav-link">Shelter</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="emergency.html" class="nav-link" style="color: var(--accent-peach); font-weight: 600;"><i class="fa-solid fa-kit-medical"></i> Emergency</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <div class="user-badge-nav">
+          <i class="fa-solid fa-circle-user" style="color: var(--primary-500);"></i>
+          <span class="user-name-display">Pet Parent</span>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px;"><i class="fa-solid fa-paw"></i></div>
+          <span class="brand-name" style="font-size: 1.2rem;">FurEver Care</span>
+        </div>
+        <button class="modal-close-btn mobile-drawer-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span></a>
+        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span></a>
+        <a href="pet-owner.html" class="mobile-nav-link active"><span><i class="fa-solid fa-paw"></i> Pet Owner Hub</span></a>
+        <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian Hub</span></a>
+        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter Hub</span></a>
+        <a href="pet-profile.html" class="mobile-nav-link"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span></a>
+        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span></a>
+        <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span></a>
+        <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span></a>
+        <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span></a>
+        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span></a>
+        <a href="emergency.html" class="mobile-nav-link"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span></a>
+        <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Team</span></a>
+        <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span></a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Personalized Header Banner -->
+    <section class="section-py" style="padding-bottom: 32px; background: linear-gradient(135deg, var(--primary-50), var(--bg-surface));">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+          <div>
+            <span class="section-badge"><i class="fa-solid fa-shield-cat"></i> <span class="pet-name-display">Barnaby</span>'s Profile Hub</span>
+            <h1 class="display-title personalized-welcome-title pet-care-title" style="font-size: clamp(2rem, 3.5vw, 2.75rem);">
+              Welcome, <span class="user-name-display" style="color: var(--primary-500);">Pet Parent</span>!
+            </h1>
+            <p class="body-lead" style="font-size: 1rem; margin-top: 6px;">
+              Manage daily nutrition, preventive wellness trackers, grooming routines, and medical records.
+            </p>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="pet-profile.html" class="btn btn-primary btn-sm">
+              <i class="fa-solid fa-pen-to-square"></i> <span>Manage <span class="pet-name-display">Pet</span>'s Profile</span>
+            </a>
+            <a href="emergency.html" class="btn btn-accent btn-sm">
+              <i class="fa-solid fa-phone"></i> <span>Emergency Help</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Active Pet Summary & Wellness Cards -->
+    <section class="section-py" style="padding-top: 0;">
+      <div class="container">
+        <div class="grid-3">
+          
+          <!-- Pet Passport Card -->
+          <div class="card" style="border-top: 4px solid var(--primary-500);">
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+              <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=300&q=80" alt="Primary pet photo" class="pet-passport-img" style="width: 72px; height: 72px; border-radius: var(--radius-md); object-fit: cover;">
+              <div>
+                <h3 class="heading-sm pet-passport-name" style="font-size: 1.25rem;">Barnaby</h3>
+                <span class="pet-passport-breed" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">Dog • Golden Mix • 2.5 yrs</span>
+                <div style="margin-top: 4px;">
+                  <span class="tag pet-passport-vaccines" style="background-color: #D8F3DC; color: #1B4332;"><i class="fa-solid fa-check"></i> Vaccines Current</span>
+                </div>
+              </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.85rem; padding: 12px; background-color: var(--bg-subtle); border-radius: var(--radius-sm);">
+              <div><strong style="color: var(--text-muted);">Weight:</strong> <span class="pet-passport-weight">45.2 lbs</span></div>
+              <div><strong style="color: var(--text-muted);">Age / Life:</strong> <span class="pet-passport-age">2.5 Years</span></div>
+              <div><strong style="color: var(--text-muted);">Gender:</strong> <span class="pet-passport-gender">Male (Neutered)</span></div>
+              <div><strong style="color: var(--text-muted);">Health Diet:</strong> <span class="pet-passport-health">Salmon &amp; Veggie</span></div>
+            </div>
+
+            <a href="pet-profile.html" class="btn btn-secondary btn-sm btn-full" style="margin-top: 16px;">
+              <i class="fa-solid fa-id-card"></i> <span>Edit <span class="pet-name-display">Pet</span>'s Passport</span>
+            </a>
+          </div>
+
+          <!-- Care Timeline & Reminders -->
+          <div class="card" style="border-top: 4px solid var(--accent-peach);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h3 class="heading-sm"><i class="fa-solid fa-calendar-check" style="color: var(--accent-peach);"></i> Care Schedule</h3>
+              <span class="tag">Upcoming</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; gap: 12px; align-items: flex-start; padding-bottom: 10px; border-bottom: 1px solid var(--border-light);">
+                <div style="width: 38px; height: 38px; border-radius: var(--radius-sm); background-color: var(--accent-peach-subtle); color: var(--accent-peach); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">
+                  <i class="fa-solid fa-scissors"></i>
+                </div>
+                <div>
+                  <h4 style="font-size: 0.9rem; font-weight: 700;">Nail Trim &amp; Paw Balm</h4>
+                  <p style="font-size: 0.8rem; color: var(--text-muted);">Tomorrow at 10:30 AM • Home Routine</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px; align-items: flex-start; padding-bottom: 10px; border-bottom: 1px solid var(--border-light);">
+                <div style="width: 38px; height: 38px; border-radius: var(--radius-sm); background-color: var(--primary-100); color: var(--primary-600); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">
+                  <i class="fa-solid fa-syringe"></i>
+                </div>
+                <div>
+                  <h4 style="font-size: 0.9rem; font-weight: 700;">Bordetella Booster Check</h4>
+                  <p style="font-size: 0.8rem; color: var(--text-muted);">Sep 18, 2026 • Dr. Elena Vance Clinic</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px; align-items: flex-start;">
+                <div style="width: 38px; height: 38px; border-radius: var(--radius-sm); background-color: #FFF3CD; color: #856404; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">
+                  <i class="fa-solid fa-pills"></i>
+                </div>
+                <div>
+                  <h4 style="font-size: 0.9rem; font-weight: 700;">Monthly Heartworm Preventative</h4>
+                  <p style="font-size: 0.8rem; color: var(--text-muted);">Oct 01, 2026 • Morning Dose</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="feeding-guide.html" class="btn btn-secondary btn-sm btn-full" style="margin-top: 16px;">
+              <i class="fa-solid fa-clock"></i> <span>Daily Routine Guide</span>
+            </a>
+          </div>
+
+          <!-- Nutritional Target Widget -->
+          <div class="card" style="border-top: 4px solid var(--accent-amber);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h3 class="heading-sm"><i class="fa-solid fa-bowl-food" style="color: var(--accent-amber);"></i> Nutrition Intake</h3>
+              <span class="tag" style="background-color: #FEF3C7; color: #92400E;">Balanced</span>
+            </div>
+
+            <div style="text-align: center; padding: 10px 0;">
+              <div style="font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--primary-600);">850 kcal</div>
+              <p style="font-size: 0.82rem; color: var(--text-muted);">Daily Target Portion (2 Meals / Day)</p>
+            </div>
+
+            <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 4px;">
+                  <span>Hydration Goal (48 oz)</span>
+                  <span style="font-weight: 600;">85% Met</span>
+                </div>
+                <div style="height: 6px; background-color: var(--bg-subtle); border-radius: var(--radius-full); overflow: hidden;">
+                  <div style="width: 85%; height: 100%; background-color: var(--primary-500);"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 4px;">
+                  <span>Daily Exercise (60 mins)</span>
+                  <span style="font-weight: 600;">100% Met</span>
+                </div>
+                <div style="height: 6px; background-color: var(--bg-subtle); border-radius: var(--radius-full); overflow: hidden;">
+                  <div style="width: 100%; height: 100%; background-color: var(--accent-green);"></div>
+                </div>
+              </div>
+            </div>
+
+            <a href="feeding-guide.html" class="btn btn-secondary btn-sm btn-full" style="margin-top: 16px;">
+              <i class="fa-solid fa-calculator"></i> <span>Calculate Meal Portions</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Interactive Wellness & Journey Suite -->
+        <div class="grid-2" style="margin-top: 36px; gap: 28px;">
+          
+          <!-- Wellness Score Interactive Widget -->
+          <div class="card" style="display: flex; align-items: center; gap: 24px; padding: 28px; flex-wrap: wrap;">
+            <div class="wellness-score-ring-container">
+              <svg class="wellness-ring-svg" width="140" height="140" viewBox="0 0 140 140">
+                <circle class="wellness-ring-bg" cx="70" cy="70" r="60" stroke-width="10" fill="none" />
+                <circle class="wellness-ring-circle" cx="70" cy="70" r="60" stroke-width="10" fill="none" stroke-linecap="round" />
+              </svg>
+              <div class="wellness-score-center">
+                <span class="wellness-score-number">95</span>
+                <span class="wellness-score-label">Wellness Index</span>
+              </div>
+            </div>
+            <div style="flex: 1; min-width: 220px;">
+              <span class="badge" style="background-color: #D8F3DC; color: #1B4332; font-weight: 700; margin-bottom: 6px;">
+                <i class="fa-solid fa-heart-pulse"></i> Optimal Health Rating
+              </span>
+              <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--text-primary); margin-bottom: 6px;">
+                <span class="pet-name-display">Barnaby</span>'s Care Status
+              </h3>
+              <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+                Calculated dynamically based on verified vaccinations, complete dietary profiles, and scheduled preventative care.
+              </p>
+              <a href="care-calendar.html" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-calendar-check"></i> <span>View Care Schedule</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Daily Pet Care Tip Spotlight -->
+          <div class="card" style="padding: 28px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                <span class="badge" style="background-color: var(--primary-50); color: var(--primary-700); font-weight: 700;">
+                  <i class="fa-solid fa-lightbulb"></i> Daily Veterinary Fact
+                </span>
+                <button class="btn btn-secondary btn-sm" id="next-tip-btn" style="padding: 4px 12px; font-size: 0.78rem;">
+                  <span>Next Tip</span> <i class="fa-solid fa-rotate-right"></i>
+                </button>
+              </div>
+              <div id="daily-tip-box">
+                <!-- Injected by DailyTipEngine -->
+              </div>
+            </div>
+            <div style="margin-top: 16px; font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-light); padding-top: 10px;">
+              <span>Updated Daily • Evidence-Based Care</span>
+              <a href="pet-care-journal.html" style="color: var(--primary-600); font-weight: 600;">Read Full Journal <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Care Journey Progress Bar -->
+        <div class="card" style="margin-top: 28px; padding: 24px 28px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--text-primary); margin: 0;">
+                <i class="fa-solid fa-route" style="color: var(--primary-500);"></i> Companion Care Journey Milestone
+              </h3>
+              <span id="care-journey-percent-text" style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">
+                71% Complete (5/7 milestones achieved)
+              </span>
+            </div>
+            <a href="pet-care-quiz.html" class="btn btn-primary btn-sm" id="care-journey-cta-btn">
+              <span>Next: Test Knowledge Quiz</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+          <div style="background-color: var(--border-color); height: 8px; border-radius: var(--radius-full); overflow: hidden;">
+            <div id="care-journey-progress-bar" style="height: 100%; width: 71%; background: linear-gradient(90deg, var(--primary-500), var(--accent-teal)); border-radius: var(--radius-full); transition: width 0.6s ease;"></div>
+          </div>
+        </div>
+
+        <!-- Guardian Achievements Badges -->
+        <div style="margin-top: 40px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <span class="badge" style="background-color: #FEF3C7; color: #92400E; font-weight: 700; margin-bottom: 4px;">
+                <i class="fa-solid fa-trophy"></i> Guardian Honors
+              </span>
+              <h2 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text-primary);">
+                Care Achievements & Milestone Badges
+              </h2>
+            </div>
+            <span style="font-size: 0.84rem; color: var(--text-muted);">Complete quizzes and masterclasses to unlock badges</span>
+          </div>
+          <div class="achievements-grid" id="achievements-grid-container">
+            <!-- Dynamically populated by AchievementsEngine -->
+          </div>
+        </div>
+
+        <!-- Quick Actions Navigation Grid -->
+        <div style="margin-top: 56px;">
+          <div class="section-header" style="margin-bottom: 28px;">
+            <span class="section-badge"><i class="fa-solid fa-grid-2"></i> Pet Owner Toolbox</span>
+            <h2 class="heading-md" style="font-size: 1.75rem;">Explore All Pet Care Resources</h2>
+          </div>
+
+          <div class="grid-3">
+            <a href="pet-profile.html" class="card card-interactive">
+              <div class="role-icon-box" style="margin-bottom: 14px;">
+                <i class="fa-solid fa-id-card"></i>
+              </div>
+              <h3 class="heading-sm">Pet Profile Manager</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 6px;">
+                Build and update comprehensive digital passport records, vaccination timestamps, and medical tags.
+              </p>
+            </a>
+
+            <a href="feeding-guide.html" class="card card-interactive">
+              <div class="role-icon-box" style="margin-bottom: 14px; background-color: var(--accent-peach-subtle); color: var(--accent-peach);">
+                <i class="fa-solid fa-bowl-food"></i>
+              </div>
+              <h3 class="heading-sm">Feeding &amp; Nutrition Guide</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 6px;">
+                Personalized calorie calculations, life-stage transition guides, toxic food alerts, and hydration plans.
+              </p>
+            </a>
+
+            <a href="grooming-videos.html" class="card card-interactive">
+              <div class="role-icon-box" style="margin-bottom: 14px; background-color: #E0E7FF; color: #4338CA;">
+                <i class="fa-solid fa-scissors"></i>
+              </div>
+              <h3 class="heading-sm">Grooming Video Hub</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 6px;">
+                Masterclass video instructions for coat brushing, deshedding, nail trims, and ear hygiene.
+              </p>
+            </a>
+
+            <a href="health-tips.html" class="card card-interactive">
+              <div class="role-icon-box" style="margin-bottom: 14px; background-color: #D1FAE5; color: #065F46;">
+                <i class="fa-solid fa-heart-pulse"></i>
+              </div>
+              <h3 class="heading-sm">Health &amp; Wellness Tips</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 6px;">
+                Oral hygiene tips, weight management strategies, parasite prevention, and seasonal care.
+              </p>
+            </a>
+
+            <a href="training-tips.html" class="card card-interactive">
+              <div class="role-icon-box" style="margin-bottom: 14px; background-color: #FEF3C7; color: #92400E;">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <h3 class="heading-sm">Training &amp; Behavior Hub</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 6px;">
+                Positive reinforcement guides for basic obedience, leash manners, crate training, and anxiety relief.
+              </p>
+            </a>
+
+            <a href="products.html" class="card card-interactive">
+              <div class="role-icon-box" style="margin-bottom: 14px; background-color: #FCE7F3; color: #9D174D;">
+                <i class="fa-solid fa-store"></i>
+              </div>
+              <h3 class="heading-sm">Curated Care Store</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 6px;">
+                Explore veterinarian-recommended organic kibble, orthopedic beds, puzzle toys, and mobility chews.
+              </p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+            <span class="brand-name">FurEver Care</span>
+          </div>
+          <p>Dedicated to empowering pet guardians, clinical practitioners, and animal shelters with accessible tools for happier pets.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com" class="social-icon-btn"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://youtube.com" class="social-icon-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="team.html" class="footer-link">Our Team</a>
+            <a href="products.html" class="footer-link">Care Products</a>
+            <a href="emergency.html" class="footer-link" style="color: #F4A261;">Emergency Help</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="feedback.html" class="footer-link">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Pet Care Hub</h4>
+          <div class="footer-links">
+            <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
+            <a href="veterinarian.html" class="footer-link">Veterinarian Hub</a>
+            <a href="animal-shelter.html" class="footer-link">Animal Shelter Hub</a>
+            <a href="pet-profile.html" class="footer-link">Pet Profile Builder</a>
+            <a href="feeding-guide.html" class="footer-link">Feeding Guide</a>
+            <a href="grooming-videos.html" class="footer-link">Grooming Videos</a>
+            <a href="health-tips.html" class="footer-link">Health Tips</a>
+            <a href="training-tips.html" class="footer-link">Training Tips</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Care Better. Love Longer.</h4>
+          <p style="font-size: 0.88rem; color: #A9BDB2; line-height: 1.6;">Join thousands of pet parents receiving verified advice and shelter updates.</p>
+          <a href="pet-profile.html" class="btn btn-primary btn-sm" style="margin-top: 16px;"><span>Update Pet Profile</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 FurEver Care. All rights reserved.</div>
+        <div>Smarter Care. Happier Pets.</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="data/grooming-videos.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/pets.js"></script>
+  <script src="data/veterinarians.js"></script>
+  <script src="data/events.js"></script>
+  <script src="data/medical-cases.js"></script>
+  <script src="data/care-tips.js"></script>
+  <script src="data/quiz-questions.js"></script>
+  <script src="data/clinics.js"></script>
+  <script src="data/journal-articles.js"></script>
+  <script src="js/script.js" defer></script>
+</body>
+</html>

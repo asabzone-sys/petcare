@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &amp; Support — FurEver Care</title>
+  <meta name="description" content="Get in touch with FurEver Care. Veterinary clinical inquiries, shelter partnerships, general support, and regional clinic locations.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-loader" role="status" aria-live="polite">
+    <div class="loader-paw-container">
+      <div class="loader-ripple"></div>
+      <i class="fa-solid fa-envelope"></i>
+    </div>
+    <div class="loader-title">FurEver Care</div>
+    <div class="loader-subtitle">Loading support &amp; contact portal...</div>
+  </div>
+
+  <div class="top-ticker">
+    <div class="container ticker-inner">
+      <div class="ticker-items">
+        <div class="ticker-item"><i class="fa-solid fa-clock"></i> <span id="live-clock">Loading clock...</span></div>
+        <div class="ticker-item"><span id="geo-indicator"><i class="fa-solid fa-location-dot"></i> Detecting location...</span></div>
+        <div class="ticker-item"><i class="fa-solid fa-headset"></i> <span>Support Team Response Time: Under 2 Hours</span></div>
+      </div>
+      <div class="ticker-role-badge user-role-badge" style="display: none;"></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-title">
+          <span class="brand-name">FurEver Care</span>
+          <span class="brand-tagline">Support &amp; Contact</span>
+        </div>
+      </a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="pet-owner.html" class="nav-link">Pet Owner</a>
+        <a href="veterinarian.html" class="nav-link">Veterinarian</a>
+        <a href="animal-shelter.html" class="nav-link">Shelter</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="emergency.html" class="nav-link" style="color: var(--accent-peach); font-weight: 600;"><i class="fa-solid fa-kit-medical"></i> Emergency</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <a href="emergency.html" class="btn btn-accent btn-sm"><i class="fa-solid fa-phone"></i> <span>24/7 ER</span></a>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px;"><i class="fa-solid fa-paw"></i></div>
+          <span class="brand-name" style="font-size: 1.2rem;">FurEver Care</span>
+        </div>
+        <button class="modal-close-btn mobile-drawer-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span></a>
+        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span></a>
+        <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner</span></a>
+        <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian</span></a>
+        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter</span></a>
+        <a href="pet-profile.html" class="mobile-nav-link"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span></a>
+        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span></a>
+        <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span></a>
+        <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span></a>
+        <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span></a>
+        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span></a>
+        <a href="emergency.html" class="mobile-nav-link"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span></a>
+        <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Team</span></a>
+        <a href="contact.html" class="mobile-nav-link active"><span><i class="fa-solid fa-envelope"></i> Contact</span></a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="section-py">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i class="fa-solid fa-headset"></i> We're Here to Help</span>
+          <h1 class="heading-lg">Contact FurEver Care Support</h1>
+          <p class="body-lead">Reach our veterinary advisory team, shelter partnership coordinators, or customer assistance.</p>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.1fr 0.9fr; align-items: flex-start; gap: 36px;">
+          
+          <!-- Contact Form -->
+          <div class="card">
+            <h2 class="heading-sm" style="margin-bottom: 16px; font-size: 1.25rem;">
+              <i class="fa-solid fa-envelope" style="color: var(--primary-500);"></i> Send Us a Message
+            </h2>
+
+            <form id="contact-form">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="contact-name">Your Full Name *</label>
+                  <input type="text" id="contact-name" class="form-control" placeholder="Ayesha Khan" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contact-email">Email Address *</label>
+                  <input type="email" id="contact-email" class="form-control" placeholder="ayesha.khan@example.com" required>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="contact-phone">Phone Number</label>
+                  <input type="tel" id="contact-phone" class="form-control" placeholder="+1 (800) 555-0199">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contact-subject">Inquiry Type *</label>
+                  <select id="contact-subject" class="form-control form-select">
+                    <option value="General Question" selected>General Question</option>
+                    <option value="Veterinary Clinical Inquiry">Veterinary Clinical Inquiry</option>
+                    <option value="Shelter &amp; Rescue Partnership">Shelter &amp; Rescue Partnership</option>
+                    <option value="Product Store &amp; Orders">Product Store &amp; Orders</option>
+                    <option value="Press &amp; Media">Press &amp; Media</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-message">Your Message *</label>
+                <textarea id="contact-message" class="form-control" rows="4" placeholder="How can we assist you and your companion?" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full">
+                <i class="fa-solid fa-paper-plane"></i> <span>Send Message</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Details & Location Cards -->
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            
+            <div class="card">
+              <h3 class="heading-sm" style="font-size: 1.15rem; margin-bottom: 12px;">
+                <i class="fa-solid fa-building" style="color: var(--primary-500);"></i> Regional Centers
+              </h3>
+              
+              <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.88rem; color: var(--text-secondary);">
+                <div>
+                  <strong style="color: var(--text-primary); display: block;">FurEver Care Sanctuary &amp; Innovation Hub</strong>
+                  <span>890 Sanctuary Way, Oakridge District, CA 94102</span>
+                  <span style="display: block; color: var(--text-muted); font-size: 0.8rem; margin-top: 2px;">Hours: Mon – Sat: 8:00 AM – 7:00 PM</span>
+                </div>
+
+                <div>
+                  <strong style="color: var(--text-primary); display: block;">Clinical Advisory &amp; Emergency Hotline</strong>
+                  <span>Direct: +1 (800) 555-PAWS (7297)</span>
+                  <span style="display: block; color: var(--text-muted); font-size: 0.8rem; margin-top: 2px;">Available 24 Hours / 7 Days a Week</span>
+                </div>
+
+                <div>
+                  <strong style="color: var(--text-primary); display: block;">Email Support Desks</strong>
+                  <span>General: support@furevercare.org</span><br>
+                  <span>Shelter Partners: rescue@furevercare.org</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ Mini Accordion -->
+            <div class="card">
+              <h3 class="heading-sm" style="font-size: 1.15rem; margin-bottom: 12px;">
+                <i class="fa-solid fa-circle-question" style="color: var(--primary-500);"></i> Frequently Asked Questions
+              </h3>
+
+              <div class="accordion" id="faq-accordion">
+                
+                <div class="accordion-item" style="border-bottom: 1px solid var(--border-light); padding-bottom: 8px;">
+                  <button class="accordion-header" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 8px 0; font-weight: 600; font-size: 0.88rem; text-align: left; cursor: pointer; color: var(--text-primary);">
+                    <span>How does the Pet Profile save data?</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-muted);"></i>
+                  </button>
+                  <div class="accordion-content" style="display: none; font-size: 0.84rem; color: var(--text-secondary); padding: 6px 0 10px; line-height: 1.5;">
+                    Your pet passport records, vaccinations, and dietary notes are preserved in your browser's local storage for private, instant access across sessions.
+                  </div>
+                </div>
+
+                <div class="accordion-item" style="border-bottom: 1px solid var(--border-light); padding-bottom: 8px; margin-top: 8px;">
+                  <button class="accordion-header" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 8px 0; font-weight: 600; font-size: 0.88rem; text-align: left; cursor: pointer; color: var(--text-primary);">
+                    <span>Are grooming tutorials free?</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-muted);"></i>
+                  </button>
+                  <div class="accordion-content" style="display: none; font-size: 0.84rem; color: var(--text-secondary); padding: 6px 0 10px; line-height: 1.5;">
+                    Yes! All fear-free grooming masterclasses and health guides are 100% open-access to promote animal welfare and gentle handling at home.
+                  </div>
+                </div>
+
+                <div class="accordion-item" style="margin-top: 8px;">
+                  <button class="accordion-header" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 8px 0; font-weight: 600; font-size: 0.88rem; text-align: left; cursor: pointer; color: var(--text-primary);">
+                    <span>How can shelters partner with us?</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-muted);"></i>
+                  </button>
+                  <div class="accordion-content" style="display: none; font-size: 0.84rem; color: var(--text-secondary); padding: 6px 0 10px; line-height: 1.5;">
+                    Shelters receive free listings for adoptable pets, subsidized microchip sponsorships, and community event marketing across our platform.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+            <span class="brand-name">FurEver Care</span>
+          </div>
+          <p>Dedicated to empowering pet guardians, clinical practitioners, and animal shelters with accessible tools for happier pets.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com" class="social-icon-btn"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://youtube.com" class="social-icon-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="team.html" class="footer-link">Our Team</a>
+            <a href="products.html" class="footer-link">Care Products</a>
+            <a href="emergency.html" class="footer-link" style="color: #F4A261;">Emergency Help</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="feedback.html" class="footer-link">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Pet Care Hub</h4>
+          <div class="footer-links">
+            <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
+            <a href="veterinarian.html" class="footer-link">Veterinarian Hub</a>
+            <a href="animal-shelter.html" class="footer-link">Animal Shelter Hub</a>
+            <a href="pet-profile.html" class="footer-link">Pet Profile Builder</a>
+            <a href="feeding-guide.html" class="footer-link">Feeding Guide</a>
+            <a href="grooming-videos.html" class="footer-link">Grooming Videos</a>
+            <a href="health-tips.html" class="footer-link">Health Tips</a>
+            <a href="training-tips.html" class="footer-link">Training Tips</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Care Better. Love Longer.</h4>
+          <p style="font-size: 0.88rem; color: #A9BDB2; line-height: 1.6;">Join thousands of pet parents receiving verified advice and shelter updates.</p>
+          <a href="contact.html" class="btn btn-primary btn-sm" style="margin-top: 16px;"><span>Get in Touch</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 FurEver Care. All rights reserved.</div>
+        <div>Smarter Care. Happier Pets.</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="data/grooming-videos.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/pets.js"></script>
+  <script src="data/veterinarians.js"></script>
+  <script src="data/events.js"></script>
+  <script src="data/medical-cases.js"></script>
+  <script src="js/script.js" defer></script>
+  <script>
+    // FAQ Accordion Toggle & Contact Form Handler
+    document.addEventListener("DOMContentLoaded", () => {
+      const accHeaders = document.querySelectorAll(".accordion-header");
+      accHeaders.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const content = btn.nextElementSibling;
+          const icon = btn.querySelector("i");
+          if (content.style.display === "block") {
+            content.style.display = "none";
+            icon.className = "fa-solid fa-chevron-down";
+          } else {
+            content.style.display = "block";
+            icon.className = "fa-solid fa-chevron-up";
+          }
+        });
+      });
+
+      const contactForm = document.getElementById("contact-form");
+      if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("contact-name")?.value || "Friend";
+          if (window.FurEverCare && window.FurEverCare.Toast) {
+            window.FurEverCare.Toast.show(`Thank you, ${name}! Your inquiry has been sent to our care desk.`, "fa-solid fa-paper-plane");
+          }
+          contactForm.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

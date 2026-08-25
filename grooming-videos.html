@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Grooming Video Masterclasses — FurEver Care</title>
+  <meta name="description" content="Step-by-step video masterclasses for fear-free pet grooming: coat brushing, gentle bathing, safe nail trimming, and ear care.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-loader" role="status" aria-live="polite">
+    <div class="loader-paw-container">
+      <div class="loader-ripple"></div>
+      <i class="fa-solid fa-scissors"></i>
+    </div>
+    <div class="loader-title">FurEver Care</div>
+    <div class="loader-subtitle">Loading grooming video masterclasses...</div>
+  </div>
+
+  <div class="top-ticker">
+    <div class="container ticker-inner">
+      <div class="ticker-items">
+        <div class="ticker-item"><i class="fa-solid fa-clock"></i> <span id="live-clock">Loading clock...</span></div>
+        <div class="ticker-item"><span id="geo-indicator"><i class="fa-solid fa-location-dot"></i> Detecting location...</span></div>
+        <div class="ticker-item"><i class="fa-solid fa-sparkles"></i> <span>Grooming Rule: Keep sessions under 10 minutes with high-value praise.</span></div>
+      </div>
+      <div class="ticker-role-badge user-role-badge" style="display: none;"></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-title">
+          <span class="brand-name">FurEver Care</span>
+          <span class="brand-tagline">Grooming Masterclasses</span>
+        </div>
+      </a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="pet-owner.html" class="nav-link">Pet Owner</a>
+        <a href="veterinarian.html" class="nav-link">Veterinarian</a>
+        <a href="animal-shelter.html" class="nav-link">Shelter</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="emergency.html" class="nav-link" style="color: var(--accent-peach); font-weight: 600;"><i class="fa-solid fa-kit-medical"></i> Emergency</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <a href="pet-owner.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrow-left"></i> <span>Dashboard</span></a>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px;"><i class="fa-solid fa-paw"></i></div>
+          <span class="brand-name" style="font-size: 1.2rem;">FurEver Care</span>
+        </div>
+        <button class="modal-close-btn mobile-drawer-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span></a>
+        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span></a>
+        <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner</span></a>
+        <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian</span></a>
+        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter</span></a>
+        <a href="pet-profile.html" class="mobile-nav-link"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span></a>
+        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span></a>
+        <a href="grooming-videos.html" class="mobile-nav-link active"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span></a>
+        <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span></a>
+        <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span></a>
+        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span></a>
+        <a href="emergency.html" class="mobile-nav-link"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span></a>
+        <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Team</span></a>
+        <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span></a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="section-py">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i class="fa-solid fa-video"></i> Masterclass Tutorials</span>
+          <h1 class="heading-lg">Fear-Free Pet Grooming Video Hub</h1>
+          <p class="body-lead">Certified fear-free groomers and veterinarians demonstrate low-stress techniques for coats, baths, nails, and ears.</p>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="filter-container">
+          <div class="filter-chips" id="grooming-filter-chips">
+            <button class="chip-btn active" data-grooming-filter="all">All Lessons</button>
+            <button class="chip-btn" data-grooming-filter="brushing"><i class="fa-solid fa-brush"></i> Coat Brushing</button>
+            <button class="chip-btn" data-grooming-filter="bathing"><i class="fa-solid fa-shower"></i> Bathing</button>
+            <button class="chip-btn" data-grooming-filter="trimming"><i class="fa-solid fa-scissors"></i> Trimming</button>
+            <button class="chip-btn" data-grooming-filter="nails"><i class="fa-solid fa-paw"></i> Nail Care</button>
+            <button class="chip-btn" data-grooming-filter="ears"><i class="fa-solid fa-ear-listen"></i> Ear Hygiene</button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px; flex-grow: 1; max-width: 360px;">
+            <div style="position: relative; width: 100%;">
+              <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+              <input type="text" id="video-search" class="form-control" placeholder="Search lessons, instructors, or techniques..." style="padding-left: 38px; padding-top: 8px; padding-bottom: 8px; font-size: 0.88rem;">
+            </div>
+            <span id="grooming-count" style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; color: var(--primary-600);">6 Lessons</span>
+          </div>
+        </div>
+
+        <!-- Video Cards Grid -->
+        <div class="grid-3" id="grooming-video-grid">
+          <!-- Dynamically populated via GroomingVideoPlayer in js/script.js + data/grooming-videos.js -->
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Video Playback Modal Player -->
+  <div class="modal-overlay" id="video-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-video-title">
+    <div class="modal-box" style="max-width: 820px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="brand-icon-wrapper" style="width: 34px; height: 34px; font-size: 0.95rem;">
+            <i class="fa-solid fa-circle-play"></i>
+          </div>
+          <div>
+            <h3 class="heading-sm" id="modal-video-title" style="margin-bottom: 2px;">Grooming Masterclass</h3>
+            <span id="modal-video-instructor" style="font-size: 0.8rem; color: var(--text-muted);">Instructor: Dr. Areeba Khan</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" data-modal-close aria-label="Close Video Modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <!-- Video Player Container with Native HTML5 Controls & Fallbacks -->
+      <div class="video-player-container" style="position: relative; width: 100%; aspect-ratio: 16/9; background-color: #0A100D; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px; box-shadow: var(--shadow-md);">
+        <video id="modal-html5-video" controls playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;" poster="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80">
+          <source id="modal-video-source" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+          Your browser does not support standard HTML5 video playback.
+        </video>
+        
+        <!-- Live Playback Status Badge -->
+        <div id="video-status-overlay" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; color: #FFFFFF; pointer-events: none; display: flex; align-items: center; gap: 6px;">
+          <i class="fa-solid fa-circle" style="color: #22C55E; font-size: 0.55rem;"></i> <span id="modal-video-duration-badge">8:45 mins • HD</span>
+        </div>
+      </div>
+
+      <!-- Description & Metadata -->
+      <div style="margin-bottom: 16px;">
+        <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap;">
+          <span id="modal-video-category-tag" class="tag" style="background-color: var(--primary-100); color: var(--primary-700); font-weight: 700;">Coat Brushing</span>
+          <span id="modal-video-difficulty" class="tag" style="background-color: var(--bg-subtle); color: var(--text-secondary);"><i class="fa-solid fa-gauge-high"></i> All Breeds</span>
+        </div>
+        <p id="modal-video-desc" style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+          Detailed step-by-step masterclass demonstrating calm grooming routines.
+        </p>
+      </div>
+
+      <!-- Step-by-Step Technique Instructions -->
+      <div style="margin-bottom: 16px; padding: 14px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+        <h4 class="heading-sm" style="font-size: 0.95rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-list-check" style="color: var(--primary-500);"></i> Step-by-Step Technique Guide
+        </h4>
+        <ol id="modal-video-steps" style="margin: 0; padding-left: 20px; font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+          <li>Inspect coat and detangle gently.</li>
+          <li>Apply calm conditioning spray.</li>
+          <li>Brush in line sections following fur growth.</li>
+          <li>Reward with healthy training treats.</li>
+        </ol>
+      </div>
+
+      <!-- Fear-Free Pro Tip -->
+      <div style="padding: 12px 16px; background-color: var(--primary-50); border-radius: var(--radius-sm); font-size: 0.85rem; display: flex; align-items: flex-start; gap: 10px; border-left: 4px solid var(--primary-500);">
+        <i class="fa-solid fa-shield-cat" style="color: var(--primary-600); margin-top: 3px; font-size: 1.1rem;"></i>
+        <div>
+          <strong style="color: var(--primary-800);">Fear-Free Technique Tip:</strong>
+          <span id="modal-video-tip" style="color: var(--text-secondary);"> Always desensitize equipment sound first. Keep sessions under 10 minutes and reward with high-value treats to create positive emotional associations.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+            <span class="brand-name">FurEver Care</span>
+          </div>
+          <p>Dedicated to empowering pet guardians, clinical practitioners, and animal shelters with accessible tools for happier pets.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com" class="social-icon-btn"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://youtube.com" class="social-icon-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="team.html" class="footer-link">Our Team</a>
+            <a href="products.html" class="footer-link">Care Products</a>
+            <a href="emergency.html" class="footer-link" style="color: #F4A261;">Emergency Help</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="feedback.html" class="footer-link">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Pet Care Hub</h4>
+          <div class="footer-links">
+            <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
+            <a href="veterinarian.html" class="footer-link">Veterinarian Hub</a>
+            <a href="animal-shelter.html" class="footer-link">Animal Shelter Hub</a>
+            <a href="pet-profile.html" class="footer-link">Pet Profile Builder</a>
+            <a href="feeding-guide.html" class="footer-link">Feeding Guide</a>
+            <a href="grooming-videos.html" class="footer-link">Grooming Videos</a>
+            <a href="health-tips.html" class="footer-link">Health Tips</a>
+            <a href="training-tips.html" class="footer-link">Training Tips</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Care Better. Love Longer.</h4>
+          <p style="font-size: 0.88rem; color: #A9BDB2; line-height: 1.6;">Join thousands of pet parents receiving verified advice and shelter updates.</p>
+          <a href="pet-owner.html" class="btn btn-primary btn-sm" style="margin-top: 16px;"><span>Open Portal</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 FurEver Care. All rights reserved.</div>
+        <div>Smarter Care. Happier Pets.</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="data/grooming-videos.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/pets.js"></script>
+  <script src="data/veterinarians.js"></script>
+  <script src="data/events.js"></script>
+  <script src="data/medical-cases.js"></script>
+  <script src="js/script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "FurEver Care",
+  "description": "A premium, responsive pet-care platform connecting pet owners, veterinarians, and animal shelters with wellness trackers, nutrition guides, adoption galleries, and emergency resources.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

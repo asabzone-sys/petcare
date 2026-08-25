@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Profile &amp; Digital Passport — FurEver Care</title>
+  <meta name="description" content="Create and manage your pet's complete digital health passport, immunization records, dietary preferences, and emergency tags.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-loader" role="status" aria-live="polite">
+    <div class="loader-paw-container">
+      <div class="loader-ripple"></div>
+      <i class="fa-solid fa-id-card"></i>
+    </div>
+    <div class="loader-title">FurEver Care</div>
+    <div class="loader-subtitle">Loading digital pet passport...</div>
+  </div>
+
+  <div class="top-ticker">
+    <div class="container ticker-inner">
+      <div class="ticker-items">
+        <div class="ticker-item"><i class="fa-solid fa-clock"></i> <span id="live-clock">Loading clock...</span></div>
+        <div class="ticker-item"><span id="geo-indicator"><i class="fa-solid fa-location-dot"></i> Detecting location...</span></div>
+        <div class="ticker-item"><i class="fa-solid fa-shield-cat"></i> <span>Digital Pet Passport • Local Storage Persistence Active</span></div>
+      </div>
+      <div class="ticker-role-badge user-role-badge" style="display: none;"></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-title">
+          <span class="brand-name">FurEver Care</span>
+          <span class="brand-tagline">Pet Profile Manager</span>
+        </div>
+      </a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="pet-owner.html" class="nav-link">Pet Owner</a>
+        <a href="veterinarian.html" class="nav-link">Veterinarian</a>
+        <a href="animal-shelter.html" class="nav-link">Shelter</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="emergency.html" class="nav-link" style="color: var(--accent-peach); font-weight: 600;"><i class="fa-solid fa-kit-medical"></i> Emergency</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <a href="pet-owner.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrow-left"></i> <span>Dashboard</span></a>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px;"><i class="fa-solid fa-paw"></i></div>
+          <span class="brand-name" style="font-size: 1.2rem;">FurEver Care</span>
+        </div>
+        <button class="modal-close-btn mobile-drawer-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span></a>
+        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span></a>
+        <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner</span></a>
+        <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian</span></a>
+        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter</span></a>
+        <a href="pet-profile.html" class="mobile-nav-link active"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span></a>
+        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span></a>
+        <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span></a>
+        <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span></a>
+        <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span></a>
+        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span></a>
+        <a href="emergency.html" class="mobile-nav-link"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span></a>
+        <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Team</span></a>
+        <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span></a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="section-py">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i class="fa-solid fa-id-card"></i> Digital Companion Passport</span>
+          <h1 class="heading-lg">Pet Profile &amp; Medical Passport</h1>
+          <p class="body-lead">Keep your companion's identification, vaccinations, allergy notes, and weights updated.</p>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.2fr 0.8fr; align-items: flex-start;">
+          
+          <!-- Pet Profile Form -->
+          <div class="card">
+            <h2 class="heading-sm" style="margin-bottom: 20px; font-size: 1.25rem;">
+              <i class="fa-solid fa-pen-to-square" style="color: var(--primary-500);"></i> Edit Pet Information
+            </h2>
+
+            <form id="pet-profile-form">
+              <div class="form-group">
+                <label class="form-label" for="profile-pet-name">Pet Name *</label>
+                <input type="text" id="profile-pet-name" class="form-control" placeholder="e.g. Barnaby, Luna, Oliver" value="Barnaby" required>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="profile-pet-species">Species *</label>
+                  <select id="profile-pet-species" class="form-control form-select">
+                    <option value="Dog" selected>Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Rabbit">Rabbit</option>
+                    <option value="Bird">Bird</option>
+                    <option value="Other">Other Companion</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="profile-pet-breed">Breed *</label>
+                  <input type="text" id="profile-pet-breed" class="form-control" placeholder="e.g. Golden Mix, Domestic Shorthair" value="Golden Retriever Mix" required>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="profile-pet-age">Age</label>
+                  <input type="text" id="profile-pet-age" class="form-control" placeholder="e.g. 2.5 Years" value="2.5 Years">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="profile-pet-gender">Gender</label>
+                  <select id="profile-pet-gender" class="form-control form-select">
+                    <option value="Male (Neutered)" selected>Male (Neutered)</option>
+                    <option value="Female (Spayed)">Female (Spayed)</option>
+                    <option value="Male (Intact)">Male (Intact)</option>
+                    <option value="Female (Intact)">Female (Intact)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="profile-pet-weight">Weight (lbs)</label>
+                  <input type="text" id="profile-pet-weight" class="form-control" placeholder="e.g. 45 lbs" value="45.2 lbs">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="profile-pet-photo-url">Pet Photo URL (Live Image Preview)</label>
+                <input type="url" id="profile-pet-photo-url" class="form-control" placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=600&q=80">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="profile-pet-health">Health &amp; Dietary Notes</label>
+                <textarea id="profile-pet-health" class="form-control" rows="3" placeholder="Allergies, medication dosages, favorite rewards...">Grain-free salmon diet. Sensitive to chicken proteins. Next rabies booster due Aug 2027.</textarea>
+              </div>
+
+              <div id="profile-save-success-msg" style="display: none; margin-top: 18px; padding: 14px 18px; background-color: #D8F3DC; color: #1B4332; border-radius: var(--radius-sm); border-left: 4px solid var(--accent-green);">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                  <div>
+                    <strong><i class="fa-solid fa-circle-check"></i> Pet profile saved successfully!</strong>
+                    <p style="font-size: 0.85rem; margin-top: 2px;">Your companion's name and details are now synchronized across the entire platform.</p>
+                  </div>
+                  <a href="pet-owner.html" class="btn btn-primary btn-sm" style="background-color: #1B4332; border-color: #1B4332; color: #FFFFFF;">
+                    <i class="fa-solid fa-arrow-right"></i> <span>View Dashboard</span>
+                  </a>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px; margin-top: 16px;">
+                <button type="submit" class="btn btn-primary btn-full">
+                  <i class="fa-solid fa-floppy-disk"></i> <span>Save Pet Passport</span>
+                </button>
+                <button type="reset" class="btn btn-secondary" id="reset-pet-form" style="white-space: nowrap;">
+                  <i class="fa-solid fa-rotate-left"></i> Reset
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Live Passport Preview Card -->
+          <div style="position: sticky; top: 100px;">
+            <div class="card" id="pet-profile-live-preview" style="border: 2px solid var(--primary-500); box-shadow: var(--shadow-md);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <span class="section-badge" style="margin-bottom: 0; font-size: 0.75rem;"><i class="fa-solid fa-id-badge"></i> Live Passport Preview</span>
+                <span class="tag" style="background-color: #D8F3DC; color: #1B4332;">Active Record</span>
+              </div>
+
+              <div style="text-align: center; margin-bottom: 16px;">
+                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=600&q=80" alt="Pet preview photo" class="preview-img" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; border: 3px solid var(--primary-200); box-shadow: var(--shadow-sm);">
+                <h3 class="heading-md preview-name" style="font-size: 1.5rem;">Barnaby</h3>
+                <p class="preview-breed" style="font-size: 0.9rem; color: var(--primary-600); font-weight: 600;">Dog • Golden Retriever Mix</p>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.85rem; padding: 14px; background-color: var(--bg-subtle); border-radius: var(--radius-md); margin-bottom: 16px;">
+                <div>
+                  <span style="color: var(--text-muted); display: block; font-size: 0.75rem;">AGE:</span>
+                  <strong class="preview-age">2.5 Years</strong>
+                </div>
+                <div>
+                  <span style="color: var(--text-muted); display: block; font-size: 0.75rem;">WEIGHT:</span>
+                  <strong class="preview-weight">45.2 lbs</strong>
+                </div>
+                <div>
+                  <span style="color: var(--text-muted); display: block; font-size: 0.75rem;">MICROCHIP:</span>
+                  <strong>#985-021-994</strong>
+                </div>
+                <div>
+                  <span style="color: var(--text-muted); display: block; font-size: 0.75rem;">VACCINES:</span>
+                  <strong style="color: var(--accent-green);">Verified Current</strong>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <span class="tag"><i class="fa-solid fa-bone"></i> Salmon Formula</span>
+                <span class="tag"><i class="fa-solid fa-heart"></i> Friendly</span>
+                <span class="tag"><i class="fa-solid fa-house-chimney"></i> House-Trained</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+            <span class="brand-name">FurEver Care</span>
+          </div>
+          <p>Dedicated to empowering pet guardians, clinical practitioners, and animal shelters with accessible tools for happier pets.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com" class="social-icon-btn"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://youtube.com" class="social-icon-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="team.html" class="footer-link">Our Team</a>
+            <a href="products.html" class="footer-link">Care Products</a>
+            <a href="emergency.html" class="footer-link" style="color: #F4A261;">Emergency Help</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="feedback.html" class="footer-link">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Pet Care Hub</h4>
+          <div class="footer-links">
+            <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
+            <a href="veterinarian.html" class="footer-link">Veterinarian Hub</a>
+            <a href="animal-shelter.html" class="footer-link">Animal Shelter Hub</a>
+            <a href="pet-profile.html" class="footer-link">Pet Profile Builder</a>
+            <a href="feeding-guide.html" class="footer-link">Feeding Guide</a>
+            <a href="grooming-videos.html" class="footer-link">Grooming Videos</a>
+            <a href="health-tips.html" class="footer-link">Health Tips</a>
+            <a href="training-tips.html" class="footer-link">Training Tips</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Care Better. Love Longer.</h4>
+          <p style="font-size: 0.88rem; color: #A9BDB2; line-height: 1.6;">Join thousands of pet parents receiving verified advice and shelter updates.</p>
+          <a href="pet-owner.html" class="btn btn-primary btn-sm" style="margin-top: 16px;"><span>Back to Dashboard</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 FurEver Care. All rights reserved.</div>
+        <div>Smarter Care. Happier Pets.</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="data/grooming-videos.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/pets.js"></script>
+  <script src="data/veterinarians.js"></script>
+  <script src="data/events.js"></script>
+  <script src="data/medical-cases.js"></script>
+  <script src="js/script.js" defer></script>
+</body>
+</html>

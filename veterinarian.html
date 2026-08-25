@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veterinarian Clinical Hub — FurEver Care</title>
+  <meta name="description" content="Clinical practitioner dashboard for schedule management, patient medical histories, available consultation slots, and case reviews.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-loader" role="status" aria-live="polite">
+    <div class="loader-paw-container">
+      <div class="loader-ripple"></div>
+      <i class="fa-solid fa-user-doctor"></i>
+    </div>
+    <div class="loader-title">FurEver Care</div>
+    <div class="loader-subtitle">Loading clinical practitioner portal...</div>
+  </div>
+
+  <div class="top-ticker">
+    <div class="container ticker-inner">
+      <div class="ticker-items">
+        <div class="ticker-item"><i class="fa-solid fa-clock"></i> <span id="live-clock">Loading clock...</span></div>
+        <div class="ticker-item"><span id="geo-indicator"><i class="fa-solid fa-location-dot"></i> Detecting location...</span></div>
+        <div class="ticker-item"><i class="fa-solid fa-stethoscope"></i> <span>Clinical Schedule Synchronized • 4 Appointments Today</span></div>
+      </div>
+      <div class="ticker-role-badge user-role-badge">
+        <i class="fa-solid fa-user-doctor"></i> <span>Veterinarian</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-title">
+          <span class="brand-name">FurEver Care</span>
+          <span class="brand-tagline">Veterinary Clinical Experience</span>
+        </div>
+      </a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="pet-owner.html" class="nav-link">Pet Owner</a>
+        <a href="veterinarian.html" class="nav-link active">Veterinarian</a>
+        <a href="animal-shelter.html" class="nav-link">Shelter</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="emergency.html" class="nav-link" style="color: var(--accent-peach); font-weight: 600;"><i class="fa-solid fa-kit-medical"></i> Emergency</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <div class="user-badge-nav">
+          <i class="fa-solid fa-user-doctor" style="color: var(--primary-500);"></i>
+          <span class="user-name-display">Dr. Clinician</span>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px;"><i class="fa-solid fa-paw"></i></div>
+          <span class="brand-name" style="font-size: 1.2rem;">FurEver Care</span>
+        </div>
+        <button class="modal-close-btn mobile-drawer-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span></a>
+        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span></a>
+        <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner</span></a>
+        <a href="veterinarian.html" class="mobile-nav-link active"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian Hub</span></a>
+        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter</span></a>
+        <a href="pet-profile.html" class="mobile-nav-link"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span></a>
+        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span></a>
+        <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span></a>
+        <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span></a>
+        <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span></a>
+        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span></a>
+        <a href="emergency.html" class="mobile-nav-link"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span></a>
+        <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Team</span></a>
+        <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span></a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Header Greeting -->
+    <section class="section-py" style="padding-bottom: 32px; background: linear-gradient(135deg, var(--primary-50), var(--bg-surface));">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+          <div>
+            <span class="section-badge"><i class="fa-solid fa-stethoscope"></i> Your Veterinarian Experience</span>
+            <h1 class="display-title" style="font-size: clamp(2rem, 3.5vw, 2.75rem);">
+              Clinical Dashboard: <span class="user-name-display" style="color: var(--primary-500);">Dr. Vance</span>
+            </h1>
+            <p class="body-lead" style="font-size: 1rem; margin-top: 6px;">
+              Manage daily patient appointments, examine clinical cases, and review medical records.
+            </p>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <button class="btn btn-primary btn-sm" id="slot-booking-trigger">
+              <i class="fa-solid fa-calendar-plus"></i> <span>Manage Available Slots</span>
+            </button>
+            <a href="emergency.html" class="btn btn-secondary btn-sm">
+              <i class="fa-solid fa-kit-medical"></i> <span>Triage Guide</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clinician Metrics Row -->
+    <section class="section-py" style="padding-top: 0; padding-bottom: 40px;">
+      <div class="container">
+        <div class="hero-stats-row" style="margin-top: 0; padding-top: 0; border: none; grid-template-columns: repeat(4, 1fr);">
+          <div class="card" style="text-align: center; padding: 20px;">
+            <span class="stat-number" style="font-size: 2.2rem;">4</span>
+            <span class="stat-label">Appointments Today</span>
+          </div>
+          <div class="card" style="text-align: center; padding: 20px;">
+            <span class="stat-number" style="font-size: 2.2rem; color: var(--accent-green);">6</span>
+            <span class="stat-label">Available Slots Open</span>
+          </div>
+          <div class="card" style="text-align: center; padding: 20px;">
+            <span class="stat-number" style="font-size: 2.2rem; color: var(--accent-peach);">1,420+</span>
+            <span class="stat-label">Patients Treated</span>
+          </div>
+          <div class="card" style="text-align: center; padding: 20px;">
+            <span class="stat-number" style="font-size: 2.2rem; color: var(--accent-amber);">99.8%</span>
+            <span class="stat-label">Procedure Success</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule & Appointments Section -->
+    <section class="section-py" style="padding-top: 0;">
+      <div class="container">
+        <div class="grid-2" style="grid-template-columns: 1.4fr 1fr;">
+          
+          <!-- Today's Appointment Roster -->
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <div>
+                <h2 class="heading-sm" style="font-size: 1.25rem;"><i class="fa-solid fa-calendar-day" style="color: var(--primary-500);"></i> Today's Schedule &amp; Consultations</h2>
+                <p style="font-size: 0.82rem; color: var(--text-muted);">Real-time clinical queue for active hospital rooms</p>
+              </div>
+              <span class="tag" style="background-color: var(--primary-100); color: var(--primary-700);">4 Patients</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              
+              <!-- Apt 1 -->
+              <div style="padding: 14px; border-radius: var(--radius-md); background-color: var(--bg-subtle); border-left: 4px solid var(--primary-500); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <strong style="font-size: 1rem;">Milo</strong>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">• Canine (Golden Retriever)</span>
+                    <span class="tag" style="background-color: #D8F3DC; color: #1B4332; font-size: 0.72rem;">Confirmed</span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+                    <strong>Reason:</strong> Post-Op TPLO Recovery Checkup (Exam Room 2)
+                  </p>
+                  <p style="font-size: 0.8rem; color: var(--text-muted);">Owner: Ayesha Khan • +92 (300) 555-0192</p>
+                </div>
+                <div style="text-align: right;">
+                  <span style="font-weight: 700; font-size: 0.95rem; color: var(--primary-600);">09:30 AM</span>
+                </div>
+              </div>
+
+              <!-- Apt 2 -->
+              <div style="padding: 14px; border-radius: var(--radius-md); background-color: var(--bg-subtle); border-left: 4px solid var(--accent-amber); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <strong style="font-size: 1rem;">Cleo</strong>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">• Feline (Siamese)</span>
+                    <span class="tag" style="background-color: #FEF3C7; color: #92400E; font-size: 0.72rem;">In-Progress</span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+                    <strong>Reason:</strong> Annual Preventive Bloodwork &amp; Dental Scale (Feline Quiet Suite 1)
+                  </p>
+                  <p style="font-size: 0.8rem; color: var(--text-muted);">Owner: Tariq Mehmood • +92 (321) 555-0144</p>
+                </div>
+                <div style="text-align: right;">
+                  <span style="font-weight: 700; font-size: 0.95rem; color: var(--accent-amber);">11:00 AM</span>
+                </div>
+              </div>
+
+              <!-- Apt 3 -->
+              <div style="padding: 14px; border-radius: var(--radius-md); background-color: var(--bg-subtle); border-left: 4px solid var(--primary-500); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <strong style="font-size: 1rem;">Buster</strong>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">• Canine (French Bulldog)</span>
+                    <span class="tag" style="background-color: #D8F3DC; color: #1B4332; font-size: 0.72rem;">Confirmed</span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+                    <strong>Reason:</strong> Atopic Dermatitis Cytopoint Injection (Room 4)
+                  </p>
+                  <p style="font-size: 0.8rem; color: var(--text-muted);">Owner: Fatima Zahra • +92 (333) 555-0811</p>
+                </div>
+                <div style="text-align: right;">
+                  <span style="font-weight: 700; font-size: 0.95rem; color: var(--primary-600);">02:15 PM</span>
+                </div>
+              </div>
+
+              <!-- Apt 4 -->
+              <div style="padding: 14px; border-radius: var(--radius-md); background-color: var(--bg-subtle); border-left: 4px solid var(--primary-500); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <strong style="font-size: 1rem;">Jasper</strong>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">• Canine (Labrador)</span>
+                    <span class="tag" style="background-color: #D8F3DC; color: #1B4332; font-size: 0.72rem;">Confirmed</span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+                    <strong>Reason:</strong> Left Stifle Joint Evaluation &amp; Radiographs (Orthopedic Suite)
+                  </p>
+                  <p style="font-size: 0.8rem; color: var(--text-muted);">Owner: Bilal Siddiqui • +92 (345) 555-0329</p>
+                </div>
+                <div style="text-align: right;">
+                  <span style="font-weight: 700; font-size: 0.95rem; color: var(--primary-600);">04:00 PM</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Clinician Profile & Available Booking Slots -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            
+            <div class="card" style="text-align: center;">
+              <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=300&q=80" alt="Dr. Areeba Khan" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin: 0 auto 14px; box-shadow: var(--shadow-sm);">
+              <h3 class="heading-sm" style="font-size: 1.15rem;">Dr. Areeba Khan, DVM, DACVS</h3>
+              <p style="font-size: 0.85rem; color: var(--primary-500); font-weight: 600;">Senior Veterinary Surgeon &amp; Orthopedics</p>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">FurEver Care Companion Animal Medical Pavilion</p>
+
+              <div style="display: flex; justify-content: center; gap: 6px; margin-top: 10px;">
+                <span class="tag">Orthopedics</span>
+                <span class="tag">Soft Tissue</span>
+                <span class="tag">14 Yrs Exp</span>
+              </div>
+            </div>
+
+            <!-- Available Slots Simulator -->
+            <div class="card">
+              <h3 class="heading-sm" style="font-size: 1.1rem; margin-bottom: 12px;">
+                <i class="fa-solid fa-clock-rotate-left" style="color: var(--primary-500);"></i> Open Consultation Slots
+              </h3>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px;">Select a slot to simulate client appointment confirmation:</p>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;" id="vet-slots-grid">
+                <button class="btn btn-secondary btn-sm slot-btn" data-slot="Tomorrow 09:00 AM">09:00 AM (Wed)</button>
+                <button class="btn btn-secondary btn-sm slot-btn" data-slot="Tomorrow 11:30 AM">11:30 AM (Wed)</button>
+                <button class="btn btn-secondary btn-sm slot-btn" data-slot="Tomorrow 02:00 PM">02:00 PM (Wed)</button>
+                <button class="btn btn-secondary btn-sm slot-btn" data-slot="Tomorrow 03:45 PM">03:45 PM (Wed)</button>
+                <button class="btn btn-secondary btn-sm slot-btn" data-slot="Thursday 10:00 AM">10:00 AM (Thu)</button>
+                <button class="btn btn-secondary btn-sm slot-btn" data-slot="Thursday 01:30 PM">01:30 PM (Thu)</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Clinical Cases Section -->
+        <div style="margin-top: 64px;">
+          <div class="section-header">
+            <span class="section-badge"><i class="fa-solid fa-book-medical"></i> Clinical Records &amp; Rounds</span>
+            <h2 class="heading-lg">Detailed Medical Case Studies</h2>
+            <p class="body-lead" style="font-size: 0.95rem;">Demonstration surgical histories, diagnostic ultrasound summaries, and recovery protocols.</p>
+          </div>
+
+          <div class="grid-3" id="medical-cases-container">
+            <!-- Rendered by static data / hardcoded fallback -->
+            <div class="card" style="border-left: 4px solid var(--primary-500);">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                <h3 class="heading-sm">Bella (German Shepherd)</h3>
+                <span class="tag" style="background-color: #D8F3DC; color: #1B4332;">Recovered</span>
+              </div>
+              <p style="font-size: 0.84rem; color: var(--text-muted);"><strong>Chief Complaint:</strong> Acute non-weight bearing lameness on right hind leg.</p>
+              <div style="margin: 12px 0; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.82rem;">
+                <strong>Diagnosis:</strong> Complete Cranial Cruciate Ligament (CCL) Rupture with Meniscal Tear.<br>
+                <strong>Protocol:</strong> TPLO surgery, Carprofen analgesia, low-impact laser rehab.
+              </div>
+              <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+                <strong>Outcome:</strong> 90% full weight-bearing restored at 6-week radiographic check.
+              </p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--accent-peach);">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                <h3 class="heading-sm">Simba (Domestic Long Hair)</h3>
+                <span class="tag" style="background-color: #FEF3C7; color: #92400E;">Resolved</span>
+              </div>
+              <p style="font-size: 0.84rem; color: var(--text-muted);"><strong>Chief Complaint:</strong> Stranguria, hematuria, and vocalization in litter box for 18h.</p>
+              <div style="margin: 12px 0; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.82rem;">
+                <strong>Diagnosis:</strong> Feline Idiopathic Cystitis (FIC) with Obstructive Struvite Urolithiasis.<br>
+                <strong>Protocol:</strong> Atraumatic catheterization, IV fluid diuresis, prescription wet S/O diet.
+              </div>
+              <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+                <strong>Outcome:</strong> Normal voluntary urination established; zero recurrence over 60 days.
+              </p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--accent-amber);">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                <h3 class="heading-sm">Archie (Cavalier Spaniel)</h3>
+                <span class="tag" style="background-color: #E0E7FF; color: #3730A3;">Maintenance</span>
+              </div>
+              <p style="font-size: 0.84rem; color: var(--text-muted);"><strong>Chief Complaint:</strong> Severe chronic bilateral ear pruritus and paw licking.</p>
+              <div style="margin: 12px 0; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.82rem;">
+                <strong>Diagnosis:</strong> Atopic Dermatitis with Secondary Malassezia Otitis Externa.<br>
+                <strong>Protocol:</strong> Deep ear flushing, Cytopoint monthly injection, sublingual immunotherapy.
+              </div>
+              <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+                <strong>Outcome:</strong> 80% pruritus score reduction within 72h; clear follow-up ear cytology.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; padding: 16px; background-color: var(--bg-subtle); border-radius: var(--radius-md); font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+            <i class="fa-solid fa-circle-info" style="color: var(--primary-500);"></i> <strong>Clinical Disclaimer:</strong> All medical cases, diagnostic dosages, and treatment timelines are presented for educational and demonstration purposes.
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+            <span class="brand-name">FurEver Care</span>
+          </div>
+          <p>Dedicated to empowering pet guardians, clinical practitioners, and animal shelters with accessible tools for happier pets.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com" class="social-icon-btn"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://youtube.com" class="social-icon-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="team.html" class="footer-link">Our Team</a>
+            <a href="products.html" class="footer-link">Care Products</a>
+            <a href="emergency.html" class="footer-link" style="color: #F4A261;">Emergency Help</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="feedback.html" class="footer-link">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Pet Care Hub</h4>
+          <div class="footer-links">
+            <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
+            <a href="veterinarian.html" class="footer-link">Veterinarian Hub</a>
+            <a href="animal-shelter.html" class="footer-link">Animal Shelter Hub</a>
+            <a href="pet-profile.html" class="footer-link">Pet Profile Builder</a>
+            <a href="feeding-guide.html" class="footer-link">Feeding Guide</a>
+            <a href="grooming-videos.html" class="footer-link">Grooming Videos</a>
+            <a href="health-tips.html" class="footer-link">Health Tips</a>
+            <a href="training-tips.html" class="footer-link">Training Tips</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Care Better. Love Longer.</h4>
+          <p style="font-size: 0.88rem; color: #A9BDB2; line-height: 1.6;">Join thousands of pet parents receiving verified advice and shelter updates.</p>
+          <a href="veterinarian.html" class="btn btn-primary btn-sm" style="margin-top: 16px;"><span>Clinical Portal</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 FurEver Care. All rights reserved.</div>
+        <div>Smarter Care. Happier Pets.</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="data/grooming-videos.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/pets.js"></script>
+  <script src="data/veterinarians.js"></script>
+  <script src="data/events.js"></script>
+  <script src="data/medical-cases.js"></script>
+  <script src="js/script.js" defer></script>
+  <script>
+    // Inline Slot Simulator for immediate tactile feedback
+    document.addEventListener("DOMContentLoaded", () => {
+      const slotBtns = document.querySelectorAll(".slot-btn");
+      slotBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const slotTime = btn.dataset.slot;
+          if (window.FurEverCare && window.FurEverCare.Toast) {
+            window.FurEverCare.Toast.show(`Demonstration appointment held for ${slotTime}! Client notification queued.`, "fa-solid fa-calendar-check");
+          }
+        });
+      });
+      const trigger = document.getElementById("slot-booking-trigger");
+      if (trigger) {
+        trigger.addEventListener("click", () => {
+          document.getElementById("vet-slots-grid")?.scrollIntoView({ behavior: "smooth" });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

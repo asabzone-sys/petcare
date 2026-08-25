@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Positive Pet Training &amp; Behavior Hub — FurEver Care</title>
+  <meta name="description" content="Science-based positive reinforcement training guides for puppy basics, leash manners, crate training, and separation anxiety.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-loader" role="status" aria-live="polite">
+    <div class="loader-paw-container">
+      <div class="loader-ripple"></div>
+      <i class="fa-solid fa-graduation-cap"></i>
+    </div>
+    <div class="loader-title">FurEver Care</div>
+    <div class="loader-subtitle">Loading positive training guides...</div>
+  </div>
+
+  <div class="top-ticker">
+    <div class="container ticker-inner">
+      <div class="ticker-items">
+        <div class="ticker-item"><i class="fa-solid fa-clock"></i> <span id="live-clock">Loading clock...</span></div>
+        <div class="ticker-item"><span id="geo-indicator"><i class="fa-solid fa-location-dot"></i> Detecting location...</span></div>
+        <div class="ticker-item"><i class="fa-solid fa-bone"></i> <span>Training Golden Rule: Reward what you want repeated. Mark good behavior immediately!</span></div>
+      </div>
+      <div class="ticker-role-badge user-role-badge" style="display: none;"></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-title">
+          <span class="brand-name">FurEver Care</span>
+          <span class="brand-tagline">Behavior &amp; Training</span>
+        </div>
+      </a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="pet-owner.html" class="nav-link">Pet Owner</a>
+        <a href="veterinarian.html" class="nav-link">Veterinarian</a>
+        <a href="animal-shelter.html" class="nav-link">Shelter</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="emergency.html" class="nav-link" style="color: var(--accent-peach); font-weight: 600;"><i class="fa-solid fa-kit-medical"></i> Emergency</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <a href="pet-owner.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrow-left"></i> <span>Dashboard</span></a>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px;"><i class="fa-solid fa-paw"></i></div>
+          <span class="brand-name" style="font-size: 1.2rem;">FurEver Care</span>
+        </div>
+        <button class="modal-close-btn mobile-drawer-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span></a>
+        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span></a>
+        <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner</span></a>
+        <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian</span></a>
+        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter</span></a>
+        <a href="pet-profile.html" class="mobile-nav-link"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span></a>
+        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span></a>
+        <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span></a>
+        <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span></a>
+        <a href="training-tips.html" class="mobile-nav-link active"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span></a>
+        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span></a>
+        <a href="emergency.html" class="mobile-nav-link"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span></a>
+        <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Team</span></a>
+        <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span></a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="section-py">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i class="fa-solid fa-graduation-cap"></i> Positive Reinforcement</span>
+          <h1 class="heading-lg">Compassionate Behavior &amp; Training Guides</h1>
+          <p class="body-lead">Build lifelong trust through clear communication, positive markers, and empathy.</p>
+        </div>
+
+        <div class="grid-3">
+          
+          <!-- Module 1: Puppy Foundation -->
+          <div class="card" style="border-top: 4px solid var(--primary-500); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="role-icon-box" style="margin-bottom: 16px;">
+                <i class="fa-solid fa-paw"></i>
+              </div>
+              <h3 class="heading-sm">Puppy Basics &amp; Potty Routine</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+                Take puppies outside every 2 hours, immediately after waking, eating, or vigorous play. Praise enthusiastically with a tasty high-value treat within 1.5 seconds of completing outdoors.
+              </p>
+              <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: var(--primary-600);">
+                <i class="fa-solid fa-lightbulb"></i> Rule: Never punish indoor accidents. Clean with enzymatic cleaner silently.
+              </div>
+            </div>
+
+            <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-primary btn-sm play-audio-btn" data-audio-title="Puppy Basics &amp; Potty Routine" data-audio-text="Puppy Potty Training Guide. Puppies possess tiny bladders. Take them to the exact same outdoor relief spot every two hours. When they eliminate, mark with high praise and deliver a soft pea-sized treat immediately. If accidents occur indoors, do not scold. Simply clean the area with an enzymatic spray to neutralize residual scent markers.">
+                  <i class="fa-solid fa-volume-high"></i> <span>Audio Guide</span>
+                </button>
+                <button class="btn btn-secondary btn-sm toggle-transcript-btn" data-target="train-trans-1">
+                  <i class="fa-solid fa-file-lines"></i> <span>Transcript</span>
+                </button>
+              </div>
+              <div id="train-trans-1" class="transcript-box" style="display: none; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; border-left: 3px solid var(--primary-500);">
+                <strong>Transcript:</strong> Timing is everything in canine cognition. Delivering the reward within 1.5 seconds links the physical action of eliminating on grass directly to positive reinforcement.
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 2: Loose Leash Walking -->
+          <div class="card" style="border-top: 4px solid var(--accent-peach); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="role-icon-box" style="margin-bottom: 16px; background-color: var(--accent-peach-subtle); color: var(--accent-peach);">
+                <i class="fa-solid fa-route"></i>
+              </div>
+              <h3 class="heading-sm">Loose Leash Walking</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+                Be a "tree" the instant tension appears on the leash. Stop walking completely until the dog turns back or offers slack, then mark ("Yes!") and reward beside your thigh with forward movement.
+              </p>
+              <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: var(--accent-peach);">
+                <i class="fa-solid fa-lightbulb"></i> Use a front-clip harness to gently pivot pulling momentum.
+              </div>
+            </div>
+
+            <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-primary btn-sm play-audio-btn" data-audio-title="Loose Leash Walking" data-audio-text="Loose Leash Walking Audio Lesson. Dogs naturally walk at four miles per hour while humans stroll at two. Pulling occurs because moving forward is inherently rewarding. Become a statue the moment the leash goes taut. As soon as your dog slackens the line and looks back at you, say 'Yes' and reward at your pant seam.">
+                  <i class="fa-solid fa-volume-high"></i> <span>Audio Guide</span>
+                </button>
+                <button class="btn btn-secondary btn-sm toggle-transcript-btn" data-target="train-trans-2">
+                  <i class="fa-solid fa-file-lines"></i> <span>Transcript</span>
+                </button>
+              </div>
+              <div id="train-trans-2" class="transcript-box" style="display: none; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; border-left: 3px solid var(--accent-peach);">
+                <strong>Transcript:</strong> Never jerk or yank the leash. The sensation of slack tension must become the dog's conditioned green light to proceed forward.
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 3: Crate Cozy Den -->
+          <div class="card" style="border-top: 4px solid var(--accent-green); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="role-icon-box" style="margin-bottom: 16px; background-color: #D1FAE5; color: #065F46;">
+                <i class="fa-solid fa-house-chimney"></i>
+              </div>
+              <h3 class="heading-sm">Safe Crate Den Conditioning</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+                Transform the crate into a sanctuary. Feed all meals inside with the door open, hide surprise treats beneath blankets, and only latch the door once your pet comfortably rests inside voluntarily.
+              </p>
+              <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: var(--accent-green);">
+                <i class="fa-solid fa-lightbulb"></i> Provide frozen Kongs stuffed with pumpkin and peanut butter.
+              </div>
+            </div>
+
+            <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-primary btn-sm play-audio-btn" data-audio-title="Safe Crate Den Conditioning" data-audio-text="Crate Sanctuary Audio Guide. The crate should simulate a safe, cozy ancestral den. Feed your dog their daily breakfast and dinner inside the crate with the door wide open. Never use the crate as a punitive timeout. Provide high value lick mats and frozen chew toys to trigger endorphin release while inside.">
+                  <i class="fa-solid fa-volume-high"></i> <span>Audio Guide</span>
+                </button>
+                <button class="btn btn-secondary btn-sm toggle-transcript-btn" data-target="train-trans-3">
+                  <i class="fa-solid fa-file-lines"></i> <span>Transcript</span>
+                </button>
+              </div>
+              <div id="train-trans-3" class="transcript-box" style="display: none; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; border-left: 3px solid var(--accent-green);">
+                <strong>Transcript:</strong> Licking and chewing release calming serotonin in canine brains. Associating these soothing oral activities with the crate eliminates isolation panic.
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 4: Separation Anxiety -->
+          <div class="card" style="border-top: 4px solid var(--accent-amber); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="role-icon-box" style="margin-bottom: 16px; background-color: #FEF3C7; color: #92400E;">
+                <i class="fa-solid fa-heart-crack"></i>
+              </div>
+              <h3 class="heading-sm">Separation Anxiety De-Sensitization</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+                Disarm departure triggers (touching keys, putting on shoes) without actually leaving. Practice sub-threshold micro-absences (stepping outside for 10 seconds and returning before anxiety escalates).
+              </p>
+              <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: var(--accent-amber);">
+                <i class="fa-solid fa-lightbulb"></i> Keep departures and arrivals calm, low-key, and neutral.
+              </div>
+            </div>
+
+            <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-primary btn-sm play-audio-btn" data-audio-title="Separation Anxiety De-Sensitization" data-audio-text="Separation Anxiety Conditioning. Pick up your car keys and put on your jacket, then simply sit back on the couch. By disassociating pre-departure cues from actual prolonged absences, you lower the anticipatory anxiety spike. Increase absence durations incrementally only while your pet remains calm below panic threshold.">
+                  <i class="fa-solid fa-volume-high"></i> <span>Audio Guide</span>
+                </button>
+                <button class="btn btn-secondary btn-sm toggle-transcript-btn" data-target="train-trans-4">
+                  <i class="fa-solid fa-file-lines"></i> <span>Transcript</span>
+                </button>
+              </div>
+              <div id="train-trans-4" class="transcript-box" style="display: none; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; border-left: 3px solid var(--accent-amber);">
+                <strong>Transcript:</strong> Never make departure or return greetings dramatic. Neutral body language signals to your dog that solitude is a normal, non-threatening event.
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 5: Mental Enrichment & Sniffaris -->
+          <div class="card" style="border-top: 4px solid var(--primary-600); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="role-icon-box" style="margin-bottom: 16px; background-color: #E0E7FF; color: #4338CA;">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <h3 class="heading-sm">Olfactory Sniffaris &amp; Brain Work</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+                20 minutes of intense scent exploration and snuffle mat foraging tires a dog's cognitive cortex faster than a 60-minute fast jog. Sniffing naturally lowers heart rates and cortisol levels.
+              </p>
+              <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: #4338CA;">
+                <i class="fa-solid fa-lightbulb"></i> Scatter a handful of kibble across clean backyard grass.
+              </div>
+            </div>
+
+            <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-primary btn-sm play-audio-btn" data-audio-title="Olfactory Sniffaris &amp; Brain Work" data-audio-text="Mental Enrichment Audio Guide. A dog experiences their universe primarily through olfactory scent receptors. Dedicate at least one walk per day entirely to sniffing without rushing. Introduce snuffle mats, frozen puzzle feeders, and treat foraging games to engage mental problem solving and induce deep restful sleep.">
+                  <i class="fa-solid fa-volume-high"></i> <span>Audio Guide</span>
+                </button>
+                <button class="btn btn-secondary btn-sm toggle-transcript-btn" data-target="train-trans-5">
+                  <i class="fa-solid fa-file-lines"></i> <span>Transcript</span>
+                </button>
+              </div>
+              <div id="train-trans-5" class="transcript-box" style="display: none; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; border-left: 3px solid var(--primary-600);">
+                <strong>Transcript:</strong> Olfactory stimulation activates the vomeronasal organ, reducing systolic pulse and settling reactive hyper-arousal.
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 6: Feline Clicker Training -->
+          <div class="card" style="border-top: 4px solid var(--accent-purple); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="role-icon-box" style="margin-bottom: 16px; background-color: #F3E8FF; color: #7E22CE;">
+                <i class="fa-solid fa-cat"></i>
+              </div>
+              <h3 class="heading-sm">Feline Clicker Target Training</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+                Cats thrive with positive reinforcement! Use a target stick or finger tip paired with a clicker and Churu squeeze treat to teach your cat to voluntarily enter carriers or high-five.
+              </p>
+              <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: #7E22CE;">
+                <i class="fa-solid fa-lightbulb"></i> Keep feline clicker sessions strictly under 3 minutes.
+              </div>
+            </div>
+
+            <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-primary btn-sm play-audio-btn" data-audio-title="Feline Clicker Target Training" data-audio-text="Feline Clicker Training Audio Guide. Present a target stick or ballpoint pen tip two inches from your cat's nose. When they inspect and touch it with their nose, immediately click and offer a lick of liquid treat. Use target training to guide your cat peacefully into travel crates without stress.">
+                  <i class="fa-solid fa-volume-high"></i> <span>Audio Guide</span>
+                </button>
+                <button class="btn btn-secondary btn-sm toggle-transcript-btn" data-target="train-trans-6">
+                  <i class="fa-solid fa-file-lines"></i> <span>Transcript</span>
+                </button>
+              </div>
+              <div id="train-trans-6" class="transcript-box" style="display: none; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; border-left: 3px solid var(--accent-purple);">
+                <strong>Transcript:</strong> Cats learn rapidly with immediate positive feedback. Never force physical contact; allow the cat to initiate curiosity towards the target.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Troubleshooting Common Behaviors -->
+        <div style="margin-top: 64px;">
+          <div class="section-header">
+            <span class="section-badge"><i class="fa-solid fa-circle-question"></i> Behavior Fixes</span>
+            <h2 class="heading-lg">Troubleshooting Common Challenges</h2>
+            <p class="body-lead">Positive solutions for jumping, demand barking, and resource guarding.</p>
+          </div>
+
+          <div class="grid-3">
+            <div class="card">
+              <h3 class="heading-sm" style="color: var(--primary-600); margin-bottom: 8px;">Jumping Up on Guests</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+                Dogs jump because human faces are the focus of attention. Ask guests to cross their arms and turn their backs silently. Reward immediately when all four paws touch the floor ("Four on the Floor").
+              </p>
+            </div>
+
+            <div class="card">
+              <h3 class="heading-sm" style="color: var(--accent-peach); margin-bottom: 8px;">Demand Barking at Meals</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+                If you pour food while your dog barks, you inadvertently reinforced the barking. Freeze immediately mid-pour. Wait for 3 seconds of silence, then resume bowl placement.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3 class="heading-sm" style="color: var(--accent-amber); margin-bottom: 8px;">Preventing Resource Guarding</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+                Never pry prized items from your dog's mouth. Always "trade up" by tossing higher-value rewards (freeze-dried roast beef) nearby, allowing the pet to drop the lower-value toy willingly.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+            <span class="brand-name">FurEver Care</span>
+          </div>
+          <p>Dedicated to empowering pet guardians, clinical practitioners, and animal shelters with accessible tools for happier pets.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com" class="social-icon-btn"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://youtube.com" class="social-icon-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="team.html" class="footer-link">Our Team</a>
+            <a href="products.html" class="footer-link">Care Products</a>
+            <a href="emergency.html" class="footer-link" style="color: #F4A261;">Emergency Help</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="feedback.html" class="footer-link">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Pet Care Hub</h4>
+          <div class="footer-links">
+            <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
+            <a href="veterinarian.html" class="footer-link">Veterinarian Hub</a>
+            <a href="animal-shelter.html" class="footer-link">Animal Shelter Hub</a>
+            <a href="pet-profile.html" class="footer-link">Pet Profile Builder</a>
+            <a href="feeding-guide.html" class="footer-link">Feeding Guide</a>
+            <a href="grooming-videos.html" class="footer-link">Grooming Videos</a>
+            <a href="health-tips.html" class="footer-link">Health Tips</a>
+            <a href="training-tips.html" class="footer-link">Training Tips</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Care Better. Love Longer.</h4>
+          <p style="font-size: 0.88rem; color: #A9BDB2; line-height: 1.6;">Join thousands of pet parents receiving verified advice and shelter updates.</p>
+          <a href="pet-owner.html" class="btn btn-primary btn-sm" style="margin-top: 16px;"><span>Back to Dashboard</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 FurEver Care. All rights reserved.</div>
+        <div>Smarter Care. Happier Pets.</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="data/grooming-videos.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/pets.js"></script>
+  <script src="data/veterinarians.js"></script>
+  <script src="data/events.js"></script>
+  <script src="data/medical-cases.js"></script>
+  <script src="js/script.js" defer></script>
+</body>
+</html>

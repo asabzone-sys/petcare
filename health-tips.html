@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Health &amp; Wellness Guide — FurEver Care</title>
+  <meta name="description" content="Veterinary-approved health guides on dental hygiene, weight management, parasite prevention schedules, and seasonal safety.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-loader" role="status" aria-live="polite">
+    <div class="loader-paw-container">
+      <div class="loader-ripple"></div>
+      <i class="fa-solid fa-heart-pulse"></i>
+    </div>
+    <div class="loader-title">FurEver Care</div>
+    <div class="loader-subtitle">Loading health &amp; wellness tips...</div>
+  </div>
+
+  <div class="top-ticker">
+    <div class="container ticker-inner">
+      <div class="ticker-items">
+        <div class="ticker-item"><i class="fa-solid fa-clock"></i> <span id="live-clock">Loading clock...</span></div>
+        <div class="ticker-item"><span id="geo-indicator"><i class="fa-solid fa-location-dot"></i> Detecting location...</span></div>
+        <div class="ticker-item"><i class="fa-solid fa-shield-virus"></i> <span>Prevention Tip: Flea &amp; tick prevention is essential 12 months a year.</span></div>
+      </div>
+      <div class="ticker-role-badge user-role-badge" style="display: none;"></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-title">
+          <span class="brand-name">FurEver Care</span>
+          <span class="brand-tagline">Health &amp; Wellness</span>
+        </div>
+      </a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="pet-owner.html" class="nav-link">Pet Owner</a>
+        <a href="veterinarian.html" class="nav-link">Veterinarian</a>
+        <a href="animal-shelter.html" class="nav-link">Shelter</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="emergency.html" class="nav-link" style="color: var(--accent-peach); font-weight: 600;"><i class="fa-solid fa-kit-medical"></i> Emergency</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <a href="pet-owner.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrow-left"></i> <span>Dashboard</span></a>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px;"><i class="fa-solid fa-paw"></i></div>
+          <span class="brand-name" style="font-size: 1.2rem;">FurEver Care</span>
+        </div>
+        <button class="modal-close-btn mobile-drawer-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span></a>
+        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span></a>
+        <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner</span></a>
+        <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian</span></a>
+        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter</span></a>
+        <a href="pet-profile.html" class="mobile-nav-link"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span></a>
+        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span></a>
+        <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span></a>
+        <a href="health-tips.html" class="mobile-nav-link active"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span></a>
+        <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span></a>
+        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span></a>
+        <a href="emergency.html" class="mobile-nav-link"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span></a>
+        <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Team</span></a>
+        <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span></a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="section-py">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge"><i class="fa-solid fa-stethoscope"></i> Preventive Wellness</span>
+          <h1 class="heading-lg">Pet Health &amp; Veterinary Wellness Hub</h1>
+          <p class="body-lead">Essential veterinary advice to maximize longevity, comfort, and vitality across all life stages.</p>
+        </div>
+
+        <!-- Audio-Guided Veterinary Health Modules -->
+        <div style="margin-bottom: 48px;">
+          <div class="section-header">
+            <span class="section-badge"><i class="fa-solid fa-headphones"></i> Audio &amp; Video Guided Series</span>
+            <h2 class="heading-lg">Clinical Audio Guides &amp; Video Case Summaries</h2>
+            <p class="body-lead">Listen to board-certified veterinarian narrations or read along with interactive clinical transcripts.</p>
+          </div>
+
+          <div class="grid-3">
+            <!-- Audio Guide 1: Oral Care -->
+            <div class="card" style="border-top: 4px solid var(--primary-500); display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <span class="tag" style="background-color: var(--primary-100); color: var(--primary-700);"><i class="fa-solid fa-tooth"></i> Oral Care</span>
+                  <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-clock"></i> 3 mins audio</span>
+                </div>
+                <h3 class="heading-sm">Oral &amp; Periodontal Disease Prevention</h3>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-top: 8px;">
+                  Learn how plaque calcifies into calculus within 48 hours and how daily enzymatic brushing shields heart and renal health.
+                </p>
+              </div>
+
+              <div style="margin-top: 16px;">
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button class="btn btn-primary btn-sm play-audio-btn" data-audio-title="Oral &amp; Periodontal Disease Prevention" data-audio-text="Welcome to the FurEver Care Oral Care Guide. Over 80 percent of dogs and 70 percent of cats develop dental disease by age three. Daily enzymatic brushing with pet-safe toothpaste removes soft plaque before it hardens into tartar. Never use human toothpaste, as fluoride and xylitol are toxic to pets. Begin by letting your pet taste poultry flavored toothpaste on your finger pad, then gently massage the outer gumline in circular motions.">
+                    <i class="fa-solid fa-volume-high"></i> <span>Play Audio Guide</span>
+                  </button>
+                  <button class="btn btn-secondary btn-sm toggle-transcript-btn" data-target="transcript-oral">
+                    <i class="fa-solid fa-file-lines"></i> <span>Transcript</span>
+                  </button>
+                </div>
+
+                <div id="transcript-oral" class="transcript-box" style="display: none; margin-top: 14px; padding: 12px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; border-left: 3px solid var(--primary-500);">
+                  <strong>Transcript Summary:</strong> Dental disease begins with microscopic food residues and saliva bacteria forming biofilm. Daily enzymatic paste utilizes glucose oxidase and lactoperoxidase to neutralize odor and break down bacteria. Focus on the upper premolars and molars where salivary glands deposit minerals.
+                </div>
+              </div>
+            </div>
+
+            <!-- Audio Guide 2: Weight Management -->
+            <div class="card" style="border-top: 4px solid var(--accent-peach); display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <span class="tag" style="background-color: var(--accent-peach-subtle); color: var(--accent-peach);"><i class="fa-solid fa-weight-scale"></i> Weight Care</span>
+                  <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-clock"></i> 4 mins audio</span>
+                </div>
+                <h3 class="heading-sm">Body Condition Scoring &amp; Metabolism</h3>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-top: 8px;">
+                  How subtle overfeeding taxes joints and accelerates inflammatory cytokines. Practical tips for safe weight reduction.
+                </p>
+              </div>
+
+              <div style="margin-top: 16px;">
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button class="btn btn-primary btn-sm play-audio-btn" data-audio-title="Body Condition Scoring &amp; Metabolism" data-audio-text="Welcome to the FurEver Care Weight Management Masterclass. Excess body weight places heavy stress on canine and feline joints and induces systemic low-grade inflammation. Use the nine point Body Condition Scoring system. An ideal pet has ribs easily felt under a slight fat cover, with an hourglass waistline visible from above and an abdominal tuck from the side profile. Always weigh food with a kitchen scale in grams rather than volume cups.">
+                    <i class="fa-solid fa-volume-high"></i> <span>Play Audio Guide</span>
+                  </button>
+                  <button class="btn btn-secondary btn-sm toggle-transcript-btn" data-target="transcript-weight">
+                    <i class="fa-solid fa-file-lines"></i> <span>Transcript</span>
+                  </button>
+                </div>
+
+                <div id="transcript-weight" class="transcript-box" style="display: none; margin-top: 14px; padding: 12px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; border-left: 3px solid var(--accent-peach);">
+                  <strong>Transcript Summary:</strong> Adipose tissue is metabolically active, secreting hormones and inflammatory cytokines that accelerate osteoarthritis and diabetes. Reduce daily calories by 10 to 15 percent under veterinary supervision and substitute green beans or canned pure pumpkin for processed high-fat biscuits.
+                </div>
+              </div>
+            </div>
+
+            <!-- Audio Guide 3: Common Conditions -->
+            <div class="card" style="border-top: 4px solid var(--accent-green); display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <span class="tag" style="background-color: #D1FAE5; color: #065F46;"><i class="fa-solid fa-notes-medical"></i> Common Conditions</span>
+                  <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-clock"></i> 3.5 mins audio</span>
+                </div>
+                <h3 class="heading-sm">Recognizing Allergies &amp; Ear Infections</h3>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-top: 8px;">
+                  Key signs of environmental atopy, paw licking, head shaking, and acute gastrointestinal upset.
+                </p>
+              </div>
+
+              <div style="margin-top: 16px;">
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button class="btn btn-primary btn-sm play-audio-btn" data-audio-title="Recognizing Allergies &amp; Ear Infections" data-audio-text="Welcome to the FurEver Care Common Health Conditions Guide. Frequent paw licking, red ear pinnae, and head shaking often indicate secondary yeast or bacterial overgrowth caused by allergic atopy. Food allergies generally manifest with itching around the face and paws combined with softer stools, while environmental pollen allergies flare seasonally. Clean ears with gentle enzymatic solutions after swimming and contact your vet if you notice a yeasty smell.">
+                    <i class="fa-solid fa-volume-high"></i> <span>Play Audio Guide</span>
+                  </button>
+                  <button class="btn btn-secondary btn-sm toggle-transcript-btn" data-target="transcript-conditions">
+                    <i class="fa-solid fa-file-lines"></i> <span>Transcript</span>
+                  </button>
+                </div>
+
+                <div id="transcript-conditions" class="transcript-box" style="display: none; margin-top: 14px; padding: 12px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; border-left: 3px solid var(--accent-green);">
+                  <strong>Transcript Summary:</strong> Canine and feline ears have an L-shaped canal. Trapped moisture and inflammation foster Malassezia yeast proliferation. Never insert cotton swabs into the ear canal. Flush with an astringent cleanser, massage the auditory canal base, and let your pet shake out dislodged debris.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prominent Veterinary Health Disclaimer -->
+        <div style="margin-bottom: 56px; padding: 18px 22px; background-color: var(--bg-subtle); border-radius: var(--radius-md); border-left: 4px solid var(--accent-amber); display: flex; gap: 16px; align-items: flex-start;">
+          <i class="fa-solid fa-user-doctor" style="font-size: 1.6rem; color: var(--accent-amber); flex-shrink: 0; margin-top: 2px;"></i>
+          <div>
+            <strong style="color: var(--text-primary); font-size: 0.95rem;">Official Veterinary Health &amp; Triage Disclaimer</strong>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-top: 4px;">
+              The health guidelines, audio lectures, and symptom overviews provided on FurEver Care are curated for preventive education only and do not replace in-person clinical examinations, laboratory diagnostics, or tailored prescriptions. If your pet exhibits lethargy, persistent vomiting, pale gums, or respiratory distress, proceed immediately to your nearest emergency veterinary clinic.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          
+          <!-- Tip 1: Dental Hygiene -->
+          <div class="card" style="border-top: 4px solid var(--primary-500);">
+            <div class="role-icon-box" style="margin-bottom: 16px;">
+              <i class="fa-solid fa-tooth"></i>
+            </div>
+            <h3 class="heading-sm">Oral &amp; Dental Hygiene</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+              Over 80% of dogs and 70% of cats show periodontal disease by age 3. Daily enzymatic toothpaste brushing prevents oral bacteria from entering the bloodstream and taxing heart and kidney organs.
+            </p>
+            <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: var(--primary-600);">
+              <i class="fa-solid fa-circle-check"></i> Action: Introduce enzymatic poultry paste on finger pads first.
+            </div>
+          </div>
+
+          <!-- Tip 2: Weight & BCS -->
+          <div class="card" style="border-top: 4px solid var(--accent-peach);">
+            <div class="role-icon-box" style="margin-bottom: 16px; background-color: var(--accent-peach-subtle); color: var(--accent-peach);">
+              <i class="fa-solid fa-weight-scale"></i>
+            </div>
+            <h3 class="heading-sm">Body Condition Score (BCS)</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+              Maintaining an ideal 4–5 out of 9 body score adds an average of 1.8 years to a canine's lifespan. Ribs should be easily palpable beneath a light fat layer, with an obvious waist visible from above.
+            </p>
+            <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: var(--accent-peach);">
+              <i class="fa-solid fa-circle-check"></i> Action: Measure kibble with a scale, not a generous mug.
+            </div>
+          </div>
+
+          <!-- Tip 3: Parasite Shield -->
+          <div class="card" style="border-top: 4px solid var(--accent-green);">
+            <div class="role-icon-box" style="margin-bottom: 16px; background-color: #D1FAE5; color: #065F46;">
+              <i class="fa-solid fa-shield-virus"></i>
+            </div>
+            <h3 class="heading-sm">Year-Round Parasite Defense</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+              Heartworms transmitted by single mosquito bites take 6 months to mature and cause irreversible pulmonary artery damage. Fleas, ticks, tapeworms, and Lyme disease require year-round preventative coverage.
+            </p>
+            <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: var(--accent-green);">
+              <i class="fa-solid fa-circle-check"></i> Action: Set recurring 30-day oral chewable reminders.
+            </div>
+          </div>
+
+          <!-- Tip 4: Joint & Mobility -->
+          <div class="card" style="border-top: 4px solid var(--accent-amber);">
+            <div class="role-icon-box" style="margin-bottom: 16px; background-color: #FEF3C7; color: #92400E;">
+              <i class="fa-solid fa-bone"></i>
+            </div>
+            <h3 class="heading-sm">Joint Mobility &amp; Arthritis</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+              Early stiffness, reluctance to climb stairs, and bunny-hopping gait are signs of osteoarthritis. Green-lipped mussel, EPA/DHA Omega-3 oils, and orthopedic memory foam beds drastically improve senior comfort.
+            </p>
+            <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: var(--accent-amber);">
+              <i class="fa-solid fa-circle-check"></i> Action: Add nonslip area rugs across slick hardwood hallways.
+            </div>
+          </div>
+
+          <!-- Tip 5: Hydration & Renal Care -->
+          <div class="card" style="border-top: 4px solid var(--primary-600);">
+            <div class="role-icon-box" style="margin-bottom: 16px; background-color: #E0E7FF; color: #4338CA;">
+              <i class="fa-solid fa-droplet"></i>
+            </div>
+            <h3 class="heading-sm">Feline Renal &amp; Hydration</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+              Cats naturally possess a low thirst drive derived from desert ancestors. Chronic mild dehydration leads to kidney disease and painful struvite crystal blockage. Circulating stainless fountains encourage intake.
+            </p>
+            <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: #4338CA;">
+              <i class="fa-solid fa-circle-check"></i> Action: Place water stations away from food bowls &amp; litter.
+            </div>
+          </div>
+
+          <!-- Tip 6: Seasonal Heat Safety -->
+          <div class="card" style="border-top: 4px solid var(--accent-red);">
+            <div class="role-icon-box" style="margin-bottom: 16px; background-color: #FEE2E2; color: #B91C1C;">
+              <i class="fa-solid fa-temperature-arrow-up"></i>
+            </div>
+            <h3 class="heading-sm">Heatstroke &amp; Pavement Safety</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">
+              Asphalt heats up to 135°F when ambient air is only 85°F, blistering sensitive paw pads in 60 seconds. Brachycephalic breeds (Pugs, Bulldogs) cannot cool efficiently and overheat rapidly.
+            </p>
+            <div style="margin-top: 14px; padding: 10px; background-color: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: var(--accent-red);">
+              <i class="fa-solid fa-circle-check"></i> Action: 7-Second Rule: Hold the back of your hand to asphalt first.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Annual Veterinary Preventive Calendar -->
+        <div style="margin-top: 64px;">
+          <div class="section-header">
+            <span class="section-badge"><i class="fa-solid fa-calendar-days"></i> Care Roadmap</span>
+            <h2 class="heading-lg">Annual Preventive Health Milestones</h2>
+            <p class="body-lead">Stay on top of essential checkups throughout the year.</p>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <h3 class="heading-sm" style="margin-bottom: 14px; color: var(--primary-600);"><i class="fa-solid fa-dog"></i> Canine Health Checklist</h3>
+              <ul style="display: flex; flex-direction: column; gap: 12px; font-size: 0.88rem; color: var(--text-secondary);">
+                <li><i class="fa-solid fa-check" style="color: var(--primary-500);"></i> <strong>Annual Exam &amp; Vitals:</strong> Heart auscultation, lymph node palpation, eye fundus check.</li>
+                <li><i class="fa-solid fa-check" style="color: var(--primary-500);"></i> <strong>Core Boosters:</strong> Rabies (1 or 3 yr), DHPP, Bordetella &amp; Leptospirosis.</li>
+                <li><i class="fa-solid fa-check" style="color: var(--primary-500);"></i> <strong>Fecal &amp; Heartworm Serology:</strong> Annual 4DX antigen blood test for vector tick illnesses.</li>
+                <li><i class="fa-solid fa-check" style="color: var(--primary-500);"></i> <strong>Senior Chemistry Profile (Age 7+):</strong> Comprehensive CBC, liver enzymes, and renal urinalysis.</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3 class="heading-sm" style="margin-bottom: 14px; color: var(--accent-peach);"><i class="fa-solid fa-cat"></i> Feline Health Checklist</h3>
+              <ul style="display: flex; flex-direction: column; gap: 12px; font-size: 0.88rem; color: var(--text-secondary);">
+                <li><i class="fa-solid fa-check" style="color: var(--accent-peach);"></i> <strong>Annual Exam:</strong> Thyroid palpation, weight trend analysis, blood pressure check.</li>
+                <li><i class="fa-solid fa-check" style="color: var(--accent-peach);"></i> <strong>Core Boosters:</strong> Rabies, FVRCP (Feline Distemper / Rhino / Calici), FeLV for outdoor cats.</li>
+                <li><i class="fa-solid fa-check" style="color: var(--accent-peach);"></i> <strong>Renal Screening:</strong> SDMA early biomarker blood check for kidney filtration.</li>
+                <li><i class="fa-solid fa-check" style="color: var(--accent-peach);"></i> <strong>Dental Assessment:</strong> Evaluation for feline odontoclastic resorptive lesions (FORLs).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+            <span class="brand-name">FurEver Care</span>
+          </div>
+          <p>Dedicated to empowering pet guardians, clinical practitioners, and animal shelters with accessible tools for happier pets.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com" class="social-icon-btn"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://youtube.com" class="social-icon-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="team.html" class="footer-link">Our Team</a>
+            <a href="products.html" class="footer-link">Care Products</a>
+            <a href="emergency.html" class="footer-link" style="color: #F4A261;">Emergency Help</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="feedback.html" class="footer-link">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Pet Care Hub</h4>
+          <div class="footer-links">
+            <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
+            <a href="veterinarian.html" class="footer-link">Veterinarian Hub</a>
+            <a href="animal-shelter.html" class="footer-link">Animal Shelter Hub</a>
+            <a href="pet-profile.html" class="footer-link">Pet Profile Builder</a>
+            <a href="feeding-guide.html" class="footer-link">Feeding Guide</a>
+            <a href="grooming-videos.html" class="footer-link">Grooming Videos</a>
+            <a href="health-tips.html" class="footer-link">Health Tips</a>
+            <a href="training-tips.html" class="footer-link">Training Tips</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Care Better. Love Longer.</h4>
+          <p style="font-size: 0.88rem; color: #A9BDB2; line-height: 1.6;">Join thousands of pet parents receiving verified advice and shelter updates.</p>
+          <a href="pet-owner.html" class="btn btn-primary btn-sm" style="margin-top: 16px;"><span>Back to Dashboard</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 FurEver Care. All rights reserved.</div>
+        <div>Smarter Care. Happier Pets.</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="data/grooming-videos.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/pets.js"></script>
+  <script src="data/veterinarians.js"></script>
+  <script src="data/events.js"></script>
+  <script src="data/medical-cases.js"></script>
+  <script src="js/script.js" defer></script>
+</body>
+</html>

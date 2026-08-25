@@ -1,0 +1,76 @@
+================================================================================
+FUREVER CARE — COMPREHENSIVE PET CARE & WELFARE WEB PLATFORM
+System Architecture, Technical Specifications & Verification Documentation
+================================================================================
+
+1. PROBLEM DEFINITION
+--------------------------------------------------------------------------------
+Companion animal care is often hindered by fragmented online information:
+- Lack of standardized, life-stage nutritional portioning guidelines.
+- Unreliable emergency triage and clinical clinic lookups during acute distress.
+- Animal shelters lacking unified portals to showcase adoptable companions.
+- Heavy dependencies on complex server infrastructure and third-party APIs that
+  fail under offline, low-bandwidth, or file:// browser environments.
+
+FurEver Care resolves this with a 100% static, client-side, zero-latency multi-page
+system containing dedicated portals for Pet Owners, Veterinarians, and Animal Shelters.
+
+
+2. DESIGN & TECHNICAL SPECIFICATIONS
+--------------------------------------------------------------------------------
+* Architecture: Static Multi-Page Architecture (MPA) across 15 responsive HTML pages.
+* Styling: Pure responsive CSS using standard custom design tokens (Warm Forest Theme).
+* Primary Colors: Forest Pine (#2D6A4F), Hunter Green (#1B4332), Coral (#E76F51).
+* Typography: Playfair Display (Headings) paired with Plus Jakarta Sans (Body & Controls).
+* Breakpoints: Mobile (360px-767px), Tablet (768px-1023px), Desktop (1024px+).
+* Zero-Fetch Guarantee: All data models reside in /data/*.js and load via <script> tags.
+
+
+3. USER & SYSTEM FLOWS
+--------------------------------------------------------------------------------
+1. Landing & Role Selection: User visits index.html and selects their identity.
+2. Pet Profile Customization: User creates/edits companion profile in pet-profile.html.
+3. Dashboard Personalization: pet-owner.html reflects companion name & passport details.
+4. Nutrition Engine: User calculates portion in feeding-guide.html and reads charts.
+5. Multimodal Audio/Video: Grooming modal playback and Speech Synthesis audio guides.
+
+
+4. DATA FLOW DIAGRAM (DFD) OVERVIEW
+--------------------------------------------------------------------------------
+[User Action] ---> [HTML5 UI Form / Button Trigger]
+                         |
+                         v
+            [js/script.js Orchestration Engine]
+              |                   |                  |
+              v                   v                  v
+     [LocalStorage Cache]   [Static Data Stores]  [DOM Render Engine]
+     - Saved Pet Profile    - FUREVER_PRODUCTS    - Live Tables
+     - User Role & Name     - FUREVER_PETS        - Audio Players
+     - Visitor Counter      - FUREVER_VETS        - Modals & Badges
+
+
+5. TESTING CHECKLIST
+--------------------------------------------------------------------------------
+[PASS] Dark / Light Theme Toggle & Persistence across navigation
+[PASS] Live Header Clock & Geolocation Coordinate Detection
+[PASS] Simulated Visitor Counter (12,584+ animated count)
+[PASS] Pet Passport Builder & Immediate Live Preview
+[PASS] Pet Owner Dashboard Name & Passport Personalization
+[PASS] Interactive Calorie & Portion Calculator (RER formula)
+[PASS] Responsive Feeding Charts for Puppies, Dogs, Kittens, Cats
+[PASS] Fear-Free Grooming Video Modal Player with controls
+[PASS] Educational Audio Guidance with Speech Synthesis & Transcripts
+[PASS] Shelter Pet Filtering & Adoption Modal Application
+[PASS] Veterinary Clinic Directory & Medical Case Studies
+[PASS] Mobile Responsive Layout & Drawer Navigation
+
+
+6. EXECUTION INSTRUCTIONS
+--------------------------------------------------------------------------------
+A. Direct Browser: Double click index.html (works via file:// protocol).
+B. Dev Server: Run 'npm run dev' and open http://localhost:3000 in your browser.
+C. Production Build: Run 'npm run build' to generate the dist/ output.
+
+================================================================================
+FurEver Care — Smarter Care. Happier Pets.
+================================================================================
