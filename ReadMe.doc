@@ -71,6 +71,31 @@ A. Direct Browser: Double click index.html (works via file:// protocol).
 B. Dev Server: Run 'npm run dev' and open http://localhost:3000 in your browser.
 C. Production Build: Run 'npm run build' to generate the dist/ output.
 
+
+7. RESOLVED ISSUES & ERROR RESOLUTION LOG
+--------------------------------------------------------------------------------
+[FIXED] BUG-001: Video playback failure on grooming masterclasses page.
+  - Linked all 6 dedicated masterclass MP4 video files with custom playback
+    controls (Play/Pause, seek timeline, volume, speed selector, fullscreen).
+
+[FIXED] BUG-002: Blurry dark box & faint semi-transparent overlay on preview cards.
+  - Removed opaque background fills and backdrop blur from .video-play-overlay.
+  - Positioned clean floating play button with clear high-resolution thumbnails.
+
+[FIXED] BUG-003: Navigation & Footer link divergence across secondary templates.
+  - Standardized the 4-column responsive footer across all 19 HTML templates.
+
+[FIXED] BUG-004: SEO, Open Graph metadata, and favicon consistency.
+  - Added complete Open Graph tags, keywords, author, and theme-color tags.
+
+[FIXED] BUG-005: Video completion progress tracking and persistence.
+  - Added watch completion tracking with localStorage persistence and badges.
+
+[FIXED] BUG-006: Hero section dark mode gradient obscuring text legibility.
+  - Tuned dark mode ambient gradients (emerald & subtle peach over deep dark canvas).
+  - Enhanced text brightness (#FFFFFF headline, #72C39B accent, #D3E0D8 body lead).
+  - Elevated section badges and carousel caption cards with high-contrast surfaces.
+
 ================================================================================
 FurEver Care — Smarter Care. Happier Pets.
 ================================================================================

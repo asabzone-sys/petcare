@@ -53,18 +53,18 @@
     }
   };
 
-  // --- 2. LIVE CLOCK ---
+  // --- 2. LIVE CLOCK (DATE & TIME) ---
   const LiveClock = {
     init() {
-      const clockEl = document.getElementById("live-clock");
-      if (!clockEl) return;
-
       const update = () => {
         const now = new Date();
-        const options = { weekday: 'short', month: 'short', day: 'numeric' };
-        const dateStr = now.toLocaleDateString('en-US', options);
+        const dateOptions = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+        const dateStr = now.toLocaleDateString('en-US', dateOptions);
         const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-        clockEl.textContent = `${dateStr} • ${timeStr}`;
+        
+        document.querySelectorAll(".live-date-val").forEach(el => { el.textContent = dateStr; });
+        document.querySelectorAll(".live-time-val").forEach(el => { el.textContent = timeStr; });
+        document.querySelectorAll("#live-clock, .live-clock-val").forEach(el => { el.textContent = `${dateStr} • ${timeStr}`; });
       };
 
       update();
@@ -75,21 +75,24 @@
   // --- 3. GEOLOCATION ---
   const GeolocationManager = {
     init() {
-      const geoEl = document.getElementById("geo-indicator");
-      if (!geoEl) return;
+      const updateLocation = (text) => {
+        document.querySelectorAll("#geo-indicator, .geo-indicator-val").forEach(el => {
+          el.textContent = text;
+        });
+      };
 
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
           (pos) => {
-            geoEl.innerHTML = `<i class="fa-solid fa-location-dot"></i> Near You (Local Services Active)`;
+            updateLocation("Near You (Local Care Network Active)");
           },
           (err) => {
-            geoEl.innerHTML = `<i class="fa-solid fa-location-dot"></i> Location Services Ready`;
+            updateLocation("Downtown Central Clinic & Regional Care Network");
           },
-          { timeout: 5000 }
+          { timeout: 4000 }
         );
       } else {
-        geoEl.innerHTML = `<i class="fa-solid fa-location-dot"></i> Location Services Ready`;
+        updateLocation("Downtown Central Clinic & Regional Care Network");
       }
     }
   };
@@ -168,14 +171,15 @@
         loader.classList.add("loader-hidden");
         setTimeout(() => {
           if (loader.parentNode) loader.style.display = "none";
-        }, 600);
+        }, 280);
       };
 
-      if (document.readyState === "complete") {
-        setTimeout(hideLoader, 200);
+      if (document.readyState === "complete" || document.readyState === "interactive") {
+        requestAnimationFrame(() => setTimeout(hideLoader, 40));
       } else {
-        window.addEventListener("load", () => setTimeout(hideLoader, 200));
-        setTimeout(hideLoader, 1200);
+        document.addEventListener("DOMContentLoaded", () => setTimeout(hideLoader, 40));
+        window.addEventListener("load", () => setTimeout(hideLoader, 40));
+        setTimeout(hideLoader, 500); // Fail-safe fallback
       }
     }
   };
@@ -1149,6 +1153,32 @@
 
   // --- 17. GROOMING VIDEO PLAYER ENGINE ---
   const GroomingVideoPlayer = {
+    currentIndex: 0,
+    currentPlaylist: [],
+
+    formatTime(seconds) {
+      if (isNaN(seconds) || seconds < 0) return "0:00";
+      const m = Math.floor(seconds / 60);
+      const s = Math.floor(seconds % 60);
+      return `${m}:${s < 10 ? "0" : ""}${s}`;
+    },
+
+    getCompletedVideos() {
+      try {
+        return JSON.parse(localStorage.getItem("furever_completed_videos") || "[]");
+      } catch (e) {
+        return [];
+      }
+    },
+
+    markVideoCompleted(videoId) {
+      const completed = this.getCompletedVideos();
+      if (!completed.includes(videoId)) {
+        completed.push(videoId);
+        localStorage.setItem("furever_completed_videos", JSON.stringify(completed));
+      }
+    },
+
     init() {
       const grid = document.getElementById("grooming-video-grid");
       const searchInput = document.getElementById("video-search");
@@ -1158,52 +1188,373 @@
       const modal = document.getElementById("video-modal");
       const videoEl = document.getElementById("modal-html5-video");
       const videoSource = document.getElementById("modal-video-source");
+      const centerPlayBtn = document.getElementById("modal-video-center-play-btn");
       const modalTitle = document.getElementById("modal-video-title");
       const modalInstructor = document.getElementById("modal-video-instructor");
       const modalDesc = document.getElementById("modal-video-desc");
       const modalCategory = document.getElementById("modal-video-category-tag");
       const modalDifficulty = document.getElementById("modal-video-difficulty");
       const modalDurationBadge = document.getElementById("modal-video-duration-badge");
+      const modalWatchedBadge = document.getElementById("modal-watched-badge");
       const modalSteps = document.getElementById("modal-video-steps");
       const modalTip = document.getElementById("modal-video-tip");
 
+      // Custom Control Elements
+      const playPauseBtn = document.getElementById("vctrl-play-pause-btn");
+      const rewindBtn = document.getElementById("vctrl-rewind-btn");
+      const forwardBtn = document.getElementById("vctrl-forward-btn");
+      const currentTimeText = document.getElementById("vctrl-current-time");
+      const durationTimeText = document.getElementById("vctrl-duration-time");
+      const seekSlider = document.getElementById("vctrl-seek-slider");
+      const muteBtn = document.getElementById("vctrl-mute-btn");
+      const volumeSlider = document.getElementById("vctrl-volume-slider");
+      const speedSelect = document.getElementById("vctrl-speed-select");
+      const pipBtn = document.getElementById("vctrl-pip-btn");
+      const fullscreenBtn = document.getElementById("vctrl-fullscreen-btn");
+      const prevVideoBtn = document.getElementById("modal-prev-video-btn");
+      const nextVideoBtn = document.getElementById("modal-next-video-btn");
+      const markWatchedBtn = document.getElementById("modal-mark-watched-btn");
+
       let currentCategory = "all";
       let currentQuery = "";
+      let isSeeking = false;
+
+      const updateCenterAndPlayControls = (isPlaying) => {
+        if (centerPlayBtn) {
+          centerPlayBtn.classList.toggle("playing", isPlaying);
+          centerPlayBtn.innerHTML = isPlaying ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play" style="margin-left: 4px;"></i>';
+        }
+        if (playPauseBtn) {
+          playPauseBtn.innerHTML = isPlaying ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+      };
+
+      const syncPlaylistItem = (index) => {
+        const list = this.currentPlaylist.length > 0 ? this.currentPlaylist : (window.GROOMING_VIDEOS_DATA || []);
+        if (!list || list.length === 0) return;
+        if (index < 0) index = 0;
+        if (index >= list.length) index = list.length - 1;
+        this.currentIndex = index;
+        playVideoItem(list[index]);
+      };
 
       const playVideoItem = (video) => {
         if (!video) return;
+
+        // Set playlist context
+        const allList = window.GROOMING_VIDEOS_DATA || [];
+        const foundIdx = allList.findIndex(x => x.id === video.id);
+        if (foundIdx !== -1) {
+          this.currentIndex = foundIdx;
+        }
 
         if (modalTitle) modalTitle.textContent = video.title;
         if (modalInstructor) modalInstructor.textContent = `Instructor: ${video.instructor}`;
         if (modalDesc) modalDesc.textContent = video.description;
         if (modalCategory) modalCategory.textContent = video.categoryLabel || video.category;
         if (modalDifficulty) modalDifficulty.innerHTML = `<i class="fa-solid fa-gauge-high"></i> ${video.difficulty}`;
-        if (modalDurationBadge) modalDurationBadge.textContent = `${video.duration} • HD Masterclass`;
+        if (modalDurationBadge) modalDurationBadge.textContent = `${video.duration} • HD`;
         if (modalTip) modalTip.textContent = ` ${video.techniqueTip || "Practice positive reinforcement with high-value treats and keep sessions calm and comfortable."}`;
+
+        const completedList = this.getCompletedVideos();
+        const isCompleted = completedList.includes(video.id);
+        if (modalWatchedBadge) {
+          modalWatchedBadge.style.display = isCompleted ? "inline-flex" : "none";
+        }
+        if (markWatchedBtn) {
+          markWatchedBtn.innerHTML = isCompleted 
+            ? '<i class="fa-solid fa-check-double"></i> Completed' 
+            : '<i class="fa-solid fa-check"></i> Mark Lesson Completed';
+          markWatchedBtn.classList.toggle("btn-secondary", isCompleted);
+          markWatchedBtn.classList.toggle("btn-primary", !isCompleted);
+        }
 
         if (modalSteps && video.steps && Array.isArray(video.steps)) {
           modalSteps.innerHTML = video.steps.map(s => `<li>${s}</li>`).join("");
         }
 
         if (videoEl) {
-          videoEl.poster = video.thumbnail;
+          videoEl.poster = video.thumbnail || "";
+          
+          // Reset controls and time
+          if (seekSlider) seekSlider.value = 0;
+          if (currentTimeText) currentTimeText.textContent = "0:00";
+          if (durationTimeText) durationTimeText.textContent = video.duration || "8:45";
+
+          // Robust source attachment
           if (videoSource) {
             videoSource.src = video.videoUrl;
           }
           videoEl.src = video.videoUrl;
           videoEl.load();
-          videoEl.play().catch(e => {
-            console.log("Play gesture required or autoplay constrained", e);
-          });
+
+          // Attempt playback with fallback
+          const playPromise = videoEl.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                updateCenterAndPlayControls(true);
+              })
+              .catch(() => {
+                // If autoplay with sound is blocked by browser policy, keep ready in paused state
+                updateCenterAndPlayControls(false);
+              });
+          }
         }
 
         Modal.open("video-modal");
       };
 
+      // Video element event listeners
+      if (videoEl) {
+        videoEl.addEventListener("play", () => updateCenterAndPlayControls(true));
+        videoEl.addEventListener("pause", () => updateCenterAndPlayControls(false));
+        
+        videoEl.addEventListener("timeupdate", () => {
+          if (!isSeeking && videoEl.duration) {
+            const pct = (videoEl.currentTime / videoEl.duration) * 100;
+            if (seekSlider) seekSlider.value = pct;
+            if (currentTimeText) currentTimeText.textContent = GroomingVideoPlayer.formatTime(videoEl.currentTime);
+          }
+        });
+
+        videoEl.addEventListener("loadedmetadata", () => {
+          if (durationTimeText && videoEl.duration) {
+            durationTimeText.textContent = GroomingVideoPlayer.formatTime(videoEl.duration);
+          }
+        });
+
+        videoEl.addEventListener("ended", () => {
+          updateCenterAndPlayControls(false);
+          // Auto-mark completed when finished
+          const currentVideo = (window.GROOMING_VIDEOS_DATA || [])[GroomingVideoPlayer.currentIndex];
+          if (currentVideo) {
+            GroomingVideoPlayer.markVideoCompleted(currentVideo.id);
+            if (modalWatchedBadge) modalWatchedBadge.style.display = "inline-flex";
+            if (typeof Toast !== "undefined" && Toast.show) {
+              Toast.show(`Great job! You completed "${currentVideo.title}".`, "success");
+            }
+          }
+        });
+
+        // Error recovery: fall back to sample video if local asset fails to decode
+        videoEl.addEventListener("error", (e) => {
+          console.warn("Video load issue, attempting backup playback stream", e);
+          if (videoEl.src !== "assets/videos/v1.mp4") {
+            videoEl.src = "assets/videos/v1.mp4";
+            videoEl.load();
+            videoEl.play().catch(() => {});
+          }
+        });
+      }
+
+      // Center play/pause click
+      if (centerPlayBtn && videoEl) {
+        centerPlayBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (videoEl.paused) {
+            videoEl.play().catch(() => {});
+          } else {
+            videoEl.pause();
+          }
+        });
+      }
+
+      // Custom Play / Pause control
+      if (playPauseBtn && videoEl) {
+        playPauseBtn.addEventListener("click", () => {
+          if (videoEl.paused) {
+            videoEl.play().catch(() => {});
+          } else {
+            videoEl.pause();
+          }
+        });
+      }
+
+      // Rewind & Forward 10s
+      if (rewindBtn && videoEl) {
+        rewindBtn.addEventListener("click", () => {
+          videoEl.currentTime = Math.max(0, videoEl.currentTime - 10);
+        });
+      }
+      if (forwardBtn && videoEl) {
+        forwardBtn.addEventListener("click", () => {
+          videoEl.currentTime = Math.min(videoEl.duration || 1000, videoEl.currentTime + 10);
+        });
+      }
+
+      // Seek Slider
+      if (seekSlider && videoEl) {
+        seekSlider.addEventListener("mousedown", () => { isSeeking = true; });
+        seekSlider.addEventListener("touchstart", () => { isSeeking = true; }, { passive: true });
+        
+        seekSlider.addEventListener("input", () => {
+          if (videoEl.duration) {
+            const targetTime = (seekSlider.value / 100) * videoEl.duration;
+            if (currentTimeText) currentTimeText.textContent = GroomingVideoPlayer.formatTime(targetTime);
+          }
+        });
+
+        seekSlider.addEventListener("change", () => {
+          if (videoEl.duration) {
+            videoEl.currentTime = (seekSlider.value / 100) * videoEl.duration;
+          }
+          isSeeking = false;
+        });
+      }
+
+      // Mute / Unmute
+      if (muteBtn && videoEl) {
+        muteBtn.addEventListener("click", () => {
+          videoEl.muted = !videoEl.muted;
+          muteBtn.innerHTML = videoEl.muted 
+            ? '<i class="fa-solid fa-volume-xmark" style="color: var(--accent-peach);"></i>' 
+            : '<i class="fa-solid fa-volume-high"></i>';
+          if (volumeSlider) {
+            volumeSlider.value = videoEl.muted ? 0 : videoEl.volume;
+          }
+        });
+      }
+
+      // Volume slider
+      if (volumeSlider && videoEl) {
+        volumeSlider.addEventListener("input", (e) => {
+          const val = parseFloat(e.target.value);
+          videoEl.volume = val;
+          videoEl.muted = val === 0;
+          if (muteBtn) {
+            muteBtn.innerHTML = val === 0 
+              ? '<i class="fa-solid fa-volume-xmark" style="color: var(--accent-peach);"></i>' 
+              : '<i class="fa-solid fa-volume-high"></i>';
+          }
+        });
+      }
+
+      // Speed selection
+      if (speedSelect && videoEl) {
+        speedSelect.addEventListener("change", (e) => {
+          videoEl.playbackRate = parseFloat(e.target.value);
+        });
+      }
+
+      // Picture in picture
+      if (pipBtn && videoEl) {
+        pipBtn.addEventListener("click", async () => {
+          try {
+            if (document.pictureInPictureElement) {
+              await document.exitPictureInPicture();
+            } else if (document.pictureInPictureEnabled) {
+              await videoEl.requestPictureInPicture();
+            }
+          } catch (e) {
+            console.log("Picture-in-picture not supported", e);
+          }
+        });
+      }
+
+      // Fullscreen
+      if (fullscreenBtn && videoEl) {
+        fullscreenBtn.addEventListener("click", () => {
+          const container = document.getElementById("video-player-wrapper") || videoEl;
+          if (!document.fullscreenElement) {
+            if (container.requestFullscreen) {
+              container.requestFullscreen();
+            } else if (videoEl.webkitEnterFullscreen) {
+              videoEl.webkitEnterFullscreen();
+            }
+          } else {
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            }
+          }
+        });
+      }
+
+      // Previous & Next Lesson navigation
+      if (prevVideoBtn) {
+        prevVideoBtn.addEventListener("click", () => {
+          const allList = window.GROOMING_VIDEOS_DATA || [];
+          const nextIdx = (GroomingVideoPlayer.currentIndex - 1 + allList.length) % allList.length;
+          syncPlaylistItem(nextIdx);
+        });
+      }
+      if (nextVideoBtn) {
+        nextVideoBtn.addEventListener("click", () => {
+          const allList = window.GROOMING_VIDEOS_DATA || [];
+          const nextIdx = (GroomingVideoPlayer.currentIndex + 1) % allList.length;
+          syncPlaylistItem(nextIdx);
+        });
+      }
+
+      // Mark Lesson Completed button
+      if (markWatchedBtn) {
+        markWatchedBtn.addEventListener("click", () => {
+          const allList = window.GROOMING_VIDEOS_DATA || [];
+          const currentVideo = allList[GroomingVideoPlayer.currentIndex];
+          if (currentVideo) {
+            GroomingVideoPlayer.markVideoCompleted(currentVideo.id);
+            if (modalWatchedBadge) modalWatchedBadge.style.display = "inline-flex";
+            markWatchedBtn.innerHTML = '<i class="fa-solid fa-check-double"></i> Completed';
+            markWatchedBtn.classList.remove("btn-primary");
+            markWatchedBtn.classList.add("btn-secondary");
+            if (typeof Toast !== "undefined" && Toast.show) {
+              Toast.show(`Marked "${currentVideo.title}" as completed! 🎉`, "success");
+            }
+            render(); // Refresh cards to show completion badges
+          }
+        });
+      }
+
+      // Keyboard shortcuts when video modal is open
+      document.addEventListener("keydown", (e) => {
+        const videoModal = document.getElementById("video-modal");
+        if (!videoModal || !videoModal.classList.contains("open") || !videoEl) return;
+
+        // Space or K: Play/Pause
+        if (e.code === "Space" || e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          if (videoEl.paused) videoEl.play().catch(() => {});
+          else videoEl.pause();
+        }
+        // F: Fullscreen
+        else if (e.key.toLowerCase() === "f") {
+          e.preventDefault();
+          if (fullscreenBtn) fullscreenBtn.click();
+        }
+        // M: Mute
+        else if (e.key.toLowerCase() === "m") {
+          e.preventDefault();
+          if (muteBtn) muteBtn.click();
+        }
+        // Arrow Left: -5s
+        else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          videoEl.currentTime = Math.max(0, videoEl.currentTime - 5);
+        }
+        // Arrow Right: +5s
+        else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          videoEl.currentTime = Math.min(videoEl.duration || 1000, videoEl.currentTime + 5);
+        }
+        // Arrow Up: Volume +10%
+        else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          videoEl.volume = Math.min(1, videoEl.volume + 0.1);
+          if (volumeSlider) volumeSlider.value = videoEl.volume;
+        }
+        // Arrow Down: Volume -10%
+        else if (e.key === "ArrowDown") {
+          e.preventDefault();
+          videoEl.volume = Math.max(0, videoEl.volume - 0.1);
+          if (volumeSlider) volumeSlider.value = videoEl.volume;
+        }
+      });
+
       const render = () => {
         if (!grid || typeof window.GROOMING_VIDEOS_DATA === "undefined") return;
 
         let items = [...window.GROOMING_VIDEOS_DATA];
+        const completedVideos = this.getCompletedVideos();
 
         if (currentCategory !== "all") {
           items = items.filter(v => v.category === currentCategory);
@@ -1218,6 +1569,8 @@
             (v.categoryLabel && v.categoryLabel.toLowerCase().includes(q))
           );
         }
+
+        this.currentPlaylist = items;
 
         if (countEl) {
           countEl.textContent = `${items.length} Lesson${items.length === 1 ? "" : "s"}`;
@@ -1245,21 +1598,27 @@
           return;
         }
 
-        grid.innerHTML = items.map(v => `
-          <div class="video-card" data-video-id="${v.id}" style="cursor: pointer; display: flex; flex-direction: column;">
-            <div class="card-img-wrapper" style="position: relative; aspect-ratio: 16/9; overflow: hidden; background-color: var(--bg-subtle);">
-              <img src="${v.thumbnail}" alt="${v.title}" class="card-img" style="width: 100%; height: 100%; object-fit: cover; filter: none; opacity: 1; display: block;" loading="lazy" referrerpolicy="no-referrer" />
-              <div class="video-play-overlay" style="position: absolute; inset: 0; background: transparent; display: flex; align-items: center; justify-content: center; pointer-events: none;">
-                <button class="video-play-btn" aria-label="Play ${v.title}">
+        grid.innerHTML = items.map((v, idx) => {
+          const isDone = completedVideos.includes(v.id);
+          return `
+          <div class="video-card card hover-lift" data-video-id="${v.id}" data-index="${idx}" style="cursor: pointer; display: flex; flex-direction: column; height: 100%; border-radius: var(--radius-md); overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-light); transition: all var(--transition-normal);">
+            <div class="card-img-wrapper" style="position: relative; aspect-ratio: 16/9; overflow: hidden; background-color: transparent;">
+              <img src="${v.thumbnail}" alt="${v.title}" class="card-img" style="width: 100%; height: 100%; object-fit: cover; filter: none !important; opacity: 1 !important; transition: transform var(--transition-slow);" loading="lazy" referrerpolicy="no-referrer" />
+              <div class="video-play-overlay" style="position: absolute; inset: 0; background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; display: flex; align-items: center; justify-content: center;">
+                <button class="video-play-btn" aria-label="Play ${v.title}" style="width: 48px; height: 48px; border-radius: var(--radius-full); background: var(--primary-500); color: #FFFFFF; border: 2px solid #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.25);">
                   <i class="fa-solid fa-play" style="margin-left: 3px;"></i>
                 </button>
               </div>
-              <span class="card-badge" style="position: absolute; bottom: 10px; right: 10px; background: rgba(15, 23, 20, 0.85); color: #FFFFFF; font-size: 0.75rem; padding: 3px 8px; border-radius: 4px; font-weight: 600; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+              <span class="video-duration-badge" style="position: absolute; bottom: 10px; right: 10px; background: rgba(15, 23, 20, 0.85); color: #FFFFFF; font-size: 0.75rem; padding: 3px 8px; border-radius: 4px; font-weight: 600; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
                 <i class="fa-regular fa-clock"></i> ${v.duration}
               </span>
               <span class="tag" style="position: absolute; top: 10px; left: 10px; background: #FFFFFF; color: var(--primary-800); font-weight: 700; font-size: 0.75rem; padding: 4px 10px; border-radius: var(--radius-xs); box-shadow: 0 2px 8px rgba(0,0,0,0.12); border: none;">
                 ${v.categoryLabel || v.category}
               </span>
+              ${isDone ? `
+              <span style="position: absolute; top: 10px; right: 10px; background: #16A34A; color: #FFFFFF; font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: var(--radius-xs); box-shadow: 0 2px 6px rgba(0,0,0,0.2); display: inline-flex; align-items: center; gap: 4px;">
+                <i class="fa-solid fa-check"></i> Completed
+              </span>` : ""}
             </div>
             <div class="card-body" style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
               <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 600;">
@@ -1275,13 +1634,14 @@
                 <span style="font-size: 0.78rem; color: var(--text-muted);">
                   <i class="fa-solid fa-gauge-high"></i> ${v.difficulty}
                 </span>
-                <button class="btn btn-primary btn-sm play-lesson-btn" data-video-id="${v.id}">
-                  <i class="fa-solid fa-circle-play"></i> Watch Video
+                <button class="btn ${isDone ? "btn-secondary" : "btn-primary"} btn-sm play-lesson-btn" data-video-id="${v.id}">
+                  <i class="fa-solid fa-circle-play"></i> Watch Lesson
                 </button>
               </div>
             </div>
           </div>
-        `).join("");
+        `;
+        }).join("");
 
         // Wire up clicks on card and buttons
         grid.querySelectorAll(".video-card").forEach(card => {
@@ -1326,7 +1686,7 @@
               duration: btn.dataset.videoDuration || "8:45 mins",
               difficulty: "All Coat Types",
               thumbnail: btn.dataset.videoPoster || "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80",
-              videoUrl: btn.dataset.videoSrc || "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+              videoUrl: btn.dataset.videoSrc || "assets/videos/grooming-brushing.mp4",
               steps: [
                 "Inspect coat for hotspots or tangles before wetting.",
                 "Use lukewarm water and gentle tearless pet shampoo.",
