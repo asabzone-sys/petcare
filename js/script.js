@@ -161,7 +161,7 @@
     }
   };
 
-  // --- 5. PAGE LOADER ---
+  // --- 5. PAGE LOADER & PERFORMANCE ---
   const PageLoader = {
     init() {
       const loader = document.getElementById("page-loader");
@@ -170,16 +170,73 @@
       const hideLoader = () => {
         loader.classList.add("loader-hidden");
         setTimeout(() => {
-          if (loader.parentNode) loader.style.display = "none";
-        }, 280);
+          if (loader.parentNode) {
+            loader.style.display = "none";
+          }
+        }, 200);
       };
 
-      if (document.readyState === "complete" || document.readyState === "interactive") {
-        requestAnimationFrame(() => setTimeout(hideLoader, 40));
-      } else {
-        document.addEventListener("DOMContentLoaded", () => setTimeout(hideLoader, 40));
-        window.addEventListener("load", () => setTimeout(hideLoader, 40));
-        setTimeout(hideLoader, 500); // Fail-safe fallback
+      // Fast dismiss: don't block user interaction
+      hideLoader();
+      if (document.readyState !== "complete") {
+        window.addEventListener("load", hideLoader, { once: true });
+      }
+    }
+  };
+
+  // --- 5B. PERSISTENT SCROLL & DASHBOARD RESTORATION ---
+  const ScrollRestorationManager = {
+    init() {
+      // Disable default jumpy browser scroll restoration
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+
+      const pageKey = "furever_scroll_" + window.location.pathname;
+
+      // Save scroll position on scroll (debounced) and on page exit
+      let scrollTimer = null;
+      const savePosition = () => {
+        try {
+          const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+          sessionStorage.setItem(pageKey, currentY.toString());
+        } catch (e) {
+          // ignore private storage limits
+        }
+      };
+
+      window.addEventListener("scroll", () => {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(savePosition, 100);
+      }, { passive: true });
+
+      window.addEventListener("beforeunload", savePosition);
+      window.addEventListener("pagehide", savePosition);
+
+      // Restore scroll position upon navigation
+      // Only restore if user didn't navigate directly to a hash anchor (#section)
+      if (!window.location.hash) {
+        try {
+          const savedY = sessionStorage.getItem(pageKey);
+          if (savedY !== null) {
+            const targetY = parseInt(savedY, 10);
+            if (targetY > 0) {
+              // Attempt instant scroll first
+              window.scrollTo(0, targetY);
+
+              // Secondary deferred scroll to handle asynchronously rendered cards or images
+              requestAnimationFrame(() => {
+                window.scrollTo(0, targetY);
+              });
+
+              setTimeout(() => {
+                window.scrollTo(0, targetY);
+              }, 120);
+            }
+          }
+        } catch (e) {
+          // sessionStorage disabled
+        }
       }
     }
   };
@@ -3455,40 +3512,54 @@
 
   // --- INITIALIZE ALL MODULES ON DOM READY ---
   document.addEventListener("DOMContentLoaded", () => {
-    ThemeManager.init();
-    CalmMode.init();
-    LiveClock.init();
-    GeolocationManager.init();
-    VisitorCounter.init();
-    PageLoader.init();
-    ScrollProgress.init();
-    CustomCursor.init();
-    PawTrail.init();
-    BackToTop.init();
-    MobileNav.init();
-    Personalization.init();
-    Modal.init();
-    GlobalSearch.init();
-    ReminderCenter.init();
-    HelpCenter.init();
-    HeroCarousel.init();
-    ProductsCatalog.init();
-    AdoptablePets.init();
-    FormsHandler.init();
-    TabsAndAccordions.init();
-    GroomingVideoPlayer.init();
-    AudioEducationalPlayer.init();
-    WellnessScoreEngine.init();
-    AchievementsEngine.init();
-    CareJourneyTracker.init();
-    DailyTipEngine.init();
-    CareCalendarEngine.init();
-    PetQuizEngine.init();
-    FeedingCalculatorEngine.init();
-    AdoptionMatcherEngine.init();
-    PetMemoriesEngine.init();
-    GroomingProgressTracker.init();
-    FindVetHelpEngine.init();
+    // 1. Immediately dismiss loader
+    try { PageLoader.init(); } catch (e) { console.warn(e); }
+
+    // 2. Safe Module Executor
+    const safeInit = (module, name) => {
+      try {
+        if (module && typeof module.init === "function") {
+          module.init();
+        }
+      } catch (err) {
+        console.warn(`[FurEver Care] ${name} initialization notice:`, err);
+      }
+    };
+
+    safeInit(ScrollRestorationManager, "ScrollRestorationManager");
+    safeInit(ThemeManager, "ThemeManager");
+    safeInit(CalmMode, "CalmMode");
+    safeInit(LiveClock, "LiveClock");
+    safeInit(GeolocationManager, "GeolocationManager");
+    safeInit(VisitorCounter, "VisitorCounter");
+    safeInit(ScrollProgress, "ScrollProgress");
+    safeInit(CustomCursor, "CustomCursor");
+    safeInit(PawTrail, "PawTrail");
+    safeInit(BackToTop, "BackToTop");
+    safeInit(MobileNav, "MobileNav");
+    safeInit(Personalization, "Personalization");
+    safeInit(Modal, "Modal");
+    safeInit(GlobalSearch, "GlobalSearch");
+    safeInit(ReminderCenter, "ReminderCenter");
+    safeInit(HelpCenter, "HelpCenter");
+    safeInit(HeroCarousel, "HeroCarousel");
+    safeInit(ProductsCatalog, "ProductsCatalog");
+    safeInit(AdoptablePets, "AdoptablePets");
+    safeInit(FormsHandler, "FormsHandler");
+    safeInit(TabsAndAccordions, "TabsAndAccordions");
+    safeInit(GroomingVideoPlayer, "GroomingVideoPlayer");
+    safeInit(AudioEducationalPlayer, "AudioEducationalPlayer");
+    safeInit(WellnessScoreEngine, "WellnessScoreEngine");
+    safeInit(AchievementsEngine, "AchievementsEngine");
+    safeInit(CareJourneyTracker, "CareJourneyTracker");
+    safeInit(DailyTipEngine, "DailyTipEngine");
+    safeInit(CareCalendarEngine, "CareCalendarEngine");
+    safeInit(PetQuizEngine, "PetQuizEngine");
+    safeInit(FeedingCalculatorEngine, "FeedingCalculatorEngine");
+    safeInit(AdoptionMatcherEngine, "AdoptionMatcherEngine");
+    safeInit(PetMemoriesEngine, "PetMemoriesEngine");
+    safeInit(GroomingProgressTracker, "GroomingProgressTracker");
+    safeInit(FindVetHelpEngine, "FindVetHelpEngine");
   });
 
   // Global helper exposures
@@ -3502,7 +3573,8 @@
     Personalization,
     VisitorCounter,
     AchievementsEngine,
-    GroomingProgressTracker
+    GroomingProgressTracker,
+    ScrollRestorationManager
   };
 
 })();

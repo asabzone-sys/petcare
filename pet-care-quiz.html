@@ -35,19 +35,37 @@
 </head>
 <body>
 
-  <!-- Top Emergency Ticker -->
-  <aside class="top-emergency-ticker" role="region" aria-label="Emergency Pet Care Hotline">
-    <div class="container ticker-inner">
-      <div class="ticker-content">
-        <span class="pulse-badge"><i class="fa-solid fa-bolt"></i> 24/7 Clinical Hotline</span>
-        <span>Immediate veterinary triage & emergency assistance across Pakistan:</span>
-        <a href="tel:+92515550199" class="ticker-phone"><i class="fa-solid fa-phone-volume"></i> +92 (51) 555-0199</a>
-      </div>
-      <div class="live-clock" id="live-clock" aria-live="polite">
-        <i class="fa-regular fa-clock"></i> <span id="current-time">Loading local time...</span>
+  <!-- Top Information Ticker (Moving Marquee) -->
+  <div class="top-ticker" aria-label="Live Date, Time, Location and Clinic Schedule">
+    <div class="ticker-marquee-wrapper">
+      <div class="ticker-marquee-track">
+        <div class="ticker-content">
+          <span class="ticker-item"><i class="fa-solid fa-calendar-day"></i> <span class="live-date-val">Loading date...</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-clock"></i> <span class="live-time-val">Loading time...</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-location-dot"></i> <span class="geo-indicator-val">Downtown Central Clinic &amp; Regional Care Network</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-brain"></i> <span>Interactive Care Quiz • Test Your Canine &amp; Feline Guardianship IQ</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-calendar-check"></i> <span>Clinic Schedule: Mon – Sat: 8:00 AM – 8:00 PM | Sun: 9:00 AM – 5:00 PM | 24/7 Emergency Care</span></span>
+          <span class="ticker-sep">•</span>
+        </div>
+        <div class="ticker-content" aria-hidden="true">
+          <span class="ticker-item"><i class="fa-solid fa-calendar-day"></i> <span class="live-date-val">Loading date...</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-clock"></i> <span class="live-time-val">Loading time...</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-location-dot"></i> <span class="geo-indicator-val">Downtown Central Clinic &amp; Regional Care Network</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-brain"></i> <span>Interactive Care Quiz • Test Your Canine &amp; Feline Guardianship IQ</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-calendar-check"></i> <span>Clinic Schedule: Mon – Sat: 8:00 AM – 8:00 PM | Sun: 9:00 AM – 5:00 PM | 24/7 Emergency Care</span></span>
+          <span class="ticker-sep">•</span>
+        </div>
       </div>
     </div>
-  </aside>
+  </div>
 
   <!-- Global Header -->
   <header class="site-header" id="site-header">

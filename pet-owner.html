@@ -42,15 +42,34 @@
     <div class="loader-subtitle">Loading your pet owner dashboard...</div>
   </div>
 
-  <div class="top-ticker">
-    <div class="container ticker-inner">
-      <div class="ticker-items">
-        <div class="ticker-item"><i class="fa-solid fa-clock"></i> <span id="live-clock">Loading clock...</span></div>
-        <div class="ticker-item"><span id="geo-indicator"><i class="fa-solid fa-location-dot"></i> Detecting location...</span></div>
-        <div class="ticker-item"><i class="fa-solid fa-bell"></i> <span>Care Alert: Autumn shedding season coat brushing reminder active.</span></div>
-      </div>
-      <div class="ticker-role-badge user-role-badge">
-        <i class="fa-solid fa-paw"></i> <span>Pet Owner</span>
+  <!-- Top Information Ticker (Moving Marquee) -->
+  <div class="top-ticker" aria-label="Live Date, Time, Location and Clinic Schedule">
+    <div class="ticker-marquee-wrapper">
+      <div class="ticker-marquee-track">
+        <div class="ticker-content">
+          <span class="ticker-item"><i class="fa-solid fa-calendar-day"></i> <span class="live-date-val">Loading date...</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-clock"></i> <span class="live-time-val">Loading time...</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-location-dot"></i> <span class="geo-indicator-val">Downtown Central Clinic &amp; Regional Care Network</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-bell"></i> <span>Care Alert: Autumn shedding season coat brushing reminder active.</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-calendar-check"></i> <span>Clinic Schedule: Mon – Sat: 8:00 AM – 8:00 PM | Sun: 9:00 AM – 5:00 PM | 24/7 Emergency Care</span></span>
+          <span class="ticker-sep">•</span>
+        </div>
+        <div class="ticker-content" aria-hidden="true">
+          <span class="ticker-item"><i class="fa-solid fa-calendar-day"></i> <span class="live-date-val">Loading date...</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-clock"></i> <span class="live-time-val">Loading time...</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-location-dot"></i> <span class="geo-indicator-val">Downtown Central Clinic &amp; Regional Care Network</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-bell"></i> <span>Care Alert: Autumn shedding season coat brushing reminder active.</span></span>
+          <span class="ticker-sep">•</span>
+          <span class="ticker-item"><i class="fa-solid fa-calendar-check"></i> <span>Clinic Schedule: Mon – Sat: 8:00 AM – 8:00 PM | Sun: 9:00 AM – 5:00 PM | 24/7 Emergency Care</span></span>
+          <span class="ticker-sep">•</span>
+        </div>
       </div>
     </div>
   </div>
