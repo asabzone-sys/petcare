@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "basePath": "assets/videos/",
+  "videos": [
+    {
+      "id": "video-1",
+      "filename": "grooming-brushing.mp4",
+      "title": "Stress-Free Undercoat Deshedding & Matting Prevention",
+      "category": "brushing",
+      "lesson": "Coat Brushing & Undercoat Care"
+    },
+    {
+      "id": "video-2",
+      "filename": "grooming-bathing.mp4",
+      "title": "Gentle Hydro-Massage Bath & Lick-Mat Distraction",
+      "category": "bathing",
+      "lesson": "Bathing & Temperature Control"
+    },
+    {
+      "id": "video-3",
+      "filename": "grooming-nails.mp4",
+      "title": "Safe Nail Grinding: Locating the Sensitive Quick",
+      "category": "nails",
+      "lesson": "Nail Grinding & Trimming Safety"
+    },
+    {
+      "id": "video-4",
+      "filename": "grooming-trimming.mp4",
+      "title": "Sanitary & Paw-Pad Fur Trimming with Safety Shears",
+      "category": "trimming",
+      "lesson": "Paw Pad & Sanitary Trimming"
+    },
+    {
+      "id": "video-5",
+      "filename": "grooming-ears.mp4",
+      "title": "Flushing & Cleansing Canine & Feline Ear Canals",
+      "category": "ears",
+      "lesson": "Ear Canal Hygiene & Flushing"
+    },
+    {
+      "id": "video-6",
+      "filename": "grooming-feline.mp4",
+      "title": "Hairball Reduction: Feline Soft-Bristle Brushing",
+      "category": "brushing",
+      "lesson": "Feline Soft-Bristle Brushing"
+    }
+  ]
+}

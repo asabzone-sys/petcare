@@ -85,6 +85,30 @@
         <a href="pet-owner.html" class="nav-link">Pet Owner</a>
         <a href="veterinarian.html" class="nav-link">Veterinarian</a>
         <a href="animal-shelter.html" class="nav-link">Shelter</a>
+
+        <!-- Care Hub Dropdown Menu -->
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Care Hub</span> <i class="fa-solid fa-chevron-down dropdown-caret"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-header">Interactive Care Tools</div>
+            <div class="nav-dropdown-grid">
+              <a href="care-calendar.html" class="nav-dropdown-item"><i class="fa-solid fa-calendar-days"></i> <span>Care Calendar</span></a>
+              <a href="pet-care-journal.html" class="nav-dropdown-item"><i class="fa-solid fa-book-medical"></i> <span>Care Journal</span></a>
+              <a href="pet-care-quiz.html" class="nav-dropdown-item"><i class="fa-solid fa-brain"></i> <span>Care Quiz</span></a>
+              <a href="pet-first-aid.html" class="nav-dropdown-item"><i class="fa-solid fa-truck-medical"></i> <span>First Aid</span></a>
+              <a href="pet-profile.html" class="nav-dropdown-item"><i class="fa-solid fa-id-card"></i> <span>Pet Profile</span></a>
+              <a href="feeding-guide.html" class="nav-dropdown-item"><i class="fa-solid fa-bowl-food"></i> <span>Feeding Guide</span></a>
+              <a href="grooming-videos.html" class="nav-dropdown-item"><i class="fa-solid fa-scissors"></i> <span>Grooming</span></a>
+              <a href="health-tips.html" class="nav-dropdown-item"><i class="fa-solid fa-heart-pulse"></i> <span>Health Tips</span></a>
+              <a href="training-tips.html" class="nav-dropdown-item"><i class="fa-solid fa-graduation-cap"></i> <span>Training</span></a>
+              <a href="team.html" class="nav-dropdown-item"><i class="fa-solid fa-users"></i> <span>Our Team</span></a>
+              <a href="feedback.html" class="nav-dropdown-item"><i class="fa-solid fa-comment-dots"></i> <span>Feedback</span></a>
+            </div>
+          </div>
+        </div>
+
         <a href="products.html" class="nav-link">Products</a>
         <a href="emergency.html" class="nav-link" style="color: var(--accent-peach); font-weight: 600;"><i class="fa-solid fa-kit-medical"></i> Emergency</a>
         <a href="contact.html" class="nav-link active">Contact</a>
@@ -249,159 +273,165 @@
           </div>
         </div>
 
-        <div class="grid-2" style="grid-template-columns: 1.1fr 0.9fr; align-items: flex-start; gap: 36px;">
+        <div class="contact-grid-container" style="display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 28px; align-items: start;">
           
-          <!-- Contact Form -->
-          <div class="card">
-            <h2 class="heading-sm" style="margin-bottom: 16px; font-size: 1.25rem;">
-              <i class="fa-solid fa-envelope" style="color: var(--primary-500);"></i> Send Us a Message
-            </h2>
+          <!-- Left Column: Contact Form & FAQ -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="card" style="padding: 28px;">
+              <h2 class="heading-sm" style="margin-bottom: 16px; font-size: 1.25rem;">
+                <i class="fa-solid fa-envelope" style="color: var(--primary-500);"></i> Send Us a Message
+              </h2>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 20px;">
+                Have a clinical question, shelter inquiry, or store request? Send us a message and our team will get back to you within 24 hours.
+              </p>
 
-            <form id="contact-form">
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <div class="form-group">
-                  <label class="form-label" for="contact-name">Your Full Name *</label>
-                  <input type="text" id="contact-name" class="form-control" placeholder="Ayesha Khan" required>
+              <form id="contact-form">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                  <div class="form-group">
+                    <label class="form-label" for="contact-name">Your Full Name *</label>
+                    <input type="text" id="contact-name" class="form-control" placeholder="Ayesha Khan" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="contact-email">Email Address *</label>
+                    <input type="email" id="contact-email" class="form-control" placeholder="ayesha.khan@example.com" required>
+                  </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                  <div class="form-group">
+                    <label class="form-label" for="contact-phone">Phone Number</label>
+                    <input type="tel" id="contact-phone" class="form-control" placeholder="+1 (800) 555-0199">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="contact-subject">Inquiry Type *</label>
+                    <select id="contact-subject" class="form-control form-select">
+                      <option value="General Question" selected>General Question</option>
+                      <option value="Veterinary Clinical Inquiry">Veterinary Clinical Inquiry</option>
+                      <option value="Shelter &amp; Rescue Partnership">Shelter &amp; Rescue Partnership</option>
+                      <option value="Product Store &amp; Orders">Product Store &amp; Orders</option>
+                      <option value="Press &amp; Media">Press &amp; Media</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="contact-email">Email Address *</label>
-                  <input type="email" id="contact-email" class="form-control" placeholder="ayesha.khan@example.com" required>
-                </div>
-              </div>
-
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <div class="form-group">
-                  <label class="form-label" for="contact-phone">Phone Number</label>
-                  <input type="tel" id="contact-phone" class="form-control" placeholder="+1 (800) 555-0199">
+                  <label class="form-label" for="contact-message">Your Message *</label>
+                  <textarea id="contact-message" class="form-control" rows="4" placeholder="How can we assist you and your companion?" required></textarea>
                 </div>
 
-                <div class="form-group">
-                  <label class="form-label" for="contact-subject">Inquiry Type *</label>
-                  <select id="contact-subject" class="form-control form-select">
-                    <option value="General Question" selected>General Question</option>
-                    <option value="Veterinary Clinical Inquiry">Veterinary Clinical Inquiry</option>
-                    <option value="Shelter &amp; Rescue Partnership">Shelter &amp; Rescue Partnership</option>
-                    <option value="Product Store &amp; Orders">Product Store &amp; Orders</option>
-                    <option value="Press &amp; Media">Press &amp; Media</option>
-                  </select>
-                </div>
-              </div>
+                <button type="submit" class="btn btn-primary btn-full" style="margin-top: 6px;">
+                  <i class="fa-solid fa-paper-plane"></i> <span>Send Message</span>
+                </button>
+              </form>
+            </div>
 
-              <div class="form-group">
-                <label class="form-label" for="contact-message">Your Message *</label>
-                <textarea id="contact-message" class="form-control" rows="4" placeholder="How can we assist you and your companion?" required></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary btn-full">
-                <i class="fa-solid fa-paper-plane"></i> <span>Send Message</span>
-              </button>
-            </form>
-          </div>
-
-          <!-- Contact Details, Map & Location Cards -->
-          <div style="display: flex; flex-direction: column; gap: 20px;">
-            
-            <div class="card">
+            <!-- FAQ Mini Accordion in Left Column -->
+            <div class="card" style="padding: 24px;">
               <h3 class="heading-sm" style="font-size: 1.15rem; margin-bottom: 12px;">
-                <i class="fa-solid fa-building" style="color: var(--primary-500);"></i> Regional Centers &amp; Hotline
+                <i class="fa-solid fa-circle-question" style="color: var(--primary-500);"></i> Frequently Asked Questions
               </h3>
-              
-              <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.88rem; color: var(--text-secondary);">
-                <div>
-                  <strong style="color: var(--text-primary); display: block;">FurEver Care Sanctuary &amp; Innovation Hub</strong>
-                  <span>890 Sanctuary Way, Oakridge District, San Francisco, CA 94102</span>
-                  <span style="display: block; color: var(--text-muted); font-size: 0.8rem; margin-top: 2px;">Hours: Mon – Sat: 8:00 AM – 7:00 PM | Sun: 9:00 AM – 5:00 PM</span>
+
+              <div class="accordion" id="faq-accordion">
+                <div class="accordion-item" style="border-bottom: 1px solid var(--border-light); padding-bottom: 10px;">
+                  <button class="accordion-header" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 8px 0; font-weight: 600; font-size: 0.88rem; text-align: left; cursor: pointer; color: var(--text-primary);">
+                    <span>How does the Pet Profile save data?</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-muted);"></i>
+                  </button>
+                  <div class="accordion-content" style="display: none; font-size: 0.84rem; color: var(--text-secondary); padding: 6px 0 8px; line-height: 1.5;">
+                    Your pet passport records, vaccinations, and dietary notes are preserved in your browser's local storage for private, instant access across sessions.
+                  </div>
                 </div>
 
-                <div>
-                  <strong style="color: var(--text-primary); display: block;">Clinical Advisory &amp; Emergency Hotline</strong>
-                  <span>Direct: <a href="tel:18005557297" style="color: var(--primary-600); font-weight: 700;">+1 (800) 555-PAWS (7297)</a></span>
-                  <span style="display: block; color: var(--text-muted); font-size: 0.8rem; margin-top: 2px;">Available 24 Hours / 7 Days a Week</span>
+                <div class="accordion-item" style="border-bottom: 1px solid var(--border-light); padding-bottom: 10px; margin-top: 8px;">
+                  <button class="accordion-header" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 8px 0; font-weight: 600; font-size: 0.88rem; text-align: left; cursor: pointer; color: var(--text-primary);">
+                    <span>Are grooming tutorials and tools free?</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-muted);"></i>
+                  </button>
+                  <div class="accordion-content" style="display: none; font-size: 0.84rem; color: var(--text-secondary); padding: 6px 0 8px; line-height: 1.5;">
+                    Yes! All fear-free grooming masterclasses, care calendars, and health guides are 100% open-access to promote animal welfare and gentle handling at home.
+                  </div>
                 </div>
 
-                <div>
-                  <strong style="color: var(--text-primary); display: block;">Email Support Desks</strong>
-                  <span>General: <a href="mailto:support@furevercare.org" style="color: var(--primary-600);">support@furevercare.org</a></span><br>
-                  <span>Shelter Partners: <a href="mailto:rescue@furevercare.org" style="color: var(--primary-600);">rescue@furevercare.org</a></span>
+                <div class="accordion-item" style="margin-top: 8px;">
+                  <button class="accordion-header" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 8px 0; font-weight: 600; font-size: 0.88rem; text-align: left; cursor: pointer; color: var(--text-primary);">
+                    <span>How can animal shelters partner with us?</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-muted);"></i>
+                  </button>
+                  <div class="accordion-content" style="display: none; font-size: 0.84rem; color: var(--text-secondary); padding: 6px 0 8px; line-height: 1.5;">
+                    Shelters receive free listings for adoptable pets, subsidized microchip sponsorships, and community event marketing across our platform.
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Embedded Google Maps Showing Location -->
-            <div class="card" style="padding: 16px; overflow: hidden;">
+          <!-- Right Column: Interactive Map & Central Location Details -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            
+            <!-- Embedded Google Maps Card -->
+            <div class="card" style="padding: 20px; overflow: hidden;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <h3 class="heading-sm" style="font-size: 1.1rem; margin-bottom: 0;">
-                  <i class="fa-solid fa-map-location-dot" style="color: var(--primary-500);"></i> Central Clinic Location
-                </h3>
-                <span class="tag" style="background-color: var(--primary-100); color: var(--primary-700); font-size: 0.72rem;">Oakridge Hub</span>
+                <div>
+                  <h3 class="heading-sm" style="font-size: 1.15rem; margin-bottom: 2px;">
+                    <i class="fa-solid fa-map-location-dot" style="color: var(--primary-500);"></i> Central Sanctuary &amp; Clinic
+                  </h3>
+                  <span style="font-size: 0.8rem; color: var(--text-muted);">Oakridge Innovation &amp; Emergency Hub</span>
+                </div>
+                <a href="https://maps.google.com/?q=San+Francisco+Civic+Center,+CA+94102" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="padding: 4px 12px; font-size: 0.78rem;">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Directions</span>
+                </a>
               </div>
 
-              <!-- Google Maps Iframe -->
-              <div style="width: 100%; height: 230px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-light); position: relative;">
+              <!-- Map Container -->
+              <div style="width: 100%; height: 320px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-medium); background-color: var(--bg-subtle);">
                 <iframe 
                   title="FurEver Care Central Sanctuary & Clinic Location"
                   src="https://maps.google.com/maps?q=San+Francisco+Civic+Center,+CA+94102&t=&z=14&ie=UTF8&iwloc=&output=embed" 
                   width="100%" 
                   height="100%" 
-                  style="border: 0;" 
+                  style="border: 0; display: block;" 
                   allowfullscreen="" 
                   loading="lazy" 
                   referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
               </div>
 
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 0.82rem; color: var(--text-muted);">
-                <span><i class="fa-solid fa-location-dot" style="color: var(--accent-red);"></i> 890 Sanctuary Way, SF, CA</span>
-                <a href="https://maps.google.com/?q=San+Francisco+Civic+Center,+CA+94102" target="_blank" rel="noopener noreferrer" style="color: var(--primary-600); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-                  <span>Get Directions</span> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
-                </a>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; font-size: 0.84rem; color: var(--text-secondary); flex-wrap: wrap; gap: 8px;">
+                <span><i class="fa-solid fa-location-dot" style="color: var(--accent-peach);"></i> 890 Sanctuary Way, SF, CA 94102</span>
+                <span style="color: var(--primary-600); font-weight: 600;"><i class="fa-solid fa-square-parking"></i> Free Client Parking</span>
               </div>
             </div>
 
-            <!-- FAQ Mini Accordion -->
-            <div class="card">
-              <h3 class="heading-sm" style="font-size: 1.15rem; margin-bottom: 12px;">
-                <i class="fa-solid fa-circle-question" style="color: var(--primary-500);"></i> Frequently Asked Questions
+            <!-- Regional Centers, Hours & Hotline -->
+            <div class="card" style="padding: 24px;">
+              <h3 class="heading-sm" style="font-size: 1.15rem; margin-bottom: 14px;">
+                <i class="fa-solid fa-building" style="color: var(--primary-500);"></i> Regional Centers &amp; Hours
               </h3>
-
-              <div class="accordion" id="faq-accordion">
-                
-                <div class="accordion-item" style="border-bottom: 1px solid var(--border-light); padding-bottom: 8px;">
-                  <button class="accordion-header" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 8px 0; font-weight: 600; font-size: 0.88rem; text-align: left; cursor: pointer; color: var(--text-primary);">
-                    <span>How does the Pet Profile save data?</span>
-                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-muted);"></i>
-                  </button>
-                  <div class="accordion-content" style="display: none; font-size: 0.84rem; color: var(--text-secondary); padding: 6px 0 10px; line-height: 1.5;">
-                    Your pet passport records, vaccinations, and dietary notes are preserved in your browser's local storage for private, instant access across sessions.
-                  </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 16px; font-size: 0.88rem; color: var(--text-secondary);">
+                <div>
+                  <strong style="color: var(--text-primary); display: block;">Operating Clinic Schedule</strong>
+                  <span>Monday – Saturday: 8:00 AM – 8:00 PM</span><br>
+                  <span>Sunday: 9:00 AM – 5:00 PM (Emergency triage on-call 24/7)</span>
                 </div>
 
-                <div class="accordion-item" style="border-bottom: 1px solid var(--border-light); padding-bottom: 8px; margin-top: 8px;">
-                  <button class="accordion-header" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 8px 0; font-weight: 600; font-size: 0.88rem; text-align: left; cursor: pointer; color: var(--text-primary);">
-                    <span>Are grooming tutorials free?</span>
-                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-muted);"></i>
-                  </button>
-                  <div class="accordion-content" style="display: none; font-size: 0.84rem; color: var(--text-secondary); padding: 6px 0 10px; line-height: 1.5;">
-                    Yes! All fear-free grooming masterclasses and health guides are 100% open-access to promote animal welfare and gentle handling at home.
-                  </div>
+                <div style="border-top: 1px solid var(--border-light); padding-top: 12px;">
+                  <strong style="color: var(--text-primary); display: block;">Clinical Advisory &amp; Emergency Hotline</strong>
+                  <span>Direct: <a href="tel:18005557297" style="color: var(--primary-600); font-weight: 700;">+1 (800) 555-PAWS (7297)</a></span>
+                  <span style="display: block; color: var(--text-muted); font-size: 0.8rem; margin-top: 2px;">Available 24 Hours / 7 Days a Week</span>
                 </div>
 
-                <div class="accordion-item" style="margin-top: 8px;">
-                  <button class="accordion-header" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 8px 0; font-weight: 600; font-size: 0.88rem; text-align: left; cursor: pointer; color: var(--text-primary);">
-                    <span>How can shelters partner with us?</span>
-                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-muted);"></i>
-                  </button>
-                  <div class="accordion-content" style="display: none; font-size: 0.84rem; color: var(--text-secondary); padding: 6px 0 10px; line-height: 1.5;">
-                    Shelters receive free listings for adoptable pets, subsidized microchip sponsorships, and community event marketing across our platform.
-                  </div>
+                <div style="border-top: 1px solid var(--border-light); padding-top: 12px;">
+                  <strong style="color: var(--text-primary); display: block;">Email Support Inquiries</strong>
+                  <span>General Support: <a href="mailto:support@furevercare.org" style="color: var(--primary-600); font-weight: 600;">support@furevercare.org</a></span><br>
+                  <span>Shelter Partnerships: <a href="mailto:rescue@furevercare.org" style="color: var(--primary-600); font-weight: 600;">rescue@furevercare.org</a></span>
                 </div>
-
               </div>
             </div>
 
           </div>
-
         </div>
 
       </div>

@@ -71,55 +71,53 @@
   <header class="site-header" id="site-header">
     <div class="container header-inner">
       <a href="index.html" class="brand-logo" aria-label="FurEver Care Homepage">
-        <span class="logo-icon"><i class="fa-solid fa-paw"></i></span>
-        <span class="logo-text">FurEver <span class="logo-accent">Care</span></span>
+        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-title">
+          <span class="brand-name">FurEver Care</span>
+          <span class="brand-tagline">Pet Care Platform</span>
+        </div>
       </a>
 
       <!-- Desktop Navigation Menu -->
       <nav class="desktop-nav" aria-label="Primary Navigation">
-        <ul class="nav-list">
-          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="pet-owner.html" class="nav-link">Pet Owner</a></li>
-          <li class="nav-item"><a href="care-calendar.html" class="nav-link">Care Calendar</a></li>
-          <li class="nav-item"><a href="pet-care-quiz.html" class="nav-link active">Quiz</a></li>
-          <li class="nav-item"><a href="pet-care-journal.html" class="nav-link">Journal</a></li>
-          <li class="nav-item"><a href="pet-first-aid.html" class="nav-link">First Aid</a></li>
-          <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
-              More Care <i class="fa-solid fa-chevron-down nav-chevron"></i>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="veterinarian.html" class="dropdown-link"><i class="fa-solid fa-user-doctor"></i> Veterinary Directory</a></li>
-              <li><a href="animal-shelter.html" class="dropdown-link"><i class="fa-solid fa-shield-heart"></i> Animal Shelter & Adoption</a></li>
-              <li><a href="feeding-guide.html" class="dropdown-link"><i class="fa-solid fa-bowl-food"></i> Nutrition & Feeding Calculator</a></li>
-              <li><a href="grooming-videos.html" class="dropdown-link"><i class="fa-solid fa-scissors"></i> Grooming Masterclass</a></li>
-              <li><a href="health-tips.html" class="dropdown-link"><i class="fa-solid fa-heart-pulse"></i> Audio Health Tips</a></li>
-              <li><a href="training-tips.html" class="dropdown-link"><i class="fa-solid fa-dog"></i> Step-by-Step Training</a></li>
-              <li><a href="products.html" class="dropdown-link"><i class="fa-solid fa-store"></i> Certified Products</a></li>
-              <li><a href="emergency.html" class="dropdown-link" style="color: var(--accent-peach); font-weight: 700;"><i class="fa-solid fa-triangle-exclamation"></i> 24/7 Emergency Guide</a></li>
-            </ul>
-          </li>
-        </ul>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="pet-owner.html" class="nav-link">Pet Owner</a>
+        <a href="veterinarian.html" class="nav-link">Veterinarian</a>
+        <a href="animal-shelter.html" class="nav-link">Shelter</a>
+
+        <!-- Care Hub Dropdown Menu -->
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle active" aria-expanded="false">
+            <span>Care Hub</span> <i class="fa-solid fa-chevron-down dropdown-caret"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-header">Interactive Care Tools</div>
+            <div class="nav-dropdown-grid">
+              <a href="care-calendar.html" class="nav-dropdown-item"><i class="fa-solid fa-calendar-days"></i> <span>Care Calendar</span></a>
+              <a href="pet-care-journal.html" class="nav-dropdown-item"><i class="fa-solid fa-book-medical"></i> <span>Care Journal</span></a>
+              <a href="pet-care-quiz.html" class="nav-dropdown-item active"><i class="fa-solid fa-brain"></i> <span>Care Quiz</span></a>
+              <a href="pet-first-aid.html" class="nav-dropdown-item"><i class="fa-solid fa-truck-medical"></i> <span>First Aid</span></a>
+              <a href="pet-profile.html" class="nav-dropdown-item"><i class="fa-solid fa-id-card"></i> <span>Pet Profile</span></a>
+              <a href="feeding-guide.html" class="nav-dropdown-item"><i class="fa-solid fa-bowl-food"></i> <span>Feeding Guide</span></a>
+              <a href="grooming-videos.html" class="nav-dropdown-item"><i class="fa-solid fa-scissors"></i> <span>Grooming</span></a>
+              <a href="health-tips.html" class="nav-dropdown-item"><i class="fa-solid fa-heart-pulse"></i> <span>Health Tips</span></a>
+              <a href="training-tips.html" class="nav-dropdown-item"><i class="fa-solid fa-graduation-cap"></i> <span>Training</span></a>
+              <a href="team.html" class="nav-dropdown-item"><i class="fa-solid fa-users"></i> <span>Our Team</span></a>
+              <a href="feedback.html" class="nav-dropdown-item"><i class="fa-solid fa-comment-dots"></i> <span>Feedback</span></a>
+            </div>
+          </div>
+        </div>
+
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="emergency.html" class="nav-link" style="color: var(--accent-peach); font-weight: 600;"><i class="fa-solid fa-kit-medical"></i> Emergency</a>
+        <a href="contact.html" class="nav-link">Contact</a>
       </nav>
 
       <!-- Header Actions -->
       <div class="header-actions">
-        <button class="header-action-icon-btn search-open-btn" aria-label="Open Global Search" title="Search guides, products, and tips (Ctrl+K)">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-        <button class="header-action-icon-btn reminders-toggle-btn" aria-label="Open Smart Reminder Center" title="View care reminders">
-          <i class="fa-solid fa-bell"></i>
-          <span class="header-badge-count reminders-badge-count">3</span>
-        </button>
-        <button class="header-action-icon-btn calm-toggle-btn" aria-label="Toggle Calm Mode" title="Toggle Calm Focus Mode">
-          <i class="fa-solid fa-leaf"></i>
-        </button>
-        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
-          <i class="fa-solid fa-moon"></i>
-        </button>
-        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open Menu">
-          <span></span><span></span><span></span>
-        </button>
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
   </header>
@@ -127,23 +125,46 @@
   <!-- Mobile Off-Canvas Drawer -->
   <div class="mobile-nav-drawer" id="mobile-nav-drawer">
     <div class="mobile-nav-header">
-      <span class="logo-text">FurEver <span class="logo-accent">Care</span></span>
-      <button class="mobile-nav-close" id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="brand-logo" style="margin-bottom: 0;">
+        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-title">
+          <span class="brand-name">FurEver Care</span>
+        </div>
+      </div>
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close mobile menu"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <ul class="mobile-nav-links">
-      <li><a href="index.html" class="mobile-link">Home</a></li>
-      <li><a href="pet-owner.html" class="mobile-link">Pet Owner Dashboard</a></li>
-      <li><a href="care-calendar.html" class="mobile-link">Care Calendar</a></li>
-      <li><a href="pet-care-quiz.html" class="mobile-link active">Pet Care Quiz</a></li>
-      <li><a href="pet-care-journal.html" class="mobile-link">Pet Care Journal</a></li>
-      <li><a href="pet-first-aid.html" class="mobile-link">Pet First Aid Guide</a></li>
-      <li><a href="veterinarian.html" class="mobile-link">Veterinary Directory</a></li>
-      <li><a href="animal-shelter.html" class="mobile-link">Animal Shelter & Adoption</a></li>
-      <li><a href="feeding-guide.html" class="mobile-link">Nutrition & Feeding Calculator</a></li>
-      <li><a href="grooming-videos.html" class="mobile-link">Grooming Masterclass</a></li>
-      <li><a href="products.html" class="mobile-link">Certified Care Products</a></li>
-      <li><a href="emergency.html" class="mobile-link" style="color: var(--accent-peach); font-weight: 700;">24/7 Emergency Help</a></li>
-    </ul>
+    <div class="mobile-nav-body">
+      <div class="mobile-nav-group-title">Main Portals</div>
+      <div class="mobile-nav-sublinks">
+        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span></a>
+        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span></a>
+        <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner</span></a>
+        <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian</span></a>
+        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter</span></a>
+      </div>
+
+      <div class="mobile-nav-group-title">Care Hub Tools</div>
+      <div class="mobile-nav-sublinks">
+        <a href="care-calendar.html" class="mobile-nav-link"><span><i class="fa-solid fa-calendar-days"></i> Care Calendar</span></a>
+        <a href="pet-care-journal.html" class="mobile-nav-link"><span><i class="fa-solid fa-book-medical"></i> Care Journal</span></a>
+        <a href="pet-care-quiz.html" class="mobile-nav-link active"><span><i class="fa-solid fa-brain"></i> Pet Care Quiz</span></a>
+        <a href="pet-first-aid.html" class="mobile-nav-link"><span><i class="fa-solid fa-truck-medical"></i> First Aid Guide</span></a>
+        <a href="pet-profile.html" class="mobile-nav-link"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span></a>
+        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span></a>
+        <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span></a>
+        <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span></a>
+        <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Our Team</span></a>
+        <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span></a>
+      </div>
+
+      <div class="mobile-nav-group-title">Resources & Help</div>
+      <div class="mobile-nav-sublinks">
+        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span></a>
+        <a href="emergency.html" class="mobile-nav-link" style="color: var(--accent-peach);"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span></a>
+        <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span></a>
+      </div>
+    </div>
   </div>
 
   <main id="main-content">
@@ -243,8 +264,8 @@
   </div>
 
   <!-- Floating Help Assistant Button & Modal -->
-  <button class="floating-help-btn" id="floating-help-btn" aria-label="Need Pet Care Assistance?">
-    <i class="fa-solid fa-paw"></i> <span>Need Help?</span>
+  <button class="floating-help-btn" id="floating-help-btn" aria-label="Help? Explore Pet Care Pages & Tools" title="Help? Click for quick navigation & triage">
+    <i class="fa-solid fa-circle-question"></i> <span>Help?</span>
   </button>
 
   <div class="modal-backdrop" id="help-assistant-modal" aria-hidden="true" role="dialog">

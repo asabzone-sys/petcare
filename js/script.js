@@ -72,28 +72,13 @@
     }
   };
 
-  // --- 3. GEOLOCATION ---
+  // --- 3. GEOLOCATION (SILENT DEFAULT - NO BROWSER PERMISSION PROMPT) ---
   const GeolocationManager = {
     init() {
-      const updateLocation = (text) => {
-        document.querySelectorAll("#geo-indicator, .geo-indicator-val").forEach(el => {
-          el.textContent = text;
-        });
-      };
-
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (pos) => {
-            updateLocation("Near You (Local Care Network Active)");
-          },
-          (err) => {
-            updateLocation("Downtown Central Clinic & Regional Care Network");
-          },
-          { timeout: 4000 }
-        );
-      } else {
-        updateLocation("Downtown Central Clinic & Regional Care Network");
-      }
+      // Set reliable clinical location without triggering invasive browser permission popups
+      document.querySelectorAll("#geo-indicator, .geo-indicator-val").forEach(el => {
+        el.textContent = "Downtown Central Clinic & Regional Care Network";
+      });
     }
   };
 
@@ -319,10 +304,10 @@
   // --- 9. MOBILE DRAWER NAVIGATION ---
   const MobileNav = {
     init() {
-      const openBtn = document.querySelector(".mobile-menu-btn");
-      const overlay = document.querySelector(".mobile-nav-overlay");
-      const closeBtn = document.querySelector(".mobile-drawer-close");
-      if (!openBtn || !overlay) return;
+      const openBtns = document.querySelectorAll(".mobile-menu-btn, #mobile-menu-btn");
+      const overlay = document.querySelector(".mobile-nav-overlay, #mobile-nav, #mobile-nav-drawer");
+      const closeBtns = document.querySelectorAll(".mobile-drawer-close, .mobile-nav-close, #mobile-nav-close");
+      if (!openBtns.length || !overlay) return;
 
       const open = () => {
         overlay.classList.add("open");
@@ -334,8 +319,8 @@
         document.body.style.overflow = "";
       };
 
-      openBtn.addEventListener("click", open);
-      if (closeBtn) closeBtn.addEventListener("click", close);
+      openBtns.forEach(btn => btn.addEventListener("click", open));
+      closeBtns.forEach(btn => btn.addEventListener("click", close));
       overlay.addEventListener("click", (e) => {
         if (e.target === overlay) close();
       });
@@ -561,46 +546,78 @@
   const Modal = {
     init() {
       document.addEventListener("click", (e) => {
+        // Open trigger
         const trigger = e.target.closest("[data-modal-open]");
         if (trigger) {
+          e.preventDefault();
           const modalId = trigger.getAttribute("data-modal-open");
-          this.open(modalId);
+          if (modalId) this.open(modalId);
         }
 
-        const closeBtn = e.target.closest("[data-modal-close]");
+        // Close trigger (supports explicit modal ID in data-modal-close or parent container lookup)
+        const closeBtn = e.target.closest("[data-modal-close], .modal-close-btn");
         if (closeBtn) {
-          const modal = closeBtn.closest(".modal-overlay");
-          if (modal) this.close(modal.id);
+          e.preventDefault();
+          const targetId = closeBtn.getAttribute("data-modal-close");
+          if (targetId && targetId.trim() !== "" && targetId !== "true") {
+            this.close(targetId.trim());
+          } else {
+            const modal = closeBtn.closest(".modal-overlay, .modal-backdrop, .modal, .search-overlay, [role='dialog'], [aria-modal='true']");
+            if (modal && modal.id) this.close(modal.id);
+          }
         }
       });
 
       // Close on backdrop click
-      document.querySelectorAll(".modal-overlay").forEach(overlay => {
-        overlay.addEventListener("click", (e) => {
-          if (e.target === overlay) this.close(overlay.id);
-        });
+      document.addEventListener("click", (e) => {
+        const overlay = e.target.closest(".modal-overlay, .modal-backdrop, .search-overlay");
+        if (overlay && e.target === overlay && overlay.id) {
+          this.close(overlay.id);
+        }
       });
 
+      // Close on Escape key
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
-          const openModal = document.querySelector(".modal-overlay.open");
-          if (openModal) this.close(openModal.id);
+          const openModals = document.querySelectorAll(".modal-overlay.open, .modal-backdrop.open, .modal.open, .search-overlay.open");
+          openModals.forEach(m => {
+            if (m.id) this.close(m.id);
+          });
         }
       });
     },
 
     open(modalId) {
-      const modal = document.getElementById(modalId);
+      if (!modalId) return;
+      const cleanId = modalId.replace(/^#/, "");
+      const modal = document.getElementById(cleanId);
       if (!modal) return;
+
       modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+
+      // Focus first input or close button if present
+      setTimeout(() => {
+        const focusable = modal.querySelector("input:not([type='hidden']), textarea, select, button:not([disabled])");
+        if (focusable) focusable.focus();
+      }, 100);
     },
 
     close(modalId) {
-      const modal = document.getElementById(modalId);
+      if (!modalId) return;
+      const cleanId = modalId.replace(/^#/, "");
+      const modal = document.getElementById(cleanId);
       if (!modal) return;
+
       modal.classList.remove("open");
-      document.body.style.overflow = "";
+      modal.setAttribute("aria-hidden", "true");
+
+      // Check if any other modal is still open
+      const remainingOpen = document.querySelectorAll(".modal-overlay.open, .modal-backdrop.open, .modal.open, .search-overlay.open");
+      if (!remainingOpen.length) {
+        document.body.style.overflow = "";
+      }
 
       // Cleanup any playing video or audio
       modal.querySelectorAll("video").forEach(v => {
@@ -1394,14 +1411,10 @@
           }
         });
 
-        // Error recovery: fall back to sample video if local asset fails to decode
+        // Video playback error handling
         videoEl.addEventListener("error", (e) => {
-          console.warn("Video load issue, attempting backup playback stream", e);
-          if (videoEl.src !== "assets/videos/v1.mp4") {
-            videoEl.src = "assets/videos/v1.mp4";
-            videoEl.load();
-            videoEl.play().catch(() => {});
-          }
+          console.warn("Video playback event notice:", e);
+          updateCenterAndPlayControls(false);
         });
       }
 
@@ -1559,6 +1572,16 @@
             }
             render(); // Refresh cards to show completion badges
           }
+        });
+      }
+
+      // Explicit Cancel & Close Button
+      const modalCancelBtn = document.getElementById("modal-cancel-btn");
+      if (modalCancelBtn) {
+        modalCancelBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          Modal.close("video-modal");
         });
       }
 
@@ -2393,16 +2416,183 @@
     }
   };
 
-  // --- 19. FLOATING HELP ASSISTANT ENGINE ---
+  // --- 19. FLOATING HELP ASSISTANT & PAGE SUGGESTION ENGINE ---
   const HelpCenter = {
-    init() {
-      const helpBtn = document.getElementById("floating-help-btn");
-      if (!helpBtn) return;
+    helpPages: [
+      { title: "Care Calendar", url: "care-calendar.html", icon: "fa-calendar-days", category: "Scheduling", desc: "Schedule shots, medication reminders, and vet checkups." },
+      { title: "Pet Care Journal", url: "pet-care-journal.html", icon: "fa-book-journal-whills", category: "Health Logging", desc: "Log symptoms, daily stools, energy levels, and medical history." },
+      { title: "Pet Care Knowledge Quiz", url: "pet-care-quiz.html", icon: "fa-brain", category: "Interactive Learning", desc: "Test your pet guardianship IQ across nutrition, safety, and hygiene." },
+      { title: "Pet First Aid Protocol", url: "pet-first-aid.html", icon: "fa-kit-medical", category: "Emergency Care", desc: "Step-by-step guidance for bleeding, choking, heatstroke, and CPR." },
+      { title: "Pet Passport & Profile Builder", url: "pet-profile.html", icon: "fa-id-card", category: "Personalization", desc: "Save companion breed, weight, microchip, and vaccine verification." },
+      { title: "Grooming Masterclass Videos", url: "grooming-videos.html", icon: "fa-scissors", category: "Video Tutorials", desc: "Fear-free coat brushing, bathing, trimming, and nail grind videos." },
+      { title: "Feeding & Nutrition Guide", url: "feeding-guide.html", icon: "fa-bowl-food", category: "Diet Calculator", desc: "Calculate daily calories, macro ratios, and explore toxic foods." },
+      { title: "Health & Wellness Tips", url: "health-tips.html", icon: "fa-heart-pulse", category: "Clinical Advice", desc: "Oral hygiene tips, weight management, and vital signs reference." },
+      { title: "Training & Behavior Hub", url: "training-tips.html", icon: "fa-graduation-cap", category: "Positive Training", desc: "Force-free markers, crate training, and leash manners." },
+      { title: "24/7 Emergency Assistance", url: "emergency.html", icon: "fa-triangle-exclamation", category: "Urgent Care", desc: "Clinical emergency triage, poison hotlines, and urgent clinic finder." },
+      { title: "Our Veterinary & Welfare Team", url: "team.html", icon: "fa-users", category: "Clinical Board", desc: "Meet board-certified surgeons, shelter directors, and behaviorists." },
+      { title: "Community Feedback & Reviews", url: "feedback.html", icon: "fa-comment-dots", category: "Community", desc: "Share ratings, submit suggestions, and review community stories." }
+    ],
 
-      helpBtn.addEventListener("click", () => {
-        if (window.FurEverCare && window.FurEverCare.Modal) {
-          window.FurEverCare.Modal.open("help-assistant-modal");
-        }
+    init() {
+      this.ensureElementsExist();
+      this.bindEvents();
+    },
+
+    ensureElementsExist() {
+      // 1. Ensure Floating FAB exists
+      let helpBtn = document.getElementById("floating-help-btn");
+      if (!helpBtn) {
+        helpBtn = document.createElement("button");
+        helpBtn.type = "button";
+        helpBtn.id = "floating-help-btn";
+        helpBtn.className = "floating-help-btn";
+        helpBtn.setAttribute("aria-label", "Help? Explore Pet Care Pages & Tools");
+        helpBtn.setAttribute("title", "Help? Click for quick navigation & triage");
+        helpBtn.innerHTML = `<i class="fa-solid fa-circle-question"></i> <span>Help?</span>`;
+        document.body.appendChild(helpBtn);
+      } else {
+        helpBtn.innerHTML = `<i class="fa-solid fa-circle-question"></i> <span>Help?</span>`;
+        helpBtn.setAttribute("aria-label", "Help? Explore Pet Care Pages & Tools");
+        helpBtn.setAttribute("title", "Help? Click for quick navigation & triage");
+      }
+
+      // 2. Ensure Help Assistant Modal exists
+      let modal = document.getElementById("help-assistant-modal");
+      if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "help-assistant-modal";
+        modal.className = "modal-overlay";
+        modal.setAttribute("role", "dialog");
+        modal.setAttribute("aria-modal", "true");
+        modal.setAttribute("aria-labelledby", "help-modal-title");
+        modal.innerHTML = `
+          <div class="modal-box" style="max-width: 680px;">
+            <div class="modal-header">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="brand-icon-wrapper" style="width: 36px; height: 36px; font-size: 1rem; border-radius: var(--radius-sm); background-color: var(--primary-500); color: #FFFFFF;">
+                  <i class="fa-solid fa-compass"></i>
+                </div>
+                <div>
+                  <h3 class="heading-sm" id="help-modal-title" style="margin-bottom: 2px;">FurEver Care Page Navigator</h3>
+                  <span style="font-size: 0.8rem; color: var(--text-muted);">Explore guides, clinical tools, and pet care resources</span>
+                </div>
+              </div>
+              <button class="modal-close-btn" data-modal-close aria-label="Close Help Assistant"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Instant Search Field -->
+            <div style="margin-bottom: 18px; position: relative;">
+              <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted);" aria-hidden="true"></i>
+              <input type="text" id="help-instant-search-input" class="form-control" placeholder="What do you need help with? (e.g., vaccine, grooming, quiz, calendar, emergency)..." style="padding-left: 38px;">
+            </div>
+
+            <!-- Quick Filter Topic Chips -->
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px;" id="help-topic-chips">
+              <button class="chip-btn active" data-help-filter="all" style="font-size: 0.76rem; padding: 4px 10px;">All Pages</button>
+              <button class="chip-btn" data-help-filter="tools" style="font-size: 0.76rem; padding: 4px 10px;"><i class="fa-solid fa-screwdriver-wrench"></i> Interactive Tools</button>
+              <button class="chip-btn" data-help-filter="guides" style="font-size: 0.76rem; padding: 4px 10px;"><i class="fa-solid fa-book-open"></i> Care Guides</button>
+              <button class="chip-btn" data-help-filter="emergency" style="font-size: 0.76rem; padding: 4px 10px; color: var(--accent-peach);"><i class="fa-solid fa-kit-medical"></i> Emergency</button>
+            </div>
+
+            <!-- Suggested Pages List Container -->
+            <div id="help-suggestions-list" style="max-height: 380px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 4px;">
+              <!-- Populated dynamically -->
+            </div>
+
+            <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--text-muted); flex-wrap: wrap; gap: 8px;">
+              <span><i class="fa-solid fa-shield-heart" style="color: var(--primary-500);"></i> 100% Free Open Pet Welfare Tools</span>
+              <button type="button" class="btn btn-secondary btn-sm" data-modal-close style="padding: 4px 14px; font-size: 0.78rem;">Close Navigator</button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      }
+    },
+
+    renderSuggestions(filter = "all", query = "") {
+      const container = document.getElementById("help-suggestions-list");
+      if (!container) return;
+
+      let list = [...this.helpPages];
+
+      if (filter === "tools") {
+        list = list.filter(p => ["care-calendar.html", "pet-care-journal.html", "pet-care-quiz.html", "pet-profile.html", "feeding-guide.html"].includes(p.url));
+      } else if (filter === "guides") {
+        list = list.filter(p => ["grooming-videos.html", "health-tips.html", "training-tips.html", "about.html", "team.html"].includes(p.url));
+      } else if (filter === "emergency") {
+        list = list.filter(p => ["pet-first-aid.html", "emergency.html", "contact.html"].includes(p.url));
+      }
+
+      if (query.trim()) {
+        const q = query.toLowerCase().trim();
+        list = list.filter(p =>
+          p.title.toLowerCase().includes(q) ||
+          p.desc.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+        );
+      }
+
+      if (!list.length) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 32px 16px; color: var(--text-muted);">
+            <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: var(--primary-400); margin-bottom: 8px;"></i>
+            <p style="font-size: 0.9rem; font-weight: 600;">No matching pages found</p>
+            <p style="font-size: 0.8rem; margin-top: 4px;">Try searching for "calendar", "quiz", "first aid", "grooming", or "emergency".</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(p => `
+        <a href="${p.url}" class="help-suggestion-card">
+          <div class="help-suggestion-icon">
+            <i class="fa-solid ${p.icon}"></i>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <strong style="font-size: 0.92rem; color: var(--text-primary);">${p.title}</strong>
+              <span class="tag" style="font-size: 0.68rem; padding: 2px 6px;">${p.category}</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 2px; line-height: 1.35;">${p.desc}</p>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; color: var(--text-muted);"></i>
+        </a>
+      `).join("");
+    },
+
+    bindEvents() {
+      const helpBtn = document.getElementById("floating-help-btn");
+      if (helpBtn) {
+        helpBtn.addEventListener("click", () => {
+          this.renderSuggestions();
+          Modal.open("help-assistant-modal");
+          const searchInput = document.getElementById("help-instant-search-input");
+          if (searchInput) {
+            searchInput.value = "";
+            setTimeout(() => searchInput.focus(), 150);
+          }
+        });
+      }
+
+      const searchInput = document.getElementById("help-instant-search-input");
+      const chips = document.querySelectorAll("[data-help-filter]");
+
+      let currentFilter = "all";
+
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          this.renderSuggestions(currentFilter, e.target.value);
+        });
+      }
+
+      chips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          chips.forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+          currentFilter = chip.dataset.helpFilter;
+          const q = searchInput ? searchInput.value : "";
+          this.renderSuggestions(currentFilter, q);
+        });
       });
     }
   };
@@ -2708,11 +2898,18 @@
           this.saveEvents(list);
           Toast.show(`Care event "${title}" added to calendar`, "fa-solid fa-calendar-plus");
           addForm.reset();
-          if (window.FurEverCare && window.FurEverCare.Modal) {
-            window.FurEverCare.Modal.close("add-event-modal");
-          }
+          Modal.close("add-event-modal");
         });
       }
+
+      // Explicit cancel handlers for Add Calendar Event modal
+      const calCancelBtns = document.querySelectorAll("#add-event-modal [data-modal-close], #add-event-modal button.btn-secondary, [data-modal-close='add-event-modal']");
+      calCancelBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          Modal.close("add-event-modal");
+        });
+      });
     },
 
     formatDateStr(d) {

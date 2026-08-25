@@ -44,7 +44,7 @@ const VETERINARIANS_DATA = [
     rating: 4.92,
     reviewsCount: 188,
     specializations: ["Allergy Immunotherapy", "Chronic Ear Care", "Autoimmune Skin Conditions", "Nutritional Dermatology"],
-    avatar: "https://images.unsplash.com/photo-1594824813589-cf913229b47e?auto=format&fit=crop&w=600&q=80",
+    avatar: "assets/images/dr-sana-malik.jpg",
     bio: "Dr. Sana helps companion animals overcome chronic pruritus, environmental allergies, and recurring dermatological issues through targeted immunotherapy.",
     phone: "+92 (21) 555-PAWS (Ext 108)",
     email: "sana.malik@furevercare.org",
