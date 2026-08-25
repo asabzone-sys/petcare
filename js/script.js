@@ -301,6 +301,96 @@
     }
   };
 
+  // --- 8.5. NAVIGATION DROPDOWN ENGINE ---
+  const NavDropdownEngine = {
+    init() {
+      const dropdowns = document.querySelectorAll(".nav-dropdown");
+      if (!dropdowns.length) return;
+
+      const closeAll = () => {
+        dropdowns.forEach(dropdown => {
+          dropdown.classList.remove("is-open");
+          dropdown.classList.add("is-closed");
+          const toggle = dropdown.querySelector(".nav-dropdown-toggle");
+          if (toggle) {
+            toggle.setAttribute("aria-expanded", "false");
+          }
+        });
+      };
+
+      dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector(".nav-dropdown-toggle");
+        const items = dropdown.querySelectorAll(".nav-dropdown-item");
+
+        if (toggle) {
+          toggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const isOpen = dropdown.classList.contains("is-open");
+            
+            // Close other dropdowns
+            dropdowns.forEach(d => {
+              if (d !== dropdown) {
+                d.classList.remove("is-open");
+                d.classList.add("is-closed");
+                const t = d.querySelector(".nav-dropdown-toggle");
+                if (t) t.setAttribute("aria-expanded", "false");
+              }
+            });
+
+            if (isOpen) {
+              dropdown.classList.remove("is-open");
+              dropdown.classList.add("is-closed");
+              toggle.setAttribute("aria-expanded", "false");
+              toggle.blur();
+            } else {
+              dropdown.classList.remove("is-closed");
+              dropdown.classList.add("is-open");
+              toggle.setAttribute("aria-expanded", "true");
+            }
+          });
+        }
+
+        // When any category/page item in the dropdown is clicked, immediately hide the dropdown!
+        items.forEach(item => {
+          item.addEventListener("click", () => {
+            dropdown.classList.remove("is-open");
+            dropdown.classList.add("is-closed");
+            if (toggle) {
+              toggle.setAttribute("aria-expanded", "false");
+              toggle.blur();
+            }
+          });
+        });
+
+        // Hover handling
+        dropdown.addEventListener("mouseenter", () => {
+          dropdown.classList.remove("is-closed");
+        });
+
+        dropdown.addEventListener("mouseleave", () => {
+          dropdown.classList.remove("is-open");
+          dropdown.classList.remove("is-closed");
+          if (toggle) toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // Global click outside to close dropdown
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".nav-dropdown")) {
+          closeAll();
+        }
+      });
+
+      // Escape key to close dropdown
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeAll();
+        }
+      });
+    }
+  };
+
   // --- 9. MOBILE DRAWER NAVIGATION ---
   const MobileNav = {
     init() {
@@ -4065,6 +4155,7 @@
     safeInit(CustomCursor, "CustomCursor");
     safeInit(PawTrail, "PawTrail");
     safeInit(BackToTop, "BackToTop");
+    safeInit(NavDropdownEngine, "NavDropdownEngine");
     safeInit(MobileNav, "MobileNav");
     safeInit(Personalization, "Personalization");
     safeInit(Modal, "Modal");
