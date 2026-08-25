@@ -64,13 +64,13 @@
   </div>
 
   <!-- Global Header -->
-  <header class="site-header" id="site-header">
+  <header class="site-header" id="main-header">
     <div class="container header-inner">
       <a href="index.html" class="brand-logo" aria-label="FurEver Care Homepage">
         <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
         <div class="brand-title">
           <span class="brand-name">FurEver Care</span>
-          <span class="brand-tagline">Pet Care Platform</span>
+          <span class="brand-tagline">Smarter Care. Happier Pets.</span>
         </div>
       </a>
 
@@ -83,8 +83,8 @@
         <a href="animal-shelter.html" class="nav-link">Shelter</a>
 
         <!-- Care Hub Dropdown Menu -->
-        <div class="nav-dropdown">
-          <button class="nav-dropdown-toggle active" aria-expanded="false">
+        <div class="nav-dropdown active">
+          <button class="nav-dropdown-toggle active" aria-expanded="false" type="button">
             <span>Care Hub</span> <i class="fa-solid fa-chevron-down dropdown-caret"></i>
           </button>
           <div class="nav-dropdown-menu">
@@ -112,53 +112,50 @@
 
       <!-- Header Actions -->
       <div class="header-actions">
-        <button class="theme-toggle-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
-        <button class="mobile-menu-btn" aria-label="Open mobile menu"><i class="fa-solid fa-bars"></i></button>
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode" title="Toggle Theme" type="button"><i class="fa-solid fa-moon"></i></button>
+        <a href="pet-owner.html" class="btn btn-secondary btn-sm" title="Pet Dashboard" aria-label="Dashboard">
+          <i class="fa-solid fa-arrow-left"></i> <span>Dashboard</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu" type="button"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Off-Canvas Drawer -->
-  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
-    <div class="mobile-nav-header">
-      <div class="brand-logo" style="margin-bottom: 0;">
-        <div class="brand-icon-wrapper"><i class="fa-solid fa-paw"></i></div>
-        <div class="brand-title">
-          <span class="brand-name">FurEver Care</span>
-        </div>
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="brand-logo" aria-label="FurEver Care Homepage">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px; font-size: 1.1rem;"><i class="fa-solid fa-paw"></i></div>
+          <span class="brand-name" style="font-size: 1.2rem;">FurEver Care</span>
+        </a>
+        <button class="modal-close-btn mobile-drawer-close" aria-label="Close menu" type="button"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close mobile menu"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="mobile-nav-body">
-      <div class="mobile-nav-group-title">Main Portals</div>
-      <div class="mobile-nav-sublinks">
-        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span></a>
-        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span></a>
-        <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner</span></a>
-        <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian</span></a>
-        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter</span></a>
-      </div>
+      <div class="mobile-nav-links">
+        <div class="mobile-nav-group-title">Main Navigation</div>
+        <a href="index.html" class="mobile-nav-link"><span><i class="fa-solid fa-house"></i> Home</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner Hub</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian Hub</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter Hub</span> <i class="fa-solid fa-chevron-right"></i></a>
 
-      <div class="mobile-nav-group-title">Care Hub Tools</div>
-      <div class="mobile-nav-sublinks">
-        <a href="care-calendar.html" class="mobile-nav-link active"><span><i class="fa-solid fa-calendar-days"></i> Care Calendar</span></a>
-        <a href="pet-care-journal.html" class="mobile-nav-link"><span><i class="fa-solid fa-book-medical"></i> Care Journal</span></a>
-        <a href="pet-care-quiz.html" class="mobile-nav-link"><span><i class="fa-solid fa-brain"></i> Pet Care Quiz</span></a>
-        <a href="pet-first-aid.html" class="mobile-nav-link"><span><i class="fa-solid fa-truck-medical"></i> First Aid Guide</span></a>
-        <a href="pet-profile.html" class="mobile-nav-link"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span></a>
-        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span></a>
-        <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span></a>
-        <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span></a>
-        <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span></a>
-        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Our Team</span></a>
-        <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span></a>
-      </div>
+        <div class="mobile-nav-group-title">Interactive Care Tools</div>
+        <a href="care-calendar.html" class="mobile-nav-link active"><span><i class="fa-solid fa-calendar-days"></i> Care Calendar</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="pet-care-journal.html" class="mobile-nav-link"><span><i class="fa-solid fa-book-medical"></i> Care Journal</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="pet-care-quiz.html" class="mobile-nav-link"><span><i class="fa-solid fa-brain"></i> Pet Care Quiz</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="pet-first-aid.html" class="mobile-nav-link"><span><i class="fa-solid fa-truck-medical"></i> First Aid Guide</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="pet-profile.html" class="mobile-nav-link"><span><i class="fa-solid fa-id-card"></i> Pet Profile</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="feeding-guide.html" class="mobile-nav-link"><span><i class="fa-solid fa-bowl-food"></i> Feeding Guide</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span> <i class="fa-solid fa-chevron-right"></i></a>
 
-      <div class="mobile-nav-group-title">Resources & Help</div>
-      <div class="mobile-nav-sublinks">
-        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span></a>
-        <a href="emergency.html" class="mobile-nav-link" style="color: var(--accent-peach);"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span></a>
-        <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span></a>
+        <div class="mobile-nav-group-title">More Resources</div>
+        <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="emergency.html" class="mobile-nav-link" style="color: var(--accent-peach);"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Our Team</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span> <i class="fa-solid fa-chevron-right"></i></a>
       </div>
     </div>
   </div>
@@ -188,62 +185,155 @@
       </div>
     </section>
 
-    <!-- Calendar Grid Section -->
+    <!-- Calendar Section -->
     <section class="section" style="padding-top: 20px;">
       <div class="container">
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 28px;" class="grid-2">
+        
+        <!-- Live Metric Summary Strip -->
+        <div class="calendar-stats-strip">
+          <div class="cal-stat-card">
+            <div class="cal-stat-icon" style="background-color: var(--primary-50); color: var(--primary-600);">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <div class="cal-stat-info">
+              <span class="cal-stat-val" id="cal-stat-total">0</span>
+              <span class="cal-stat-lbl">Scheduled Care Events</span>
+            </div>
+          </div>
           
-          <!-- Interactive Monthly Calendar -->
-          <div class="calendar-wrapper">
-            <div class="calendar-header">
-              <div style="display: flex; align-items: center; gap: 14px;">
-                <h3 id="cal-month-title" style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text-primary); margin: 0;">
-                  August 2026
+          <div class="cal-stat-card">
+            <div class="cal-stat-icon" style="background-color: rgba(231, 111, 81, 0.15); color: var(--accent-peach);">
+              <i class="fa-solid fa-shield-virus"></i>
+            </div>
+            <div class="cal-stat-info">
+              <span class="cal-stat-val" id="cal-stat-vaccines">0</span>
+              <span class="cal-stat-lbl">Vaccine / Clinical Boosters</span>
+            </div>
+          </div>
+
+          <div class="cal-stat-card">
+            <div class="cal-stat-icon" style="background-color: rgba(42, 157, 143, 0.15); color: var(--accent-teal);">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <div class="cal-stat-info">
+              <span class="cal-stat-val" id="cal-stat-next">Upcoming</span>
+              <span class="cal-stat-lbl" id="cal-stat-next-desc">Next: Loading routine...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Toolbar: View Switch, Filters & Export -->
+        <div class="calendar-toolbar">
+          <!-- View Switcher -->
+          <div class="cal-view-switch" role="tablist" aria-label="Calendar View Mode">
+            <button class="cal-view-btn active" id="cal-view-month-btn" type="button" role="tab" aria-selected="true">
+              <i class="fa-solid fa-calendar-days"></i> <span>Month Grid</span>
+            </button>
+            <button class="cal-view-btn" id="cal-view-agenda-btn" type="button" role="tab" aria-selected="false">
+              <i class="fa-solid fa-list-check"></i> <span>Schedule Agenda</span>
+            </button>
+          </div>
+
+          <!-- Category Filter Chips -->
+          <div class="cal-filter-chips" id="cal-filter-chips">
+            <button class="cal-filter-chip active" data-filter="all" type="button">All Events</button>
+            <button class="cal-filter-chip" data-filter="vaccine" type="button"><i class="fa-solid fa-shield-virus" style="color: var(--accent-peach);"></i> Vaccines</button>
+            <button class="cal-filter-chip" data-filter="grooming" type="button"><i class="fa-solid fa-scissors" style="color: var(--primary-600);"></i> Grooming</button>
+            <button class="cal-filter-chip" data-filter="wellness" type="button"><i class="fa-solid fa-stethoscope" style="color: var(--accent-teal);"></i> Checkups</button>
+            <button class="cal-filter-chip" data-filter="medication" type="button"><i class="fa-solid fa-pills" style="color: var(--accent-amber);"></i> Medication</button>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div style="display: flex; align-items: center; gap: 10px; margin-left: auto; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-sm" id="cal-export-ics-btn" title="Download Apple/Google Calendar .ics file" type="button">
+              <i class="fa-solid fa-file-arrow-down"></i> <span>Export iCal</span>
+            </button>
+            <button class="btn btn-primary btn-sm" data-modal-open="add-event-modal" type="button">
+              <i class="fa-solid fa-calendar-plus"></i> <span>+ Add Event</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Month Grid View Container -->
+        <div id="calendar-month-view-container">
+          <div class="calendar-layout-grid">
+            
+            <!-- Interactive Monthly Calendar -->
+            <div class="calendar-wrapper">
+              <div class="calendar-header">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                  <h3 id="cal-month-title" style="font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--text-primary); margin: 0;">
+                    August 2026
+                  </h3>
+                  <button class="btn btn-secondary btn-sm" id="cal-today-btn" style="padding: 4px 12px; font-size: 0.78rem;" type="button">Today</button>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="btn btn-secondary btn-sm" id="cal-prev-month" aria-label="Previous Month" style="width: 36px; height: 36px; padding: 0;" type="button">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="cal-next-month" aria-label="Next Month" style="width: 36px; height: 36px; padding: 0;" type="button">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Weekday Headers -->
+              <div class="calendar-grid-header">
+                <span>Sun</span>
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+              </div>
+
+              <!-- Calendar Days -->
+              <div class="calendar-days-grid" id="calendar-days-grid">
+                <!-- Dynamically populated by CareCalendarEngine -->
+              </div>
+
+              <!-- Legend Key -->
+              <div style="padding: 12px 20px; background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 0.78rem; font-weight: 600;">
+                <span style="color: var(--text-muted);">Legend:</span>
+                <span class="calendar-event-pill event-pill-vaccine"><i class="fa-solid fa-shield-virus"></i> Vaccine / Clinical</span>
+                <span class="calendar-event-pill event-pill-grooming"><i class="fa-solid fa-scissors"></i> Grooming Spa</span>
+                <span class="calendar-event-pill event-pill-vet"><i class="fa-solid fa-stethoscope"></i> Wellness Exam</span>
+                <span class="calendar-event-pill event-pill-medication"><i class="fa-solid fa-pills"></i> Medication / Dose</span>
+              </div>
+            </div>
+
+            <!-- Selected Day Event Details Sidebar -->
+            <div id="calendar-selected-details">
+              <!-- Dynamically populated on date click -->
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Agenda / Schedule List View Container (Toggled via button) -->
+        <div id="calendar-agenda-view-container" style="display: none;">
+          <div class="card" style="padding: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--text-primary); margin: 0;">
+                  Upcoming Care Schedule Agenda
                 </h3>
-                <button class="btn btn-secondary btn-sm" id="cal-today-btn" style="padding: 4px 12px; font-size: 0.78rem;">Today</button>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;">
+                  All pet medical boosters, spa sessions, and medication routines in chronological timeline order.
+                </p>
               </div>
-              <div style="display: flex; gap: 8px;">
-                <button class="btn btn-secondary btn-sm" id="cal-prev-month" aria-label="Previous Month" style="width: 36px; height: 36px; padding: 0;">
-                  <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <button class="btn btn-secondary btn-sm" id="cal-next-month" aria-label="Next Month" style="width: 36px; height: 36px; padding: 0;">
-                  <i class="fa-solid fa-chevron-right"></i>
-                </button>
-              </div>
+              <button class="btn btn-primary btn-sm" data-modal-open="add-event-modal" type="button">
+                <i class="fa-solid fa-plus"></i> Add Event
+              </button>
             </div>
-
-            <!-- Weekday Headers -->
-            <div class="calendar-grid-header">
-              <span>Sun</span>
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <span>Fri</span>
-              <span>Sat</span>
-            </div>
-
-            <!-- Calendar Days -->
-            <div class="calendar-days-grid" id="calendar-days-grid">
+            
+            <div id="calendar-agenda-list">
               <!-- Dynamically populated by CareCalendarEngine -->
             </div>
-
-            <!-- Legend Key -->
-            <div style="padding: 14px 20px; background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 0.78rem; font-weight: 600;">
-              <span style="color: var(--text-muted);">Event Types:</span>
-              <span class="calendar-event-pill event-pill-vaccine"><i class="fa-solid fa-shield-virus"></i> Vaccine / Clinical</span>
-              <span class="calendar-event-pill event-pill-grooming"><i class="fa-solid fa-scissors"></i> Grooming Spa</span>
-              <span class="calendar-event-pill event-pill-vet"><i class="fa-solid fa-stethoscope"></i> Wellness Check</span>
-              <span class="calendar-event-pill event-pill-medication"><i class="fa-solid fa-pills"></i> Medication / Dose</span>
-            </div>
           </div>
-
-          <!-- Selected Day Event Details Sidebar -->
-          <div id="calendar-selected-details">
-            <!-- Dynamically populated on date click -->
-          </div>
-
         </div>
+
       </div>
     </section>
   </main>
@@ -260,7 +350,7 @@
           <label for="cal-input-title" class="form-label">Event Title / Purpose *</label>
           <input type="text" id="cal-input-title" class="form-input" placeholder="e.g., Annual Rabies Booster or Bath Day" required>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="form-grid-2">
           <div class="form-group">
             <label for="cal-input-date" class="form-label">Date *</label>
             <input type="date" id="cal-input-date" class="form-input" required>
@@ -405,53 +495,85 @@
 
   <!-- Global Footer -->
   <footer class="site-footer">
-    <div class="container footer-top">
-      <div class="footer-brand">
-        <a href="index.html" class="brand-logo" style="color: #FFFFFF;">
-          <span class="logo-icon"><i class="fa-solid fa-paw"></i></span>
-          <span class="logo-text">FurEver <span class="logo-accent">Care</span></span>
-        </a>
-        <p>A compassionate, modern pet care companion built to empower pet parents, veterinarians, and animal shelters with verified guidance.</p>
-        <div class="social-links">
-          <a href="contact.html" class="social-icon-btn" aria-label="Contact on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="contact.html" class="social-icon-btn" aria-label="Contact on Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="contact.html" class="social-icon-btn" aria-label="Contact on YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a href="contact.html" class="social-icon-btn" aria-label="Contact on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+    <div class="container">
+      <div class="footer-top">
+        <!-- Brand Info -->
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-paw"></i>
+            </div>
+            <span class="brand-name">FurEver Care</span>
+          </div>
+          <p>
+            Dedicated to empowering pet guardians, clinical practitioners, and animal shelters with accessible, modern tools for happier, healthier pets.
+          </p>
+          <div class="social-links">
+            <a href="contact.html" class="social-icon-btn" aria-label="Contact on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="contact.html" class="social-icon-btn" aria-label="Contact on Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="contact.html" class="social-icon-btn" aria-label="Contact on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="contact.html" class="social-icon-btn" aria-label="Contact on YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="team.html" class="footer-link">Our Team</a>
+            <a href="products.html" class="footer-link">Care Products</a>
+            <a href="emergency.html" class="footer-link" style="color: #F4A261;">Emergency Help</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="feedback.html" class="footer-link">Feedback</a>
+          </div>
+        </div>
+
+        <!-- Pet Care Modules -->
+        <div>
+          <h4 class="footer-title">Pet Care Hub</h4>
+          <div class="footer-links">
+            <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
+            <a href="veterinarian.html" class="footer-link">Veterinarian Hub</a>
+            <a href="animal-shelter.html" class="footer-link">Animal Shelter Hub</a>
+            <a href="pet-profile.html" class="footer-link">Pet Profile Builder</a>
+            <a href="care-calendar.html" class="footer-link">Care Calendar</a>
+            <a href="pet-care-journal.html" class="footer-link">Care Journal</a>
+            <a href="pet-care-quiz.html" class="footer-link">Pet Care Quiz</a>
+            <a href="pet-first-aid.html" class="footer-link">First Aid Guide</a>
+            <a href="feeding-guide.html" class="footer-link">Feeding Guide</a>
+            <a href="grooming-videos.html" class="footer-link">Grooming Videos</a>
+            <a href="health-tips.html" class="footer-link">Health Tips</a>
+            <a href="training-tips.html" class="footer-link">Training Tips</a>
+          </div>
+        </div>
+
+        <!-- Impact Callout -->
+        <div>
+          <h4 class="footer-title">Care Better. Love Longer.</h4>
+          <p style="font-size: 0.88rem; color: #A9BDB2; line-height: 1.6;">
+            Join over 18,000+ pet parents receiving verified advice and updates on local adoption drives.
+          </p>
+          <a href="contact.html" class="btn btn-primary btn-sm" style="margin-top: 16px;">
+            <span>Get in Touch</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div>
-        <h4 class="footer-title">Care &amp; Health</h4>
-        <div class="footer-links">
-          <a href="care-calendar.html" class="footer-link">Care Calendar</a>
-          <a href="pet-care-quiz.html" class="footer-link">Knowledge Quiz</a>
-          <a href="pet-care-journal.html" class="footer-link">Care Journal</a>
-          <a href="pet-first-aid.html" class="footer-link">First-Aid Guide</a>
-          <a href="feeding-guide.html" class="footer-link">Feeding Calculator</a>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 FurEver Care. All rights reserved.</div>
+        <div style="display: flex; gap: 16px;">
+          <span>Smarter Care. Happier Pets.</span>
         </div>
       </div>
-      <div>
-        <h4 class="footer-title">Community &amp; Hubs</h4>
-        <div class="footer-links">
-          <a href="pet-owner.html" class="footer-link">Pet Owner Hub</a>
-          <a href="veterinarian.html" class="footer-link">Veterinary Directory</a>
-          <a href="animal-shelter.html" class="footer-link">Adoption &amp; Shelter</a>
-          <a href="products.html" class="footer-link">Certified Products</a>
-          <a href="emergency.html" class="footer-link" style="color: var(--accent-peach);">24/7 Emergency</a>
-        </div>
-      </div>
-      <div>
-        <h4 class="footer-title">Emergency Contact</h4>
-        <p style="font-size: 0.9rem; color: #A9BDB2; line-height: 1.5;">24/7 Clinical Hotline: <strong>+92 (51) 555-0199</strong><br>Email: emergency@furevercare.org</p>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <div>&copy; 2026 FurEver Care. All rights reserved. Dedicated to compassionate animal welfare.</div>
-      <div>Smarter Care. Happier Pets.</div>
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
-  <button id="back-to-top" aria-label="Back to top of page" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+  <!-- Floating Back to Top -->
+  <button id="back-to-top" aria-label="Back to Top" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
   <!-- jQuery & Bootstrap Bundle -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>

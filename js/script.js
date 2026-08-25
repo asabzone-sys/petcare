@@ -304,29 +304,56 @@
   // --- 9. MOBILE DRAWER NAVIGATION ---
   const MobileNav = {
     init() {
-      const openBtns = document.querySelectorAll(".mobile-menu-btn, #mobile-menu-btn");
-      const overlay = document.querySelector(".mobile-nav-overlay, #mobile-nav, #mobile-nav-drawer");
-      const closeBtns = document.querySelectorAll(".mobile-drawer-close, .mobile-nav-close, #mobile-nav-close");
-      if (!openBtns.length || !overlay) return;
+      const openBtns = document.querySelectorAll(".mobile-menu-btn, #mobile-menu-btn, [data-mobile-menu-open]");
+      const overlays = document.querySelectorAll(".mobile-nav-overlay, #mobile-nav");
+      const drawers = document.querySelectorAll(".mobile-nav-drawer, #mobile-nav-drawer");
+      const closeBtns = document.querySelectorAll(".mobile-drawer-close, .mobile-nav-close, #mobile-nav-close, .modal-close-btn");
+
+      if (!openBtns.length && !overlays.length && !drawers.length) return;
 
       const open = () => {
-        overlay.classList.add("open");
+        overlays.forEach(el => el.classList.add("open"));
+        drawers.forEach(el => el.classList.add("open"));
         document.body.style.overflow = "hidden";
       };
 
       const close = () => {
-        overlay.classList.remove("open");
+        overlays.forEach(el => el.classList.remove("open"));
+        drawers.forEach(el => el.classList.remove("open"));
         document.body.style.overflow = "";
       };
 
-      openBtns.forEach(btn => btn.addEventListener("click", open));
-      closeBtns.forEach(btn => btn.addEventListener("click", close));
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) close();
+      openBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          open();
+        });
+      });
+
+      closeBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          close();
+        });
+      });
+
+      overlays.forEach(overlay => {
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) close();
+        });
       });
 
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && overlay.classList.contains("open")) close();
+        if (e.key === "Escape") close();
+      });
+
+      // Auto close drawer when navigating to hash anchors or links
+      document.querySelectorAll(".mobile-nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+          close();
+        });
       });
     }
   };
@@ -1383,6 +1410,14 @@
       if (videoEl) {
         videoEl.addEventListener("play", () => updateCenterAndPlayControls(true));
         videoEl.addEventListener("pause", () => updateCenterAndPlayControls(false));
+        videoEl.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (videoEl.paused) {
+            videoEl.play().catch(() => {});
+          } else {
+            videoEl.pause();
+          }
+        });
         
         videoEl.addEventListener("timeupdate", () => {
           if (!isSeeking && videoEl.duration) {
@@ -2809,14 +2844,18 @@
 
   // --- 25. CARE CALENDAR ENGINE (care-calendar.html) ---
   const CareCalendarEngine = {
-    currentDate: new Date(),
-    selectedDate: new Date(),
+    currentDate: new Date(2026, 7, 25), // August 2026 default
+    selectedDate: new Date(2026, 7, 25),
+    currentView: "month", // "month" | "agenda"
+    activeFilter: "all",  // "all" | "vaccine" | "grooming" | "wellness" | "medication"
     defaultEvents: [
-      { id: "ce-1", dateStr: "2026-08-25", title: "Undercoat Brushing & Nail Trim", type: "grooming", time: "10:00 AM", location: "Home Grooming Station", notes: "Use slicker brush followed by undercoat rake." },
-      { id: "ce-2", dateStr: "2026-08-28", title: "Water Fountain Deep Clean", type: "wellness", time: "05:00 PM", location: "Kitchen", notes: "Replace carbon filter cartridge." },
-      { id: "ce-3", dateStr: "2026-09-05", title: "Annual DHPP & Rabies Booster", type: "vaccine", time: "11:00 AM", location: "Al-Razi Companion Medical Pavilion", notes: "Bring vaccination passport booklet." },
-      { id: "ce-4", dateStr: "2026-09-12", title: "Paws in the Park Adoption Camp", type: "wellness", time: "10:00 AM", location: "Fatima Jinnah Park", notes: "Community pet festival & agility demos." },
-      { id: "ce-5", dateStr: "2026-09-20", title: "Flea & Tick Topical Treatment", type: "medication", time: "08:00 AM", location: "Home", notes: "Apply between shoulder blades on dry skin." }
+      { id: "ce-1", dateStr: "2026-08-25", title: "Undercoat Brushing & Nail Trim", type: "grooming", time: "10:00 AM", location: "Home Grooming Station", notes: "Use slicker brush followed by undercoat rake.", completed: false },
+      { id: "ce-2", dateStr: "2026-08-28", title: "Water Fountain Deep Clean & Filter Swap", type: "wellness", time: "05:00 PM", location: "Kitchen Routine", notes: "Replace carbon filter cartridge with fresh unit.", completed: false },
+      { id: "ce-3", dateStr: "2026-09-05", title: "Annual DHPP & Rabies Booster", type: "vaccine", time: "11:00 AM", location: "Al-Razi Companion Medical Pavilion", notes: "Bring vaccination passport booklet and antibody titer history.", completed: false },
+      { id: "ce-4", dateStr: "2026-09-12", title: "Paws in the Park Agility & Walk Camp", type: "wellness", time: "10:00 AM", location: "Fatima Jinnah Park", notes: "Community pet festival, hydration station, and agility course.", completed: false },
+      { id: "ce-5", dateStr: "2026-09-20", title: "Flea & Tick Topical Treatment Dose", type: "medication", time: "08:00 AM", location: "Home Care", notes: "Apply pipette between shoulder blades on clean, dry skin.", completed: false },
+      { id: "ce-6", dateStr: "2026-10-02", title: "Dental Scaling & Gum Exam", type: "wellness", time: "02:30 PM", location: "Metropolitan Veterinary Hospital", notes: "Pre-anesthetic fast from midnight.", completed: false },
+      { id: "ce-7", dateStr: "2026-10-15", title: "Bordetella Kennel Cough Booster", type: "vaccine", time: "09:30 AM", location: "City Paws Clinic", notes: "Intranasal booster prior to boarding.", completed: false }
     ],
 
     init() {
@@ -2825,6 +2864,7 @@
 
       this.initControls();
       this.render();
+      this.updateMetrics();
     },
 
     getEvents() {
@@ -2832,7 +2872,7 @@
         const stored = localStorage.getItem("furever_calendar_events");
         if (stored) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed)) return parsed;
+          if (Array.isArray(parsed) && parsed.length) return parsed;
         }
       } catch (e) {}
       return [...this.defaultEvents];
@@ -2841,6 +2881,7 @@
     saveEvents(events) {
       localStorage.setItem("furever_calendar_events", JSON.stringify(events));
       this.render();
+      this.updateMetrics();
     },
 
     initControls() {
@@ -2848,7 +2889,12 @@
       const nextBtn = document.getElementById("cal-next-month");
       const todayBtn = document.getElementById("cal-today-btn");
       const addForm = document.getElementById("add-calendar-event-form");
+      const monthViewBtn = document.getElementById("cal-view-month-btn");
+      const agendaViewBtn = document.getElementById("cal-view-agenda-btn");
+      const exportIcsBtn = document.getElementById("cal-export-ics-btn");
+      const filterChips = document.getElementById("cal-filter-chips");
 
+      // Month Navigation
       if (prevBtn) {
         prevBtn.addEventListener("click", () => {
           this.currentDate.setMonth(this.currentDate.getMonth() - 1);
@@ -2868,10 +2914,64 @@
           this.currentDate = new Date();
           this.selectedDate = new Date();
           this.render();
-          Toast.show("Jumped to today", "fa-solid fa-calendar-day");
+          Toast.show("Centered on current date", "fa-solid fa-calendar-day");
         });
       }
 
+      // View Switcher (Month Grid vs Agenda Timeline)
+      if (monthViewBtn && agendaViewBtn) {
+        monthViewBtn.addEventListener("click", () => {
+          this.currentView = "month";
+          monthViewBtn.classList.add("active");
+          monthViewBtn.setAttribute("aria-selected", "true");
+          agendaViewBtn.classList.remove("active");
+          agendaViewBtn.setAttribute("aria-selected", "false");
+          
+          const monthCont = document.getElementById("calendar-month-view-container");
+          const agendaCont = document.getElementById("calendar-agenda-view-container");
+          if (monthCont) monthCont.style.display = "block";
+          if (agendaCont) agendaCont.style.display = "none";
+          this.render();
+        });
+
+        agendaViewBtn.addEventListener("click", () => {
+          this.currentView = "agenda";
+          agendaViewBtn.classList.add("active");
+          agendaViewBtn.setAttribute("aria-selected", "true");
+          monthViewBtn.classList.remove("active");
+          monthViewBtn.setAttribute("aria-selected", "false");
+          
+          const monthCont = document.getElementById("calendar-month-view-container");
+          const agendaCont = document.getElementById("calendar-agenda-view-container");
+          if (monthCont) monthCont.style.display = "none";
+          if (agendaCont) agendaCont.style.display = "block";
+          this.renderAgenda();
+        });
+      }
+
+      // Category Filters
+      if (filterChips) {
+        filterChips.addEventListener("click", (e) => {
+          const chip = e.target.closest(".cal-filter-chip");
+          if (!chip) return;
+          filterChips.querySelectorAll(".cal-filter-chip").forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+          this.activeFilter = chip.dataset.filter || "all";
+          this.render();
+          if (this.currentView === "agenda") {
+            this.renderAgenda();
+          }
+        });
+      }
+
+      // Export iCalendar (.ics) File
+      if (exportIcsBtn) {
+        exportIcsBtn.addEventListener("click", () => {
+          this.exportICS();
+        });
+      }
+
+      // Add Event Form Submission
       if (addForm) {
         addForm.addEventListener("submit", (e) => {
           e.preventDefault();
@@ -2879,10 +2979,13 @@
           const date = document.getElementById("cal-input-date")?.value;
           const time = document.getElementById("cal-input-time")?.value || "09:00 AM";
           const type = document.getElementById("cal-input-type")?.value || "wellness";
-          const location = document.getElementById("cal-input-loc")?.value.trim() || "Home";
+          const location = document.getElementById("cal-input-loc")?.value.trim() || "Home Routine";
           const notes = document.getElementById("cal-input-notes")?.value.trim() || "";
 
-          if (!title || !date) return;
+          if (!title || !date) {
+            Toast.show("Please enter both title and date", "fa-solid fa-triangle-exclamation");
+            return;
+          }
 
           const newEvt = {
             id: `ce-${Date.now()}`,
@@ -2891,18 +2994,19 @@
             type,
             time,
             location,
-            notes
+            notes,
+            completed: false
           };
 
           const list = [...this.getEvents(), newEvt];
           this.saveEvents(list);
-          Toast.show(`Care event "${title}" added to calendar`, "fa-solid fa-calendar-plus");
+          Toast.show(`Care appointment "${title}" scheduled!`, "fa-solid fa-calendar-check");
           addForm.reset();
           Modal.close("add-event-modal");
         });
       }
 
-      // Explicit cancel handlers for Add Calendar Event modal
+      // Cancel handlers
       const calCancelBtns = document.querySelectorAll("#add-event-modal [data-modal-close], #add-event-modal button.btn-secondary, [data-modal-close='add-event-modal']");
       calCancelBtns.forEach(btn => {
         btn.addEventListener("click", (e) => {
@@ -2910,6 +3014,31 @@
           Modal.close("add-event-modal");
         });
       });
+    },
+
+    updateMetrics() {
+      const events = this.getEvents();
+      const totalEl = document.getElementById("cal-stat-total");
+      const vaccinesEl = document.getElementById("cal-stat-vaccines");
+      const nextEl = document.getElementById("cal-stat-next");
+      const nextDescEl = document.getElementById("cal-stat-next-desc");
+
+      if (totalEl) totalEl.textContent = events.length;
+      if (vaccinesEl) vaccinesEl.textContent = events.filter(e => e.type === "vaccine").length;
+
+      if (nextEl && nextDescEl) {
+        const sorted = [...events].sort((a, b) => a.dateStr.localeCompare(b.dateStr));
+        const upcoming = sorted.find(e => !e.completed);
+        if (upcoming) {
+          const [y, m, d] = upcoming.dateStr.split("-").map(Number);
+          const formatted = new Date(y, m - 1, d).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+          nextEl.textContent = formatted;
+          nextDescEl.textContent = `${upcoming.title} (${upcoming.time})`;
+        } else {
+          nextEl.textContent = "All Clear";
+          nextDescEl.textContent = "No pending care tasks scheduled";
+        }
+      }
     },
 
     formatDateStr(d) {
@@ -2936,7 +3065,11 @@
       const lastDay = new Date(year, month + 1, 0).getDate();
       const prevLastDay = new Date(year, month, 0).getDate();
 
-      const events = this.getEvents();
+      let allEvents = this.getEvents();
+      if (this.activeFilter !== "all") {
+        allEvents = allEvents.filter(e => e.type === this.activeFilter);
+      }
+
       const todayStr = this.formatDateStr(new Date());
       const selectedStr = this.formatDateStr(this.selectedDate);
 
@@ -2955,21 +3088,26 @@
         const isToday = thisDateStr === todayStr;
         const isSelected = thisDateStr === selectedStr;
 
-        const dayEvents = events.filter(e => e.dateStr === thisDateStr);
+        const dayEvents = allEvents.filter(e => e.dateStr === thisDateStr);
 
         html += `
           <div class="calendar-day-cell ${isToday ? "today" : ""} ${isSelected ? "selected" : ""}" data-date="${thisDateStr}">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span class="calendar-day-number" style="${isToday ? "color: var(--primary-600); font-weight: 800;" : ""}">${i}</span>
-              ${dayEvents.length ? `<span style="font-size: 0.65rem; font-weight: 700; color: var(--primary-600);">${dayEvents.length}</span>` : ""}
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+              <span class="calendar-day-number">${i}</span>
+              ${dayEvents.length ? `
+                <div class="cal-dots-row">
+                  ${dayEvents.slice(0, 3).map(e => `<span class="cal-event-dot dot-${e.type}"></span>`).join("")}
+                </div>
+              ` : ""}
             </div>
-            <div style="display: flex; flex-direction: column; gap: 3px; overflow: hidden;">
+            <div style="display: flex; flex-direction: column; gap: 3px; overflow: hidden; width: 100%; margin-top: 2px;">
               ${dayEvents.slice(0, 2).map(e => `
                 <div class="calendar-event-pill event-pill-${e.type}" title="${e.title}">
-                  ${e.title}
+                  <i class="fa-solid ${e.type === "vaccine" ? "fa-shield-virus" : (e.type === "grooming" ? "fa-scissors" : (e.type === "medication" ? "fa-pills" : "fa-stethoscope"))}" style="font-size: 0.65rem;"></i>
+                  <span>${e.title}</span>
                 </div>
               `).join("")}
-              ${dayEvents.length > 2 ? `<span style="font-size: 0.65rem; color: var(--text-muted);">+${dayEvents.length - 2} more</span>` : ""}
+              ${dayEvents.length > 2 ? `<span style="font-size: 0.65rem; color: var(--text-muted); font-weight: 700;">+${dayEvents.length - 2} more</span>` : ""}
             </div>
           </div>
         `;
@@ -2989,68 +3127,262 @@
       });
 
       this.renderEventDetails(selectedStr);
+      if (this.currentView === "agenda") {
+        this.renderAgenda();
+      }
     },
 
     renderEventDetails(dateStr) {
       const container = document.getElementById("calendar-selected-details");
       if (!container) return;
 
-      const events = this.getEvents().filter(e => e.dateStr === dateStr);
+      const allEvents = this.getEvents();
+      let events = allEvents.filter(e => e.dateStr === dateStr);
+      if (this.activeFilter !== "all") {
+        events = events.filter(e => e.type === this.activeFilter);
+      }
+
       const [y, m, d] = dateStr.split("-").map(Number);
-      const displayDate = new Date(y, m - 1, d).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+      const displayDate = new Date(y, m - 1, d).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" });
 
       if (!events.length) {
         container.innerHTML = `
-          <div class="card" style="padding: 24px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-              <h4 style="font-size: 1.05rem; font-family: 'Playfair Display', serif; color: var(--text-primary);">${displayDate}</h4>
-              <button class="btn btn-primary btn-sm" data-modal-open="add-event-modal">
+          <div class="card" style="padding: 22px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <h4 style="font-size: 1.05rem; font-family: 'Playfair Display', serif; color: var(--text-primary); margin: 0;">${displayDate}</h4>
+                <span style="font-size: 0.78rem; color: var(--text-muted);">No routines scheduled</span>
+              </div>
+              <button class="btn btn-primary btn-sm" data-modal-open="add-event-modal" type="button" style="padding: 5px 12px; font-size: 0.8rem;">
                 <i class="fa-solid fa-plus"></i> Add Event
               </button>
             </div>
-            <div style="text-align: center; padding: 28px 12px; color: var(--text-muted);">
-              <i class="fa-solid fa-calendar-plus" style="font-size: 2.2rem; color: var(--primary-400); margin-bottom: 12px;"></i>
-              <p style="font-size: 0.92rem; font-weight: 500;">No care appointments scheduled for this date.</p>
-              <p style="font-size: 0.82rem; margin-top: 4px;">Click "+ Add Event" to record a vaccination, vet visit, or grooming reminder.</p>
+            <div style="text-align: center; padding: 24px 12px; background-color: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px dashed var(--border-color);">
+              <i class="fa-solid fa-calendar-plus" style="font-size: 2rem; color: var(--primary-400); margin-bottom: 10px;"></i>
+              <p style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Open Date</p>
+              <p style="font-size: 0.8rem; color: var(--text-muted); max-width: 240px; margin: 4px auto 14px;">Schedule a quick preset or tap "+ Add Event" above.</p>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button class="quick-preset-btn" data-preset="vaccine" data-date="${dateStr}" type="button">
+                  <i class="fa-solid fa-shield-virus" style="color: var(--accent-peach);"></i> + Rabies Booster
+                </button>
+                <button class="quick-preset-btn" data-preset="grooming" data-date="${dateStr}" type="button">
+                  <i class="fa-solid fa-scissors" style="color: var(--primary-600);"></i> + Bath & Nail Trim
+                </button>
+                <button class="quick-preset-btn" data-preset="wellness" data-date="${dateStr}" type="button">
+                  <i class="fa-solid fa-stethoscope" style="color: var(--accent-teal);"></i> + Comprehensive Vet Exam
+                </button>
+              </div>
             </div>
           </div>
         `;
+        this.bindDetailActions(container);
         return;
       }
 
       container.innerHTML = `
-        <div class="card" style="padding: 24px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 8px;">
+        <div class="card" style="padding: 22px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
             <div>
-              <h4 style="font-size: 1.1rem; font-family: 'Playfair Display', serif; color: var(--text-primary);">${displayDate}</h4>
-              <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">${events.length} Care Event${events.length === 1 ? "" : "s"} Scheduled</span>
+              <h4 style="font-size: 1.08rem; font-family: 'Playfair Display', serif; color: var(--text-primary); margin: 0;">${displayDate}</h4>
+              <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">${events.length} Care Event${events.length === 1 ? "" : "s"} Scheduled</span>
             </div>
-            <button class="btn btn-primary btn-sm" data-modal-open="add-event-modal">
+            <button class="btn btn-primary btn-sm" data-modal-open="add-event-modal" type="button" style="padding: 5px 12px; font-size: 0.8rem;">
               <i class="fa-solid fa-plus"></i> Add Event
             </button>
           </div>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             ${events.map(e => `
-              <div style="padding: 16px; border-radius: var(--radius-lg); background-color: var(--bg-secondary); border: 1px solid var(--border-color); display: flex; gap: 14px; align-items: flex-start;">
-                <div class="search-result-icon" style="width: 40px; height: 40px;">
-                  <i class="fa-solid ${e.type === "vaccine" ? "fa-shield-virus" : (e.type === "grooming" ? "fa-scissors" : (e.type === "medication" ? "fa-pills" : "fa-heart-pulse"))}"></i>
+              <div style="padding: 14px; border-radius: var(--radius-lg); background-color: var(--bg-secondary); border: 1px solid var(--border-color); display: flex; gap: 12px; align-items: flex-start;">
+                <div class="cal-stat-icon" style="width: 38px; height: 38px; font-size: 1.05rem; background-color: ${e.type === "vaccine" ? "rgba(231, 111, 81, 0.15)" : (e.type === "grooming" ? "rgba(45, 106, 79, 0.15)" : (e.type === "medication" ? "rgba(244, 162, 97, 0.15)" : "rgba(42, 157, 143, 0.15)"))}; color: ${e.type === "vaccine" ? "var(--accent-peach)" : (e.type === "grooming" ? "var(--primary-600)" : (e.type === "medication" ? "var(--accent-amber)" : "var(--accent-teal)"))};">
+                  <i class="fa-solid ${e.type === "vaccine" ? "fa-shield-virus" : (e.type === "grooming" ? "fa-scissors" : (e.type === "medication" ? "fa-pills" : "fa-stethoscope"))}"></i>
                 </div>
-                <div style="flex: 1;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
-                    <span style="font-weight: 700; font-size: 0.98rem; color: var(--text-primary);">${e.title}</span>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                    <span style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary); text-decoration: ${e.completed ? "line-through" : "none"};">${e.title}</span>
                     <span class="calendar-event-pill event-pill-${e.type}">${e.type.toUpperCase()}</span>
                   </div>
-                  <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; display: flex; gap: 12px; flex-wrap: wrap;">
+                  <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; display: flex; gap: 10px; flex-wrap: wrap;">
                     <span><i class="fa-solid fa-clock"></i> ${e.time}</span>
                     <span><i class="fa-solid fa-location-dot"></i> ${e.location}</span>
                   </div>
-                  ${e.notes ? `<p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 8px; line-height: 1.4;">${e.notes}</p>` : ""}
+                  ${e.notes ? `<p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 6px; line-height: 1.4;">${e.notes}</p>` : ""}
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                    <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; cursor: pointer; color: var(--text-secondary);">
+                      <input type="checkbox" class="cal-toggle-complete" data-id="${e.id}" ${e.completed ? "checked" : ""}>
+                      <span>${e.completed ? "Completed" : "Mark as Done"}</span>
+                    </label>
+                    <button class="cal-delete-btn" data-id="${e.id}" style="border: none; background: transparent; color: var(--accent-peach); font-size: 0.78rem; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" title="Delete this appointment">
+                      <i class="fa-solid fa-trash-can"></i> Delete
+                    </button>
+                  </div>
                 </div>
               </div>
             `).join("")}
           </div>
         </div>
       `;
+      this.bindDetailActions(container);
+    },
+
+    bindDetailActions(container) {
+      if (!container) return;
+
+      // Quick preset buttons
+      container.querySelectorAll(".quick-preset-btn[data-preset]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const preset = btn.dataset.preset;
+          const date = btn.dataset.date;
+          let title = "Vet Wellness Exam";
+          let time = "10:00 AM";
+          let location = "Al-Razi Companion Medical Pavilion";
+
+          if (preset === "vaccine") {
+            title = "Annual DHPP & Rabies Booster";
+          } else if (preset === "grooming") {
+            title = "Full Bath, Nail Trim & Deshedding";
+            location = "Pet Spa & Grooming Lounge";
+          }
+
+          const newEvt = {
+            id: `ce-${Date.now()}`,
+            dateStr: date,
+            title,
+            type: preset,
+            time,
+            location,
+            notes: "Quick preset care reminder added by pet owner.",
+            completed: false
+          };
+
+          const list = [...this.getEvents(), newEvt];
+          this.saveEvents(list);
+          Toast.show(`Added "${title}"`, "fa-solid fa-check");
+        });
+      });
+
+      // Complete toggle
+      container.querySelectorAll(".cal-toggle-complete").forEach(chk => {
+        chk.addEventListener("change", () => {
+          const id = chk.dataset.id;
+          const list = this.getEvents().map(e => e.id === id ? { ...e, completed: chk.checked } : e);
+          this.saveEvents(list);
+          Toast.show(chk.checked ? "Appointment marked complete" : "Marked as pending", "fa-solid fa-check");
+        });
+      });
+
+      // Delete buttons
+      container.querySelectorAll(".cal-delete-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.id;
+          const list = this.getEvents().filter(e => e.id !== id);
+          this.saveEvents(list);
+          Toast.show("Appointment removed from schedule", "fa-solid fa-trash-can");
+        });
+      });
+    },
+
+    renderAgenda() {
+      const listEl = document.getElementById("calendar-agenda-list");
+      if (!listEl) return;
+
+      let events = this.getEvents();
+      if (this.activeFilter !== "all") {
+        events = events.filter(e => e.type === this.activeFilter);
+      }
+
+      if (!events.length) {
+        listEl.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
+            <i class="fa-solid fa-calendar-xmark" style="font-size: 2.4rem; color: var(--primary-400); margin-bottom: 12px;"></i>
+            <p style="font-size: 1rem; font-weight: 600; color: var(--text-primary);">No appointments match your filter</p>
+            <p style="font-size: 0.85rem; margin-top: 4px;">Try selecting "All Events" or schedule a new care task above.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Sort events chronologically
+      const sorted = [...events].sort((a, b) => a.dateStr.localeCompare(b.dateStr));
+
+      listEl.innerHTML = `
+        <div class="calendar-agenda-view">
+          ${sorted.map(e => {
+            const [y, m, d] = e.dateStr.split("-").map(Number);
+            const dateObj = new Date(y, m - 1, d);
+            const monthStr = dateObj.toLocaleDateString("en-US", { month: "short" });
+            const dayStr = dateObj.getDate();
+            const weekdayStr = dateObj.toLocaleDateString("en-US", { weekday: "short" });
+
+            return `
+              <div class="agenda-event-card ${e.completed ? "completed" : ""}">
+                <div class="agenda-date-box">
+                  <span class="agenda-date-month">${monthStr}</span>
+                  <span class="agenda-date-day">${dayStr}</span>
+                </div>
+                <div class="agenda-info">
+                  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <span class="agenda-event-title">${e.title}</span>
+                    <span class="calendar-event-pill event-pill-${e.type}">${e.type.toUpperCase()}</span>
+                  </div>
+                  <div class="agenda-meta">
+                    <span><i class="fa-solid fa-calendar-day"></i> ${weekdayStr}, ${e.dateStr}</span>
+                    <span><i class="fa-solid fa-clock"></i> ${e.time}</span>
+                    <span><i class="fa-solid fa-location-dot"></i> ${e.location}</span>
+                  </div>
+                  ${e.notes ? `<p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 6px; line-height: 1.4;">${e.notes}</p>` : ""}
+                </div>
+                <div class="agenda-actions">
+                  <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; color: var(--text-secondary);">
+                    <input type="checkbox" class="cal-toggle-complete" data-id="${e.id}" ${e.completed ? "checked" : ""}>
+                    <span style="display: none;">Done</span>
+                  </label>
+                  <button class="cal-delete-btn btn btn-secondary btn-sm" data-id="${e.id}" style="width: 34px; height: 34px; padding: 0; color: var(--accent-peach);" title="Delete appointment">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `;
+
+      this.bindDetailActions(listEl);
+    },
+
+    exportICS() {
+      const events = this.getEvents();
+      if (!events.length) {
+        Toast.show("No care events to export", "fa-solid fa-circle-exclamation");
+        return;
+      }
+
+      let icsContent = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//FurEver Pet Care Management//Care Calendar//EN\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n";
+
+      events.forEach(e => {
+        const cleanDate = e.dateStr.replace(/-/g, "");
+        const uid = `furever-${e.id}@furevercare.pk`;
+        icsContent += "BEGIN:VEVENT\r\n";
+        icsContent += `UID:${uid}\r\n`;
+        icsContent += `DTSTAMP:${cleanDate}T000000Z\r\n`;
+        icsContent += `DTSTART;VALUE=DATE:${cleanDate}\r\n`;
+        icsContent += `SUMMARY:${e.title}\r\n`;
+        icsContent += `DESCRIPTION:${e.notes || "Pet Care Routine"} - Time: ${e.time}\r\n`;
+        icsContent += `LOCATION:${e.location || "Pet Clinic"}\r\n`;
+        icsContent += "STATUS:CONFIRMED\r\n";
+        icsContent += "END:VEVENT\r\n";
+      });
+
+      icsContent += "END:VCALENDAR\r\n";
+
+      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute("download", "furever-pet-care-schedule.ics");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      Toast.show("Exported iCal schedule file!", "fa-solid fa-file-arrow-down");
     }
   };
 

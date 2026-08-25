@@ -103,7 +103,7 @@
 
         <!-- Care Hub Dropdown Menu -->
         <div class="nav-dropdown">
-          <button class="nav-dropdown-toggle" aria-expanded="false">
+          <button class="nav-dropdown-toggle" aria-expanded="false" type="button">
             <span>Care Hub</span> <i class="fa-solid fa-chevron-down dropdown-caret"></i>
           </button>
           <div class="nav-dropdown-menu">
@@ -131,13 +131,13 @@
 
       <!-- Header Actions -->
       <div class="header-actions">
-        <button class="theme-toggle-btn" aria-label="Toggle dark mode" title="Toggle Theme">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode" title="Toggle Theme" type="button">
           <i class="fa-solid fa-moon"></i>
         </button>
-        <a href="#onboarding-section" class="btn btn-primary btn-sm">
+        <a href="#onboarding-section" class="btn btn-primary btn-sm nav-action-btn">
           <span>Get Started</span> <i class="fa-solid fa-arrow-right"></i>
         </a>
-        <button class="mobile-menu-btn" aria-label="Open mobile menu">
+        <button class="mobile-menu-btn" aria-label="Open mobile menu" type="button">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
@@ -146,24 +146,27 @@
 
   <!-- Mobile Drawer Menu -->
   <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
-    <div class="mobile-nav-drawer">
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
       <div class="mobile-drawer-header">
-        <div class="brand-logo">
+        <a href="index.html" class="brand-logo" aria-label="FurEver Care Homepage">
           <div class="brand-icon-wrapper" style="width: 36px; height: 36px; font-size: 1.1rem;">
             <i class="fa-solid fa-paw"></i>
           </div>
           <span class="brand-name" style="font-size: 1.2rem;">FurEver Care</span>
-        </div>
-        <button class="modal-close-btn mobile-drawer-close" aria-label="Close menu">
+        </a>
+        <button class="modal-close-btn mobile-drawer-close" aria-label="Close menu" type="button">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
       <div class="mobile-nav-links">
+        <div class="mobile-nav-group-title">Main Navigation</div>
         <a href="index.html" class="mobile-nav-link active"><span><i class="fa-solid fa-house"></i> Home</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="about.html" class="mobile-nav-link"><span><i class="fa-solid fa-circle-info"></i> About Us</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="pet-owner.html" class="mobile-nav-link"><span><i class="fa-solid fa-paw"></i> Pet Owner Hub</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="veterinarian.html" class="mobile-nav-link"><span><i class="fa-solid fa-user-doctor"></i> Veterinarian Hub</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="animal-shelter.html" class="mobile-nav-link"><span><i class="fa-solid fa-shield-heart"></i> Animal Shelter Hub</span> <i class="fa-solid fa-chevron-right"></i></a>
+
+        <div class="mobile-nav-group-title">Interactive Care Tools</div>
         <a href="care-calendar.html" class="mobile-nav-link"><span><i class="fa-solid fa-calendar-days"></i> Care Calendar</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="pet-care-journal.html" class="mobile-nav-link"><span><i class="fa-solid fa-book-medical"></i> Care Journal</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="pet-care-quiz.html" class="mobile-nav-link"><span><i class="fa-solid fa-brain"></i> Pet Care Quiz</span> <i class="fa-solid fa-chevron-right"></i></a>
@@ -173,10 +176,12 @@
         <a href="grooming-videos.html" class="mobile-nav-link"><span><i class="fa-solid fa-scissors"></i> Grooming Videos</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="health-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-heart-pulse"></i> Health Tips</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="training-tips.html" class="mobile-nav-link"><span><i class="fa-solid fa-graduation-cap"></i> Training Tips</span> <i class="fa-solid fa-chevron-right"></i></a>
+
+        <div class="mobile-nav-group-title">More Resources</div>
         <a href="products.html" class="mobile-nav-link"><span><i class="fa-solid fa-store"></i> Products</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="emergency.html" class="mobile-nav-link" style="color: var(--accent-peach);"><span><i class="fa-solid fa-triangle-exclamation"></i> Emergency Help</span> <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Our Team</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="feedback.html" class="mobile-nav-link"><span><i class="fa-solid fa-comment-dots"></i> Feedback</span> <i class="fa-solid fa-chevron-right"></i></a>
-        <a href="team.html" class="mobile-nav-link"><span><i class="fa-solid fa-users"></i> Team</span> <i class="fa-solid fa-chevron-right"></i></a>
         <a href="contact.html" class="mobile-nav-link"><span><i class="fa-solid fa-envelope"></i> Contact</span> <i class="fa-solid fa-chevron-right"></i></a>
       </div>
     </div>
