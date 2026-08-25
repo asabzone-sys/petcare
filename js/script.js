@@ -397,7 +397,7 @@
       const openBtns = document.querySelectorAll(".mobile-menu-btn, #mobile-menu-btn, [data-mobile-menu-open]");
       const overlays = document.querySelectorAll(".mobile-nav-overlay, #mobile-nav");
       const drawers = document.querySelectorAll(".mobile-nav-drawer, #mobile-nav-drawer");
-      const closeBtns = document.querySelectorAll(".mobile-drawer-close, .mobile-nav-close, #mobile-nav-close, .modal-close-btn");
+      const closeBtns = document.querySelectorAll(".mobile-drawer-close, .mobile-nav-close, #mobile-nav-close");
 
       if (!openBtns.length && !overlays.length && !drawers.length) return;
 
@@ -1700,13 +1700,19 @@
         });
       }
 
-      // Explicit Cancel & Close Button
-      const modalCancelBtn = document.getElementById("modal-cancel-btn");
-      if (modalCancelBtn) {
-        modalCancelBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          Modal.close("video-modal");
+      // Explicit Close & Cancel Buttons for Video Modal
+      if (modal) {
+        modal.querySelectorAll(".modal-close-btn, [data-modal-close], #modal-cancel-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (videoEl) {
+              try {
+                videoEl.pause();
+              } catch (err) {}
+            }
+            Modal.close("video-modal");
+          });
         });
       }
 
